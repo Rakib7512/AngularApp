@@ -6,13 +6,17 @@ import { App } from './app';
 import { Home } from './home/home';
 import { Aboutus } from './aboutus/aboutus';
 import { Studentform } from './studentform/studentform';
+import { ViewAllStudent } from './view-all-student/view-all-student';
+import { provideHttpClient, withFetch } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
     App,
     Home,
     Aboutus,
-    Studentform
+    Studentform,
+    ViewAllStudent
   ],
   imports: [
     BrowserModule,
@@ -22,6 +26,10 @@ import { Studentform } from './studentform/studentform';
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
     provideClientHydration(withEventReplay())
+
+    // provideHttpClient( 
+    //   withFetch)()
+    
   ],
   bootstrap: [App]
 })
