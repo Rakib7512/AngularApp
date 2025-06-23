@@ -6,11 +6,15 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class StudentService {
+  
   baseUrl: string="http://localhost:3000/Student"
 
   constructor(private http:HttpClient) { }
-  getAllStudent():Observable<any>{
+
+  getAllStudent(): Observable<any>{
 
     return this.http.get(this.baseUrl);
   }
+
+
 }

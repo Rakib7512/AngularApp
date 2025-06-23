@@ -25,12 +25,15 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
-    provideClientHydration(withEventReplay())
+    provideClientHydration(withEventReplay()),
 
-    // provideHttpClient( 
-    //   withFetch)()
+
+    provideHttpClient( 
+      withFetch()
+    )
     
   ],
+
   bootstrap: [App]
 })
 export class AppModule { }

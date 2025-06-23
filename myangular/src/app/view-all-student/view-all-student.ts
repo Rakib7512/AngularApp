@@ -9,15 +9,21 @@ import { Student } from '../model/student.model';
   styleUrl: './view-all-student.css'
 })
 export class ViewAllStudent implements OnInit {
-Student:any;
+  students: any;
 
-  constructor(private studentService:StudentService){}
+  constructor(private studentService: StudentService) { }
+
+
   ngOnInit(): void {
     this.loadAllStudent();
   }
-  loadAllStudent(){
 
-    this.Student=this.studentService.getAllStudent();
+
+  loadAllStudent() {
+
+    this.students = this.studentService.getAllStudent();
+
+    console.log(Student.toString());
   }
 
 

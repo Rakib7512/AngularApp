@@ -10,12 +10,12 @@
     </tr>
 </thead>
 <tbody>
-    <tr *ngFor="let s in students | async">
-        <td>{{s.Id}}</td>
-        <td>{{s.Name}}</td>
-        <td>{{s.E}}</td>
-        <td></td>
-        <td></td>
+    <tr *ngFor="let s of students | async">
+        <td>{{s.id}}</td>
+        <td>{{s.name}}</td>
+        <td>{{s.email}}</td>
+        <td>{{s.fee}}</td>
+        <td>{{s.action}}</td>
 
     </tr>
 </tbody>
