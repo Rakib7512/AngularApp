@@ -39,20 +39,12 @@ export class Addstudent implements OnInit {
         console.log(" Student Save", res);
         this.formGroup.reset();
         this.router.navigate(['/allStudent']);
-
-
-
-
       },
+
 
       error :(error)=>{
           console.log(error);
-
       }
- 
-
-
-
     })
 
 
