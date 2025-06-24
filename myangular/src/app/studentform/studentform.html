@@ -1,54 +1,92 @@
-<div class="container mt-5">
-  <form  class="border p-4 rounded shadow" >
-    <div class="mb-3">
-      <label for="name" class="form-label">Full Name:</label>
-      <input type="text" class="form-control" id="name" formControlName="name" required>
-    </div>
 
-    <div class="mb-3">
-      <label for="email" class="form-label">Email:</label>
-      <input type="email" class="form-control" id="email" formControlName="email" required>
-    </div>
-
-    <div class="mb-3">
-      <label for="fee" class="form-label">Fee:</label>
-      <input type="number" class="form-control" id="fee" formControlName="fee" required>
-    </div>
-
-    <!-- <div class="mb-3">
-      <label class="form-label d-block">Gender:</label>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="gender" id="male" value="Male" required>
-        <label class="form-check-label" for="male">Male</label>
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg sticky-top shadow-sm" style="background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.3);">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold text-dark" href="#home"><i class="bi bi-kanban-fill me-2 text-primary"></i>DashPro</a>
+    <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link text-dark" href="#employee">Employee</a></li>
+        <li class="nav-item"><a class="nav-link text-dark" href="#admin">Admin</a></li>
+        <li class="nav-item"><a class="nav-link text-dark" href="#sales">Sales</a></li>
+        <li class="nav-item"><a class="nav-link text-dark" href="#other">Activities</a></li>
+      </ul>
+      <form class="d-flex me-3">
+        <input class="form-control rounded-pill me-2" type="search" placeholder="Search...">
+        <button class="btn btn-outline-primary rounded-pill" type="submit"><i class="bi bi-search"></i></button>
+      </form>
+      <div class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle d-flex align-items-center text-dark" href="#" data-bs-toggle="dropdown">
+          <img src="https://i.pravatar.cc/40?img=12" class="rounded-circle me-2" alt="user" width="35" height="35" />
+          <span class="fw-semibold d-none d-lg-inline">Rakib</span>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><a class="dropdown-item" href="#profile">My Profile</a></li>
+          <li><a class="dropdown-item" href="#settings">Settings</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item text-danger" href="#logout">Logout</a></li>
+        </ul>
       </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="gender" id="female" value="Female">
-        <label class="form-check-label" for="female">Female</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="gender" id="other" value="Other">
-        <label class="form-check-label" for="other">Other</label>
-      </div>
     </div>
+  </div>
+</nav>
 
-    <div class="mb-3">
-      <label for="dob" class="form-label">Date of Birth:</label>
-      <input type="date" class="form-control" id="dob" name="dob" required>
-    </div>
+<!-- SECTIONS -->
+<section id="home" class="p-5">
+  <div class="container">
+    <h2 class="mb-4">Welcome to Employee & Sales Management Dashboard</h2>
+    <p>This dashboard allows you to manage employees, track sales, and monitor admin activities in one place.</p>
+  </div>
+</section>
 
-    <div class="mb-3">
-      <label for="course" class="form-label">Course:</label>
-      <select class="form-select" id="course" name="course" required>
-        <option value="">--Select Course--</option>
-        <option value="BBA">BBA</option>
-        <option value="BSc">B.Sc</option>
-        <option value="BCom">B.Com</option>
-        <option value="BA">BA</option>
-      </select>
-    </div> -->
+<section id="employee" class="p-5 bg-light">
+  <div class="container">
+    <h3 class="mb-4">Employee Management</h3>
+    <ul>
+      <li>Employee List</li>
+      <li>Add Employee</li>
+      <li>Attendance</li>
+      <li>Attendance with Location</li>
+    </ul>
+  </div>
+</section>
 
-    <div class="mb-3 text-center">
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </div>
-  </form>
-</div>
+<section id="admin" class="p-5">
+  <div class="container">
+    <h3 class="mb-4">Admin Panel</h3>
+    <ul>
+      <li>Admin Dashboard</li>
+      <li>User Roles</li>
+      <li>System Settings</li>
+    </ul>
+  </div>
+</section>
+
+<section id="sales" class="p-5 bg-light">
+  <div class="container">
+    <h3 class="mb-4">Sales Details</h3>
+    <ul>
+      <li>Sales Report</li>
+      <li>Add Sale</li>
+      <li>Customer Info</li>
+    </ul>
+  </div>
+</section>
+
+<section id="other" class="p-5">
+  <div class="container">
+    <h3 class="mb-4">Other Activities</h3>
+    <ul>
+      <li>Reports</li>
+      <li>Notifications</li>
+      <li>Help & Support</li>
+    </ul>
+  </div>
+</section>
+
+<footer class="text-center py-3 bg-dark text-white mt-5">
+  <p>&copy; 2025 DashPro. All rights reserved.</p>
+</footer>
+
