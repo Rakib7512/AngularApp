@@ -1,27 +1,31 @@
 <table class="table striped">
-<thead>
+    <thead>
 
-    <tr>
-        <td>Id</td>
-        <td>Name</td>
-        <td>Email</td>
-        <td>Fee</td>
-        <td>Action</td>
-    </tr>
-</thead>
-<tbody>
-    <tr *ngFor="let s of students | async">
-        <td>{{s.id}}</td>
-        <td>{{s.name}}</td>
-        <td>{{s.email}}</td>
-        <td>{{s.fee}}</td>
-        <td>{{s.action}}</td>
+        <tr>
+            <td>Id</td>
+            <td>Name</td>
+            <td>Email</td>
+            <td>Fee</td>
+            <td>Action</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let s of students | async">
+            <td>{{s.id}}</td>
+            <td>{{s.name}}</td>
+            <td>{{s.email}}</td>
+            <td>{{s.fee}}</td>
+            <td>
 
-    </tr>
-</tbody>
+                <button class="btn btn-warning m-1 p-1">Edit</button>
+                <button class="btn btn-danger m-1 p-1" (click)="deleteStudent(s.id)">Delete</button>
+
+            </td>
+        </tr>
+
+    </tbody>
 
 
 
 
 </table>
-
