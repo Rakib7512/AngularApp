@@ -8,6 +8,8 @@ import { Aboutus } from './aboutus/aboutus';
 import { Studentform } from './studentform/studentform';
 import { ViewAllStudent } from './view-all-student/view-all-student';
 import { provideHttpClient, withFetch } from '@angular/common/http';
+import { Addstudent } from './addstudent/addstudent';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -16,11 +18,14 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
     Home,
     Aboutus,
     Studentform,
-    ViewAllStudent
+    ViewAllStudent,
+    Addstudent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),

@@ -7,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './studentform.css'
 })
 export class Studentform {
+  
 
 }
