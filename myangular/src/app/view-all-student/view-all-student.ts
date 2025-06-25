@@ -48,6 +48,7 @@ export class ViewAllStudent implements OnInit {
 
 
   }
+  
 
 
 }
