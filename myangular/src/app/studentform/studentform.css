@@ -1,0 +1,38 @@
+/* Hero waves */
+.waves svg {
+  position: absolute; bottom: 0; width: 100%; height: 150px;
+  animation: wave 4s ease-in-out infinite;
+}
+@keyframes wave {
+  0%,100% { transform: translateX(0); }
+  50% { transform: translateX(-25%); }
+}
+
+/* Glass navbar transition */
+.navbar.glass {
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(12px);
+  transition: background 0.3s ease;
+}
+.navbar.scrolled {
+  background: rgba(255,255,255,0.9);
+}
+
+/* AOS animations */
+[data-aos] {
+  opacity: 0;
+  transition-property: opacity, transform;
+}
+[data-aos].aos-animate {
+  opacity: 1;
+}
+
+/* Footer icons */
+footer i {
+  font-size: 1.5rem;
+  transition: transform 0.2s, color 0.2s;
+}
+footer i:hover {
+  transform: scale(1.2);
+  color: #ff6ec4;
+}

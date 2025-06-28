@@ -1,101 +1,356 @@
-<<<<<<< HEAD
-=======
-<div class="container mt-5 container ">
-  <form  class="border p-4 rounded shadow" >
-    <div class="mb-3">
-      <label for="name" class="form-label">Full Name:</label>
-      <input type="text" class="form-control" id="name" formControlName="name" required>
-    </div>
->>>>>>> 359333a04c40d1a717dd034152a5a33ed1a04828
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HRM - Human Resource Management</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #6c5ce7;
+            --secondary-color: #a29bfe;
+            --text-color: #2d3436;
+            --bg-color: #f7f7f7;
+            --card-bg: rgba(255, 255, 255, 0.2);
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --shadow: 0 8px 32px rgba(31, 38, 135, 0.2);
+        }
 
-<!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg sticky-top shadow-sm" style="background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.3);">
-  <div class="container-fluid">
-    <a class="navbar-brand fw-bold text-dark" href="#home"><i class="bi bi-kanban-fill me-2 text-primary"></i>DashPro</a>
-    <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item"><a class="nav-link text-dark" href="#employee">Employee</a></li>
-        <li class="nav-item"><a class="nav-link text-dark" href="#admin">Admin</a></li>
-        <li class="nav-item"><a class="nav-link text-dark" href="#sales">Sales</a></li>
-        <li class="nav-item"><a class="nav-link text-dark" href="#other">Activities</a></li>
-      </ul>
-      <form class="d-flex me-3">
-        <input class="form-control rounded-pill me-2" type="search" placeholder="Search...">
-        <button class="btn btn-outline-primary rounded-pill" type="submit"><i class="bi bi-search"></i></button>
-      </form>
-      <div class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle d-flex align-items-center text-dark" href="#" data-bs-toggle="dropdown">
-          <img src="https://i.pravatar.cc/40?img=12" class="rounded-circle me-2" alt="user" width="35" height="35" />
-          <span class="fw-semibold d-none d-lg-inline">Rakib</span>
-        </a>
-        <ul class="dropdown-menu dropdown-menu-end">
-          <li><a class="dropdown-item" href="#profile">My Profile</a></li>
-          <li><a class="dropdown-item" href="#settings">Settings</a></li>
-          <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item text-danger" href="#logout">Logout</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</nav>
+        [data-theme="dark"] {
+            --primary-color: #a29bfe;
+            --secondary-color: #6c5ce7;
+            --text-color: #dfe6e9;
+            --bg-color: #2d3436;
+            --card-bg: rgba(45, 52, 54, 0.3);
+            --glass-bg: rgba(45, 52, 54, 0.2);
+        }
 
-<!-- SECTIONS -->
-<section id="home" class="p-5">
-  <div class="container">
-    <h2 class="mb-4">Welcome to Employee & Sales Management Dashboard</h2>
-    <p>This dashboard allows you to manage employees, track sales, and monitor admin activities in one place.</p>
-  </div>
-</section>
+        body {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--text-color);
+            min-height: 100vh;
+            font-family: 'Segoe UI', sans-serif;
+            transition: all 0.3s ease;
+        }
 
-<section id="employee" class="p-5 bg-light">
-  <div class="container">
-    <h3 class="mb-4">Employee Management</h3>
-    <ul>
-      <li>Employee List</li>
-      <li>Add Employee</li>
-      <li>Attendance</li>
-      <li>Attendance with Location</li>
-    </ul>
-  </div>
-</section>
+        .navbar {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
 
-<section id="admin" class="p-5">
-  <div class="container">
-    <h3 class="mb-4">Admin Panel</h3>
-    <ul>
-      <li>Admin Dashboard</li>
-      <li>User Roles</li>
-      <li>System Settings</li>
-    </ul>
-  </div>
-</section>
+        .glass-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
 
-<section id="sales" class="p-5 bg-light">
-  <div class="container">
-    <h3 class="mb-4">Sales Details</h3>
-    <ul>
-      <li>Sales Report</li>
-      <li>Add Sale</li>
-      <li>Customer Info</li>
-    </ul>
-  </div>
-</section>
+        .glass-card:hover {
+            transform: translateY(-5px);
+        }
 
-<section id="other" class="p-5">
-  <div class="container">
-    <h3 class="mb-4">Other Activities</h3>
-    <ul>
-      <li>Reports</li>
-      <li>Notifications</li>
-      <li>Help & Support</li>
-    </ul>
-  </div>
-</section>
+        .theme-toggle {
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
 
-<footer class="text-center py-3 bg-dark text-white mt-5">
-  <p>&copy; 2025 DashPro. All rights reserved.</p>
-</footer>
+        .feature-icon, .team-icon, .job-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
 
+        .hero-section {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        footer {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+        }
+
+        .team-img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-card {
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .job-listing {
+            transition: all 0.3s ease;
+        }
+
+        .job-listing:hover {
+            background: var(--glass-bg);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand text-white fw-bold" href="#">HRM Solution</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link text-white" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#features">Features</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#team">Team</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#testimonials">Testimonials</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#careers">Careers</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#contact">Contact</a></li>
+                    <li class="nav-item">
+                        <i class="fas fa-moon theme-toggle text-white ms-3" onclick="toggleTheme()"></i>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="glass-card p-5">
+                <h1 class="display-4 fw-bold mb-4">Modern HR Management</h1>
+                <p class="lead mb-4">Streamline your HR processes with our cutting-edge solution</p>
+                <a href="#features" class="btn btn-primary btn-lg">Explore Features</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Our Features</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="glass-card p-4 text-center">
+                        <i class="fas fa-users feature-icon"></i>
+                        <h3>Employee Management</h3>
+                        <p>Manage employee profiles, attendance, and performance efficiently</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="glass-card p-4 text-center">
+                        <i class="fas fa-money-bill feature-icon"></i>
+                        <h3>Payroll Processing</h3>
+                        <p>Automate payroll calculations and generate reports</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="glass-card p-4 text-center">
+                        <i class="fas fa-briefcase feature-icon"></i>
+                        <h3>Recruitment</h3>
+                        <p>Streamline hiring processes and track applicants</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="glass-card p-4">
+                        <h2>About Us</h2>
+                        <p>We provide innovative HR solutions that empower businesses to manage their workforce effectively. Our platform combines modern technology with user-friendly design to streamline HR processes.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="glass-card p-4">
+                        <h3>Our Mission</h3>
+                        <p>To simplify HR management through intuitive technology and exceptional support.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Our Team</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="glass-card p-4 text-center">
+                        <img src="https://via.placeholder.com/100" alt="Team Member" class="team-img">
+                        <h3>Jane Doe</h3>
+                        <p class="text-muted">CEO & Founder</p>
+                        <p>Leading with vision to transform HR management</p>
+                        <div class="social-icons">
+                            <a href="#" class="text-white mx-2"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="glass-card p-4 text-center">
+                        <img src="https://via.placeholder.com/100" alt="Team Member" class="team-img">
+                        <h3>John Smith</h3>
+                        <p class="text-muted">CTO</p>
+                        <p>Driving technological innovation for HR solutions</p>
+                        <div class="social-icons">
+                            <a href="#" class="text-white mx-2"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="glass-card p-4 text-center">
+                        <img src="https://via.placeholder.com/100" alt="Team Member" class="team-img">
+                        <h3>Emily Johnson</h3>
+                        <p class="text-muted">HR Manager</p>
+                        <p>Expert in workforce management and engagement</p>
+                        <div class="social-icons">
+                            <a href="#" class="text-white mx-2"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">What Our Clients Say</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="glass-card p-4 testimonial-card">
+                        <p>"This HR solution transformed our workflow, making employee management seamless and efficient."</p>
+                        <p class="text-muted mt-auto">- Sarah Williams, HR Director</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="glass-card p-4 testimonial-card">
+                        <p>"The payroll feature saved us hours of manual work. Highly recommend!"</p>
+                        <p class="text-muted mt-auto">- Michael Brown, CFO</p>
+                    </div>
+                </div>
+                <div class="col.md-4">
+                    <div class="glass-card p-4 testimonial-card">
+                        <p>"Recruitment has never been easier. The platform is intuitive and powerful."</p>
+                        <p class="text-muted mt-auto">- Lisa Davis, Talent Acquisition Lead</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Careers Section -->
+    <section id="careers" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Join Our Team</h2>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="glass-card p-4 job-listing">
+                        <i class="fas fa-code job-icon"></i>
+                        <h3>Senior Software Engineer</h3>
+                        <p>Develop innovative HR solutions with our tech team.</p>
+                        <button class="btn btn-primary">Apply Now</button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="glass-card p-4 job-listing">
+                        <i class="fas fa-user-tie job-icon"></i>
+                        <h3>HR Consultant</h3>
+                        <p>Support clients in optimizing their HR processes.</p>
+                        <button class="btn btn-primary">Apply Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Contact Us</h2>
+            <div class="row">
+                <div class="col-md-6 mx-auto">
+                    <div class="glass-card p-4">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="Your Name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="Your Email">
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea class="form-control" id="message" rows="4" placeholder="Your Message"></textarea>
+                        </div>
+                        <button type="button" class="btn btn-primary w-100" onclick="alert('Message sent!')">Send Message</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-4 text-center text-white">
+        <div class="container">
+            <p>© 2025 HRM Solution. All rights reserved.</p>
+            <div class="social-icons mt-3">
+                <a href="#" class="text-white mx-2"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-white mx-2"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="text-white mx-2"><i class="fab fa-facebook"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS and Theme Toggle Script -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const currentTheme = body.getAttribute('data-theme');
+            const moonIcon = document.querySelector('.theme-toggle');
+
+            if (currentTheme === 'dark') {
+                body.removeAttribute('data-theme');
+                moonIcon.classList.remove('fa-sun');
+                moonIcon.classList.add('fa-moon');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                moonIcon.classList.remove('fa-moon');
+                moonIcon.classList.add('fa-sun');
+            }
+        }
+    </script>
+</body>
+</html>

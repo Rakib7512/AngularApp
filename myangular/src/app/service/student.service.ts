@@ -7,33 +7,32 @@ import { Student } from '../model/student.model';
   providedIn: 'root'
 })
 export class StudentService {
-  
-  baseUrl: string="http://localhost:3000/Student"
 
-  constructor(private http:HttpClient) { }
+  baseUrl: string = "http://localhost:3000/Student"
 
-  getAllStudent(): Observable<any>{
+  constructor(private http: HttpClient) { }
+
+  getAllStudent(): Observable<any> {
 
     return this.http.get(this.baseUrl);
   }
 
   saveStudent(student: Student): Observable<any> {
-  return this.http.post<any>(this.baseUrl, student);
+    return this.http.post<any>(this.baseUrl, student);
 
 
-}
-deleteStudent(id:string):Observable<any>{
-  return this.http.delete(this.baseUrl +"/"+id)
-}
-getStudentById(id:string):Observable<any>{
+  }
+  deleteStudent(id: string): Observable<any> {
+    return this.http.delete(this.baseUrl + "/" + id);
+  }
 
-return this.http.get(this.baseUrl+"/+id")
+  getStudentById(id: string): Observable<any> {
+    return this.http.get(this.baseUrl + "/" + id);
+  }
 
-}
-
-updateStudent(id:string, student:Student):Observable<any>{
-  return this.http.put(this.baseUrl+"/"+id,student);
-}
+  updateStudent(id: string, student: Student): Observable<any> {
+    return this.http.put(this.baseUrl + "/" + id, student);
+  }
 
 
 }
