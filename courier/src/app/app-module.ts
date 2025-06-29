@@ -4,11 +4,25 @@ import { BrowserModule, provideClientHydration, withEventReplay } from '@angular
 import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
 import { Home } from './home/home';
+import { Dashboard } from './dashboard/dashboard';
+import { TrackShipment } from './track-shipment/track-shipment';
+import { BookShipment } from './book-shipment/book-shipment';
+import { ShipmentList } from './shipment-list/shipment-list';
+import { DeliveryStatus } from './delivery-status/delivery-status';
+import { Login } from './login/login';
+import { Register } from './register/register';
 
 @NgModule({
   declarations: [
     App,
-    Home
+    Home,
+    Dashboard,
+    TrackShipment,
+    BookShipment,
+    ShipmentList,
+    DeliveryStatus,
+    Login,
+    Register
   ],
   imports: [
     BrowserModule,
