@@ -12,6 +12,8 @@ import { DeliveryStatus } from './delivery-status/delivery-status';
 import { Login } from './login/login';
 import { Register } from './register/register';
 import { ViewAllEmployee } from './view-all-employee/view-all-employee';
+import { Addemployee } from './addemployee/addemployee';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,11 +26,15 @@ import { ViewAllEmployee } from './view-all-employee/view-all-employee';
     DeliveryStatus,
     Login,
     Register,
-    ViewAllEmployee
+    ViewAllEmployee,
+    Addemployee
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
+
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),
