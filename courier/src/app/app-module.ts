@@ -11,6 +11,7 @@ import { ShipmentList } from './shipment-list/shipment-list';
 import { DeliveryStatus } from './delivery-status/delivery-status';
 import { Login } from './login/login';
 import { Register } from './register/register';
+import { ViewAllEmployee } from './view-all-employee/view-all-employee';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { Register } from './register/register';
     ShipmentList,
     DeliveryStatus,
     Login,
-    Register
+    Register,
+    ViewAllEmployee
   ],
   imports: [
     BrowserModule,

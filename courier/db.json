@@ -1,0 +1,21 @@
+{
+    "employees": [
+        {
+            "id": 1,
+            "name": "Eiasin",
+            "email":"eiasin@gmail.com",
+            "salary":50000,
+            "location": {
+                "id": 1,
+                "name": "Dhaka",
+                "photo":""
+            }
+        }
+    ],
+    "locations": [
+        {
+            "id": 1,
+            "name": "Dhaka"
+        }
+    ]
+}
