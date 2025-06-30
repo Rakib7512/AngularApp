@@ -1,11 +1,12 @@
 export class Employee{
 
-    id!:number;
+    id!:string;
     name! :string;
     email!:string;
     salary!:number;
+    designation!:string;
     locatiomn!:{
-        id: number;
+        id:string;
         name:string;
         photo:string
     }

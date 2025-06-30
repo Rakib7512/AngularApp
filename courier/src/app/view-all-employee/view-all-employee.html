@@ -1,1 +1,34 @@
-<p>view-all-employee works!</p>
+<h1 class="text-center text-danger"style="text-decoration: underline;">All Employee</h1>
+
+<table class="table striped">
+
+    <thead>
+
+        <tr>
+            <td>Id</td>
+            <td>Name</td>
+            <td>Email</td>
+            <td>Salary</td>
+            <td>Designation</td>
+            <td>Action</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let e of employees | async">
+            <td>{{e.id}}</td>
+            <td>{{e.name}}</td>
+            <td>{{e.email}}</td>
+            <td>{{e.salary}}</td>
+            <td>{{e.designation}}</td>
+            <td>
+
+                <button class="btn btn-warning m-1 p-1">Edit</button>
+                <button class="btn btn-danger m-1 p-1">Delete</button>
+
+            </td>
+        </tr>
+
+    </tbody>
+
+
+</table>

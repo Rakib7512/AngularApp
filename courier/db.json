@@ -4,6 +4,7 @@
             "id": 1,
             "name": "Eiasin",
             "email":"eiasin@gmail.com",
+            "designation":"HR",
             "salary":50000,
             "location": {
                 "id": 1,
