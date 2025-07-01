@@ -13,6 +13,7 @@ import { Login } from './login/login';
 import { Register } from './register/register';
 import { ViewAllEmployee } from './view-all-employee/view-all-employee';
 import { provideHttpClient, withFetch } from '@angular/common/http';
+import { Addemployee } from './addemployee/addemployee';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
     DeliveryStatus,
     Login,
     Register,
-    ViewAllEmployee
+    ViewAllEmployee,
+    Addemployee
   ],
   imports: [
     BrowserModule,
