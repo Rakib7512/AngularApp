@@ -14,15 +14,24 @@ baseUrl: string="http://localhost:3000/employees";
 
     return this.http.get(this.baseUrl);
   }
-<<<<<<< HEAD
+
 
   saveEmployere(employee:Employee):Observable<any>{
     return this.http.post(this.baseUrl,employee);
   }
-
-=======
-  saveEmployee(employee :Employee):Observable<any>{
-    return this.http.post(this.baseUrl,employee)
+   deleteEmployee(id: string): Observable<any> {
+    return this.http.delete(this.baseUrl + "/" + id);
   }
->>>>>>> 385e24a6c6dfe4e1cdde1c67a900675bca4412cb
+
+  getEmplpyeeById(id: string): Observable<any> {
+    return this.http.get(this.baseUrl + "/" + id);
+  }
+
+  updateEmployee(id: string, employee: Employee): Observable<any> {
+    return this.http.put(this.baseUrl + "/" + id, employee);
+  }
+
+
+  
+
 }

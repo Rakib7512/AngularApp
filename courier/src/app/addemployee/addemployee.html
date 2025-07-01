@@ -1,1 +1,23 @@
-<p>addemployee works!</p>
+<div class="container mt-5">
+  <form [formGroup]="formGroup" class="border p-4 rounded shadow container" >
+    <div class="mb-3">
+      <label for="name" class="form-label">Full Name:</label>
+      <input type="text" class="form-control" formControlName="name" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="email" class="form-label">Email:</label>
+      <input type="email" class="form-control" formControlName="email" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="fee" class="form-label">Fee:</label>
+      <input type="number" class="form-control" formControlName="fee" required>
+    </div>
+
+    <div class="mb-3 text-center">
+      <button type="submit" class="btn btn-primary" (click)=" addStudent()">Submit</button>
+    </div>
+  </form>
+</div>
+

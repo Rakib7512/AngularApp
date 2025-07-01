@@ -12,18 +12,15 @@ import { DeliveryStatus } from './delivery-status/delivery-status';
 import { Login } from './login/login';
 import { Register } from './register/register';
 import { ViewAllEmployee } from './view-all-employee/view-all-employee';
-<<<<<<< HEAD
-import { Addemployee } from './addemployee/addemployee';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-=======
-import { provideHttpClient, withFetch } from '@angular/common/http';
-<<<<<<< HEAD
->>>>>>> d27032538fe94445d6777929cfcc438c4a4661a0
-=======
+
 import { Addemployee } from './addemployee/addemployee';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
->>>>>>> 385e24a6c6dfe4e1cdde1c67a900675bca4412cb
+import { provideHttpClient, withFetch } from '@angular/common/http';
+
+
+
+
 
 @NgModule({
   declarations: [
@@ -43,13 +40,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-<<<<<<< HEAD
+
     ReactiveFormsModule
 
-=======
-    ReactiveFormsModule,
-    
->>>>>>> 385e24a6c6dfe4e1cdde1c67a900675bca4412cb
+
+
+
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),
