@@ -14,6 +14,8 @@ import { Register } from './register/register';
 import { ViewAllEmployee } from './view-all-employee/view-all-employee';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { Addemployee } from './addemployee/addemployee';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -31,7 +33,10 @@ import { Addemployee } from './addemployee/addemployee';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),
