@@ -17,6 +17,7 @@ import { Addemployee } from './addemployee/addemployee';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { provideHttpClient, withFetch } from '@angular/common/http';
+import { Updateemployee } from './updateemployee/updateemployee';
 
 
 
@@ -34,7 +35,8 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
     Login,
     Register,
     ViewAllEmployee,
-    Addemployee
+    Addemployee,
+    Updateemployee
   ],
   imports: [
     BrowserModule,
