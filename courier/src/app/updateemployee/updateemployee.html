@@ -1,1 +1,28 @@
-<p>updateemployee works!</p>
+<div class="container mt-5">
+  <form *ngIf="employee.id" class="border p-4 rounded shadow container" >
+    <div class="mb-3">
+      <label for="name" class="form-label">Full Name:</label>
+      <input type="text" class="form-control" name="name" placeholder="Full name"[(ngModel)]="employee.name">
+    </div>
+
+    <div class="mb-3">
+      <label for="email" class="form-label">Email:</label>
+      <input type="email" class="form-control" email="email" placeholder="Email" [(ngModel)]="employee.email">
+    </div>
+
+    <div class="mb-3">
+      <label for="fee" class="form-label">designation:</label>
+      <input type="number" class="form-control" name="designation" [(ngModel)]="employee.designation">
+    </div>
+     <div class="mb-3">
+      <label for="fee" class="form-label">salary:</label>
+      <input type="number" class="form-control" name="salary" [(ngModel)]="employee.salary">
+    </div>
+
+    <div class="mb-3 text-center">
+      <button type="submit" class="btn btn-primary" >Submit</button>
+    </div>
+  </form>
+</div>
+
+
