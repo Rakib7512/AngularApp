@@ -1,22 +1,100 @@
 {
-    "employees": [
-        {
-            "id": 1,
-            "name": "Eiasin",
-            "email":"eiasin@gmail.com",
-            "designation":"HR",
-            "salary":50000,
-            "location": {
-                "id": 1,
-                "name": "Dhaka",
-                "photo":""
-            }
-        }
-    ],
-    "locations": [
-        {
-            "id": 1,
-            "name": "Dhaka"
-        }
-    ]
+  "employees": [
+    {
+      "id": "caaa",
+      "name": "parvej",
+      "email": "parvej@gmail.com",
+      "designation": "playboy2",
+      "salary": 5000,
+      "locatiomn": {
+        "id": [
+          ""
+        ],
+        "name": [
+          ""
+        ],
+        "photo": [
+          ""
+        ]
+      }
+    },
+    {
+      "id": "9a1a",
+      "name": "Eiasin Prodhan",
+      "email": "eiasin@gmail.com",
+      "designation": "programmer",
+      "salary": 50000,
+      "locatiomn": {
+        "id": [
+          ""
+        ],
+        "name": [
+          ""
+        ],
+        "photo": [
+          ""
+        ]
+      }
+    },
+    {
+      "id": "f2cd",
+      "name": "dd",
+      "email": "dd",
+      "designation": "dd",
+      "salary": 55,
+      "locatiomn": {
+        "id": [
+          ""
+        ],
+        "name": [
+          ""
+        ],
+        "photo": [
+          ""
+        ]
+      }
+    },
+    {
+      "id": "6f2b",
+      "name": "ff",
+      "email": "ff",
+      "designation": "ff",
+      "salary": 454,
+      "locatiomn": {
+        "id": [
+          ""
+        ],
+        "name": [
+          ""
+        ],
+        "photo": [
+          ""
+        ]
+      }
+    },
+    {
+      "id": "f0bb",
+      "name": "aa",
+      "email": "da",
+      "designation": "da",
+      "salary": 10,
+      "locatiomn": {
+        "id": [
+          ""
+        ],
+        "name": [
+          ""
+        ],
+        "photo": [
+          ""
+        ]
+      }
+    }
+  ],
+  "locations": [
+    {
+      "id": "1",
+      "name": "Dhaka"
+    }
+  ]
 }

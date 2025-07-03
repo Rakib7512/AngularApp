@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { EmployeeService } from '../service/employee.service';
 import { Router } from '@angular/router';
 import { Employee } from '../../model/employee.model';
+import { LocationService } from '../service/location.service';
 
 @Component({
   selector: 'app-addemployee',
@@ -10,15 +11,15 @@ import { Employee } from '../../model/employee.model';
   templateUrl: './addemployee.html',
   styleUrl: './addemployee.css'
 })
-export class Addemployee {
-  
-
+export class Addemployee implements OnInit{
+  locations:Location;
   formGroup !: FormGroup;
   constructor(
 
     private employeeService: EmployeeService,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private locationService:LocationService
 
   ) { }
   ngOnInit(): void {
@@ -35,18 +36,23 @@ export class Addemployee {
     }
 
     });
+    this.loadAllLocation
+  }
+
+  loadAllLocation(){
+    this.locations=this.locationService.getLocation();
   }
 
 
   addStudent(): void {
 
-    const student: Employee = { ...this.formGroup.value };
-    this.employeeService.saveEmployere(student).subscribe({
+    const employee: Employee = { ...this.formGroup.value };
+    this.employeeService.saveEmployere(employee).subscribe({
 
       next :(res)=>{
-        console.log(" Student Save", res);
+        console.log(" Employee Save", res);
         this.formGroup.reset();
-        this.router.navigate(['/allStudent']);
+        this.router.navigate(['/allEmployee']);
       },
 
 

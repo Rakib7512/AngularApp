@@ -1,5 +1,5 @@
 <div class="container mt-5">
-  <form  class="border p-4 rounded shadow container" >
+  <form  [formGroup]="formGroup"class="border p-4 rounded shadow container" >
     <div class="mb-3">
       <label for="name" class="form-label">Full Name:</label>
       <input type="text" class="form-control" formControlName="name" required>
@@ -12,15 +12,15 @@
 
     <div class="mb-3">
       <label for="fee" class="form-label">designation:</label>
-      <input type="number" class="form-control" formControlName="fee" required>
+      <input type="text" class="form-control" formControlName="designation" required>
     </div>
      <div class="mb-3">
       <label for="fee" class="form-label">salary:</label>
-      <input type="number" class="form-control" formControlName="fee" required>
+      <input type="number" class="form-control" formControlName="salary" required>
     </div>
 
     <div class="mb-3 text-center">
-      <button type="submit" class="btn btn-primary" (click)=" addStudent()">Submit</button>
+      <button type="submit" class="btn btn-primary" (click)=" addStudent()" href="allEmp">Submit</button>
     </div>
   </form>
 </div>

@@ -21,10 +21,10 @@ export class Updateemployee implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.loadStudentById();
+    this.loadEmployeeById();
   }
 
-  loadStudentById() {
+  loadEmployeeById() {
     // nicher id ta holo service class ar update ar return ar id
     this.id = this.route.snapshot.params['id'];
     this.employeeService.getEmplpyeeById(this.id).subscribe({
@@ -38,9 +38,9 @@ export class Updateemployee implements OnInit {
     });
   }
 
-  updateStudent(): void {
+  updateEmployee(): void {
     this.employeeService.updateEmployee(this.id, this.employee).subscribe({
-      next: () => this.router.navigate(['/allStudent']),
+      next: () => this.router.navigate(['/allEmployee']),
       error: (err) => console.error('update fail', err)
     });
   }

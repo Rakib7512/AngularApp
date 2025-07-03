@@ -18,6 +18,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { Updateemployee } from './updateemployee/updateemployee';
+import { ViewAllLocation } from './view-all-location/view-all-location';
 
 
 
@@ -36,7 +37,8 @@ import { Updateemployee } from './updateemployee/updateemployee';
     Register,
     ViewAllEmployee,
     Addemployee,
-    Updateemployee
+    Updateemployee,
+    ViewAllLocation
   ],
   imports: [
     BrowserModule,

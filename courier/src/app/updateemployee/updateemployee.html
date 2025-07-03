@@ -12,7 +12,7 @@
 
     <div class="mb-3">
       <label for="fee" class="form-label">designation:</label>
-      <input type="number" class="form-control" name="designation" [(ngModel)]="employee.designation">
+      <input type="text" class="form-control" name="designation" [(ngModel)]="employee.designation">
     </div>
      <div class="mb-3">
       <label for="fee" class="form-label">salary:</label>
@@ -20,7 +20,7 @@
     </div>
 
     <div class="mb-3 text-center">
-      <button type="submit" class="btn btn-primary" >Submit</button>
+      <button type="submit" class="btn btn-primary" a h (click)="updateEmployee()">Submit</button>
     </div>
   </form>
 </div>
