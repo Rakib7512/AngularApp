@@ -11,6 +11,7 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
 import { Addstudent } from './addstudent/addstudent';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { Updatestudent } from './updatestudent/updatestudent';
+import { Dashbord } from './dashbord/dashbord';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { Updatestudent } from './updatestudent/updatestudent';
     Studentform,
     ViewAllStudent,
     Addstudent,
-    Updatestudent
+    Updatestudent,
+    Dashbord
   ],
   imports: [
     BrowserModule,
