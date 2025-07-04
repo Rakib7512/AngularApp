@@ -8,10 +8,10 @@
       "salary": 5000,
       "locatiomn": {
         "id": [
-          ""
+          "1"
         ],
         "name": [
-          ""
+          "Dhaka"
         ],
         "photo": [
           ""
@@ -26,10 +26,10 @@
       "salary": 50000,
       "locatiomn": {
         "id": [
-          ""
+          "9a1a"
         ],
         "name": [
-          ""
+          "Madaripur"
         ],
         "photo": [
           ""
@@ -55,11 +55,11 @@
       }
     },
     {
-      "id": "6f2b",
-      "name": "ff",
-      "email": "ff",
-      "designation": "ff",
-      "salary": 454,
+      "id": "f0bb",
+      "name": "aa",
+      "email": "da",
+      "designation": "da",
+      "salary": 10,
       "locatiomn": {
         "id": [
           ""
@@ -73,15 +73,12 @@
       }
     },
     {
-      "id": "f0bb",
-      "name": "aa",
-      "email": "da",
-      "designation": "da",
-      "salary": 10,
+      "id": "f1e8",
+      "name": "ee",
+      "email": "rr@gmail.com",
+      "designation": "hr",
+      "salary": 120,
       "locatiomn": {
-        "id": [
-          ""
-        ],
         "name": [
           ""
         ],

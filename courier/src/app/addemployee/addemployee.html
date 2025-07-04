@@ -14,12 +14,22 @@
       <label for="fee" class="form-label">designation:</label>
       <input type="text" class="form-control" formControlName="designation" required>
     </div>
-     <div class="mb-3">
-      <label for="fee" class="form-label">salary:</label>
+
+    <div class="mb-3">
+      <label for="salary" class="form-label">Salary:</label>
       <input type="number" class="form-control" formControlName="salary" required>
     </div>
-
-    <div class="mb-3 text-center">
+     <div class="mb-3" formGroupName="location">
+      <div class="invalid-feedback"> Please seclect a location </div>
+      <label for="fee" class="form-label">Location:</label>
+      <select name="location" formControlName="name" class="form-select" required="">
+        <option *ngfor="let loc of locations" [ngValue]="loc.name">{{loc.name}}</option></select>
+      </div>
+       <div class="mb-3">
+        <label for="image" class="form-label">Upload Image</label>
+        <input class="form-control" type="file" id="image" name="image" accept="image/*" required>
+      </div>
+        <div class="mb-3 text-center">
       <button type="submit" class="btn btn-primary" (click)=" addStudent()" href="allEmp">Submit</button>
     </div>
   </form>

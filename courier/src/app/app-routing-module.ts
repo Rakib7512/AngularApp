@@ -10,6 +10,7 @@ import { Register } from './register/register';
 import { ViewAllEmployee } from './view-all-employee/view-all-employee';
 import { Updateemployee } from './updateemployee/updateemployee';
 import { Addemployee } from './addemployee/addemployee';
+import { Addlocation } from './addlocation/addlocation';
 
 const routes: Routes = [
 {  path:'',component:Home},
@@ -21,6 +22,7 @@ const routes: Routes = [
 {path:'allEmp', component:ViewAllEmployee},
 {path:'addEmp', component:Addemployee},
 {path:'updatestudent/:id', component:Updateemployee},
+{path:'addlocation', component:Addlocation},
 ];
 
 @NgModule({
