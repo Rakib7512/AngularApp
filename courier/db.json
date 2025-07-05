@@ -1,37 +1,19 @@
 {
   "employees": [
     {
-      "id": "caaa",
-      "name": "parvej",
-      "email": "parvej@gmail.com",
-      "designation": "playboy2",
-      "salary": 5000,
-      "locatiomn": {
-        "id": [
-          "1"
-        ],
-        "name": [
-          "Dhaka"
-        ],
-        "photo": [
-          ""
-        ]
-      }
-    },
-    {
       "id": "9a1a",
       "name": "Eiasin Prodhan",
       "email": "eiasin@gmail.com",
       "designation": "programmer",
       "salary": 50000,
-      "locatiomn": {
+      "location": {
         "id": [
           "9a1a"
         ],
         "name": [
           "Madaripur"
         ],
-        "photo": [
+        "image": [
           ""
         ]
       }
@@ -42,14 +24,14 @@
       "email": "dd",
       "designation": "dd",
       "salary": 55,
-      "locatiomn": {
+      "location": {
         "id": [
           ""
         ],
         "name": [
           ""
         ],
-        "photo": [
+        "image": [
           ""
         ]
       }
@@ -60,14 +42,14 @@
       "email": "da",
       "designation": "da",
       "salary": 10,
-      "locatiomn": {
+      "location": {
         "id": [
           ""
         ],
         "name": [
           ""
         ],
-        "photo": [
+        "image": [
           ""
         ]
       }
@@ -76,22 +58,75 @@
       "id": "f1e8",
       "name": "ee",
       "email": "rr@gmail.com",
-      "designation": "hr",
-      "salary": 120,
-      "locatiomn": {
+      "designation": "jhjjj",
+      "salary": 119,
+      "location": {
         "name": [
           ""
         ],
-        "photo": [
+        "image": [
+          ""
+        ]
+      }
+    },
+    {
+      "id": "e856",
+      "name": "Md Rakib Islam",
+      "email": "rakib@gmail.com",
+      "salary": 50000,
+      "designation": "Programmer",
+      "date": "2025-05-01T08:00",
+      "photo": "",
+      "location": {
+        "country": [
+          ""
+        ],
+        "district": [
+          ""
+        ],
+        "policeStation": [
+          ""
+        ]
+      }
+    },
+    {
+      "id": "faaf",
+      "name": "jjuju",
+      "email": "jjj@kkk",
+      "salary": 1000,
+      "designation": "aaa",
+      "date": "2025-07-05T17:12",
+      "photo": "",
+      "location": {
+        "country": [
+          ""
+        ],
+        "district": [
+          ""
+        ],
+        "policeStation": [
           ""
         ]
       }
     }
   ],
-  "locations": [
+  "country": [
     {
       "id": "1",
-      "name": "Dhaka"
-    }
+      "country": "Bangladesh"
+       }
+  ],
+  "district":[{
+    "country":"Bangladesh",
+    "district":"Dhaka"
+  }
+
+  ],
+
+  "policeStation":[{
+        "district":"Dhaka",
+        "policeStation":"Mohammad Pur"
+  }
+
   ]
 }

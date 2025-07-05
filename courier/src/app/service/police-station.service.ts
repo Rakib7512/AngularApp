@@ -5,9 +5,9 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class LocationService {
+export class PoliceStationService {
 
-baseUrl: string="http://localhost:3000/locations";
+baseUrl: string="http://localhost:3000/policeStation";
   constructor(private http:HttpClient) { }
 
   getLocation():Observable<any>{

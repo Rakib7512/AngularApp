@@ -3,8 +3,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { EmployeeService } from '../service/employee.service';
 import { Router } from '@angular/router';
 import { Employee } from '../../model/employee.model';
-import { LocationService } from '../service/location.service';
-import { Location } from '../../model/location.model';
+import { LocationService } from '../service/country.service';
+import { Country } from '../../model/country.model';
 
 @Component({
   selector: 'app-addemployee',
@@ -13,7 +13,7 @@ import { Location } from '../../model/location.model';
   styleUrl: './addemployee.css'
 })
 export class Addemployee implements OnInit{
-  locations:Location[]=[];
+  locations:Country[]=[];
  
   formGroup !: FormGroup;
   constructor(
@@ -30,10 +30,11 @@ export class Addemployee implements OnInit{
 
       name: [''],
       email: [''],
-      designation: [''],
       salary:[''],
+      designation: [''],
+      date:[''],
       photo:[''],
-        locatiomn:{
+        location:{
         country:[''],
         district:[''],
         policeStation:[''],
@@ -41,7 +42,7 @@ export class Addemployee implements OnInit{
 
     });
     this.loadAllLocation();
-    this.formGroup.get('location')?.get('country')?.valueChanges.subscribe(country=>{
+    this.formGroup.get('location')?.get('country',)?.valueChanges.subscribe(country=>{
       const selectedLocation =this.locations.find(loc=>loc.country===country);
       if(selectedLocation){
         this.formGroup.patchValue({location:selectedLocation});

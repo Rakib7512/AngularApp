@@ -5,10 +5,14 @@ export class Employee{
     email!:string;
     salary!:number;
     designation!:string;
-    locatiomn!:{
+    date!:Date;
+    image!:string
+    location!:{
         id:string;
-        name:string;
-        photo:string
+        country:string;
+        district:string;
+        policeStation:string;
+      
     }
     
 

@@ -10,7 +10,13 @@
             <td>Email</td>
             <td>Salary</td>
             <td>Designation</td>
-            <td>Location</td>
+            <td>Joining Date</td>
+            <td>Image</td>
+            <td>Country</td>
+            <td>District</td>
+            <td>Police Station</td>
+
+
             <td>Action</td>
         </tr>
     </thead>
@@ -21,7 +27,11 @@
             <td>{{e.email}}</td>
             <td>{{e.salary}}</td>
             <td>{{e.designation}}</td>
-             <td>{{e.location}}</td>
+             <td>{{e.date}}</td>
+             <td>{{e.image}}</td>
+             <td>{{e.Country}}</td>
+             <td>{{e.district}}</td>
+             <td>{{e.PoliceStation}}</td>
             <td>
 
                 <button class="btn btn-warning m-1 p-1" (click)="updateEmployee(e.id)">Edit</button>
