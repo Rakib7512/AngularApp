@@ -1,132 +1,35 @@
 {
-  "employees": [
-    {
-      "id": "9a1a",
-      "name": "Eiasin Prodhan",
-      "email": "eiasin@gmail.com",
-      "designation": "programmer",
-      "salary": 50000,
-      "location": {
-        "id": [
-          "9a1a"
-        ],
-        "name": [
-          "Madaripur"
-        ],
-        "image": [
-          ""
+  "employees":{
+    "id":"1",
+    "name":"Parvej",
+    "email":"parvej@gmail.com",
+    "salary":"50000",
+    "date":"",
+    "image":"https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.shutterstock.com%2Fsearch%2Fsmart-pic&psig=AOvVaw0f1H_jJqNMHD4qxzWVqC5q&ust=1751836992396000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCLir2L7Tpo4DFQAAAAAdAAAAABAE",
+"countres":[
+  {
+    "id":"1",
+    "name":"Banglasesh",
+    "divisions":[
+      {
+        "id":"1",
+        "name":"Dhaka Division",
+        "districts":[
+          {
+            "id":"1",
+            "name":"Dhaka District",
+            "police_station":[
+              { "id": 1, "name": "Gulshan Police Station" },
+              { "id": 2, "name": "Dhanmondi Police Station" }
+            ]
+
+          }
+          {}
         ]
+  
       }
-    },
-    {
-      "id": "f2cd",
-      "name": "dd",
-      "email": "dd",
-      "designation": "dd",
-      "salary": 55,
-      "location": {
-        "id": [
-          ""
-        ],
-        "name": [
-          ""
-        ],
-        "image": [
-          ""
-        ]
-      }
-    },
-    {
-      "id": "f0bb",
-      "name": "aa",
-      "email": "da",
-      "designation": "da",
-      "salary": 10,
-      "location": {
-        "id": [
-          ""
-        ],
-        "name": [
-          ""
-        ],
-        "image": [
-          ""
-        ]
-      }
-    },
-    {
-      "id": "f1e8",
-      "name": "ee",
-      "email": "rr@gmail.com",
-      "designation": "jhjjj",
-      "salary": 119,
-      "location": {
-        "name": [
-          ""
-        ],
-        "image": [
-          ""
-        ]
-      }
-    },
-    {
-      "id": "e856",
-      "name": "Md Rakib Islam",
-      "email": "rakib@gmail.com",
-      "salary": 50000,
-      "designation": "Programmer",
-      "date": "2025-05-01T08:00",
-      "photo": "",
-      "location": {
-        "country": [
-          ""
-        ],
-        "district": [
-          ""
-        ],
-        "policeStation": [
-          ""
-        ]
-      }
-    },
-    {
-      "id": "faaf",
-      "name": "jjuju",
-      "email": "jjj@kkk",
-      "salary": 1000,
-      "designation": "aaa",
-      "date": "2025-07-05T17:12",
-      "photo": "",
-      "location": {
-        "country": [
-          ""
-        ],
-        "district": [
-          ""
-        ],
-        "policeStation": [
-          ""
-        ]
-      }
-    }
-  ],
-  "country": [
-    {
-      "id": "1",
-      "country": "Bangladesh"
-       }
-  ],
-  "district":[{
-    "country":"Bangladesh",
-    "district":"Dhaka"
+    ]
   }
-
-  ],
-
-  "policeStation":[{
-        "district":"Dhaka",
-        "policeStation":"Mohammad Pur"
+]
   }
-
-  ]
 }
