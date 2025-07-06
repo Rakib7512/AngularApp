@@ -1,35 +1,77 @@
 {
-  "employees":{
+  "employees":[
+    {
+    
     "id":"1",
     "name":"Parvej",
     "email":"parvej@gmail.com",
     "salary":"50000",
     "date":"",
     "image":"https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.shutterstock.com%2Fsearch%2Fsmart-pic&psig=AOvVaw0f1H_jJqNMHD4qxzWVqC5q&ust=1751836992396000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCLir2L7Tpo4DFQAAAAAdAAAAABAE",
-"countres":[
-  {
-    "id":"1",
-    "name":"Banglasesh",
-    "divisions":[
-      {
-        "id":"1",
-        "name":"Dhaka Division",
-        "districts":[
-          {
-            "id":"1",
-            "name":"Dhaka District",
-            "police_station":[
-              { "id": 1, "name": "Gulshan Police Station" },
-              { "id": 2, "name": "Dhanmondi Police Station" }
-            ]
 
-          }
-          {}
-        ]
-  
-      }
-    ]
-  }
-]
-  }
+  "countries": [
+    {
+      "id": 1,
+      "name": "Bangladesh",
+      "divisions": [
+        {
+          "id": 1,
+          "name": "Dhaka Division",
+          "districts": [
+            {
+              "id": 1,
+              "name": "Dhaka District",
+              "police_stations": [
+                { "id": 1, "name": "Gulshan Police Station" },
+                { "id": 2, "name": "Dhanmondi Police Station" }
+              ]
+            },
+            {
+              "id": 2,
+              "name": "Gazipur District",
+              "police_stations": [
+                { "id": 3, "name": "Gazipur Sadar Police Station" },
+                { "id": 4, "name": "Tongi Police Station" }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Chattogram Division",
+          "districts": [
+            {
+              "id": 3,
+              "name": "Chattogram District",
+              "police_stations": [
+                { "id": 5, "name": "Kotwali Police Station" },
+                { "id": 6, "name": "Panchlaish Police Station" }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "India",
+      "divisions": [
+        {
+          "id": 3,
+          "name": "West Bengal",
+          "districts": [
+            {
+              "id": 4,
+              "name": "Kolkata",
+              "police_stations": [
+                { "id": 7, "name": "Lalbazar Police Station" },
+                { "id": 8, "name": "Behala Police Station" }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }
+  ]}

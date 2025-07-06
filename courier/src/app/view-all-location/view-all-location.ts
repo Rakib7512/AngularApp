@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { LocationService } from '../service/country.service';
+import { LocationService } from '../service/location.service';
 import { Router } from '@angular/router';
 
 @Component({

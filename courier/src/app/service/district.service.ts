@@ -8,28 +8,28 @@ import { District } from '../../model/district.model';
 })
 export class DistrictService {
 
-baseUrl: string="http://localhost:3000/district";
-  constructor(private http:HttpClient) { }
+// baseUrl: string="http://localhost:3000/district";
+//   constructor(private http:HttpClient) { }
 
-  getDistrict():Observable<any>{
+//   getDistrict():Observable<any>{
 
-    return this.http.get(this.baseUrl);
-  }
+//     return this.http.get(this.baseUrl);
+//   }
 
 
-  saveDistrict(districr:District):Observable<any>{
-    return this.http.post(this.baseUrl,districr);
-  }
-   deleteDistrict(country: string): Observable<any> {
-    return this.http.delete(this.baseUrl + "/" + id);
-  }
+//   saveDistrict(districr:District):Observable<any>{
+//     return this.http.post(this.baseUrl,districr);
+//   }
+//    deleteDistrict(country: string): Observable<any> {
+//     return this.http.delete(this.baseUrl + "/" + id);
+//   }
 
-  getLocationById(id: string): Observable<any> {
-    return this.http.get(this.baseUrl + "/" + id);
-  }
+//   getLocationById(id: string): Observable<any> {
+//     return this.http.get(this.baseUrl + "/" + id);
+//   }
 
-  updateLocation(id: string, location: Location): Observable<any> {
-    return this.http.put(this.baseUrl + "/" + id, Location);
-  }
+//   updateLocation(id: string, location: Location): Observable<any> {
+//     return this.http.put(this.baseUrl + "/" + id, Location);
+//   }
 }
 

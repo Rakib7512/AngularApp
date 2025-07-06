@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { EmployeeService } from '../service/employee.service';
 import { Router } from '@angular/router';
 import { Employee } from '../../model/employee.model';
-import { LocationService } from '../service/country.service';
+import { LocationService } from '../service/location.service';
 import { Country } from '../../model/country.model';
 
 @Component({

@@ -7,27 +7,27 @@ import { Observable } from 'rxjs';
 })
 export class PoliceStationService {
 
-baseUrl: string="http://localhost:3000/policeStation";
-  constructor(private http:HttpClient) { }
+// baseUrl: string="http://localhost:3000/policeStation";
+//   constructor(private http:HttpClient) { }
 
-  getLocation():Observable<any>{
+//   getLocation():Observable<any>{
 
-    return this.http.get(this.baseUrl);
-  }
+//     return this.http.get(this.baseUrl);
+//   }
 
 
-  saveLocation(location:Location):Observable<any>{
-    return this.http.post(this.baseUrl,location);
-  }
-   deleteLocation(id: string): Observable<any> {
-    return this.http.delete(this.baseUrl + "/" + id);
-  }
+//   saveLocation(location:Location):Observable<any>{
+//     return this.http.post(this.baseUrl,location);
+//   }
+//    deleteLocation(id: string): Observable<any> {
+//     return this.http.delete(this.baseUrl + "/" + id);
+//   }
 
-  getLocationById(id: string): Observable<any> {
-    return this.http.get(this.baseUrl + "/" + id);
-  }
+//   getLocationById(id: string): Observable<any> {
+//     return this.http.get(this.baseUrl + "/" + id);
+//   }
 
-  updateLocation(id: string, location: Location): Observable<any> {
-    return this.http.put(this.baseUrl + "/" + id, Location);
-  }
+//   updateLocation(id: string, location: Location): Observable<any> {
+//     return this.http.put(this.baseUrl + "/" + id, Location);
+//   }
 }

@@ -6,9 +6,9 @@ import { Country } from '../../model/country.model';
 @Injectable({
   providedIn: 'root'
 })
-export class LocationService {
+export class CountryService {
 
-baseUrl: string="http://localhost:3000/country";
+  baseUrl: string="http://localhost:3000/country";
   constructor(private http:HttpClient) { }
 
   getLocation():Observable<any>{
