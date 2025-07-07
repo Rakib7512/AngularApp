@@ -1,14 +1,15 @@
 {
-  "employees":[
+  "employees": [
     {
-    
-    "id":"1",
-    "name":"Parvej",
-    "email":"parvej@gmail.com",
-    "salary":"50000",
-    "date":"",
-    "image":"https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.shutterstock.com%2Fsearch%2Fsmart-pic&psig=AOvVaw0f1H_jJqNMHD4qxzWVqC5q&ust=1751836992396000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCLir2L7Tpo4DFQAAAAAdAAAAABAE",
-
+      "id": "1",
+      "name": "Parvej",
+      "email": "parvej@gmail.com",
+      "salary": "50000",
+      "date": "",
+      "image": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.shutterstock.com%2Fsearch%2Fsmart-pic&psig=AOvVaw0f1H_jJqNMHD4qxzWVqC5q&ust=1751836992396000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCLir2L7Tpo4DFQAAAAAdAAAAABAE"
+    }
+  ],
+  
   "countries": [
     {
       "id": 1,
@@ -74,4 +75,3 @@
     }
   ]
 }
-  ]}

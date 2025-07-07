@@ -11,17 +11,17 @@ import { Employee } from '../model/employee.model';
   templateUrl: './addemployee.html',
   styleUrl: './addemployee.css'
 })
-export class Addemployee implements OnInit{
-  locations:Location[]=[];
- 
+export class Addemployee implements OnInit {
+  locations: Location[] = [];
+
   formGroup !: FormGroup;
   constructor(
 
     private employeeService: EmployeeService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private locationService:LocationService,
-    private cdr:ChangeDetectorRef
+    private locationService: LocationService,
+    private cdr: ChangeDetectorRef
 
   ) { }
   ngOnInit(): void {
@@ -29,15 +29,16 @@ export class Addemployee implements OnInit{
 
       name: [''],
       email: [''],
-      salary:[''],
+      salary: [''],
       designation: [''],
-      date:[''],
-      photo:[''],
-        location:{
-        country:[''],
-        district:[''],
-        policeStation:[''],
-    }
+      date: [''],
+      photo: [''],
+      location: {
+        country: [''],
+        division:[''],
+        district: [''],
+        policeStation: ['']
+      }
 
     });
     // this.loadAllLocation();
@@ -49,7 +50,7 @@ export class Addemployee implements OnInit{
     // })
 
 
-    
+
   }
 
   // loadAllLocation(){
@@ -68,7 +69,7 @@ export class Addemployee implements OnInit{
   // }
 
 
-  
+
 
 
   addStudent(): void {
@@ -76,7 +77,7 @@ export class Addemployee implements OnInit{
     const employee: Employee = { ...this.formGroup.value };
     this.employeeService.saveEmployere(employee).subscribe({
 
-      next :(res)=>{
+      next: (res) => {
         // this.loadAllLocation
         console.log(" Employee Save", res);
         this.formGroup.reset();
@@ -86,8 +87,8 @@ export class Addemployee implements OnInit{
       },
 
 
-      error :(error)=>{
-          console.log(error);
+      error: (error) => {
+        console.log(error);
       }
     })
 
