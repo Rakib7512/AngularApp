@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Country } from '../../model/country.model';
+import { Country } from '../model/country.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LocationService {
 
+ 
 baseUrl: string="http://localhost:3000/country";
   constructor(private http:HttpClient) { }
 
