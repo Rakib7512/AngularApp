@@ -7,13 +7,15 @@ import { Addemployee } from './addemployee/addemployee';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { Home } from './home/home';
+import { AddDistrict } from './add-district/add-district';
 
 
 @NgModule({
   declarations: [
     App,
        Addemployee,
-       Home
+       Home,
+       AddDistrict
       ],
   imports: [
     BrowserModule,

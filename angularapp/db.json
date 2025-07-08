@@ -1,66 +1,340 @@
 {
+  "user": [
+    {
+      "id": "dbf7",
+      "name": "Muhammad Emran Hossain",
+      "email": "emranhss@gmail.com",
+      "password": "123456",
+      "photo": "https://tinyurl.com/6dt7txrj",
+      "role": "admin"
+    },
+    {
+      "id": "8542",
+      "name": "Rahim Khan",
+      "email": "hsstanvir@gmail.com",
+      "password": "123456",
+      "photo": "https://avatars.githubusercontent.com/u/21266856?v=4",
+      "role": "user"
+    },
+    {
+      "id": "e78d",
+      "name": "Parvez",
+      "email": "rahim@gmail.com",
+      "password": "123456",
+      "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSD-qAzVLU-PBewXJuHtUdytv8H_HYZ--U0xQ&s",
+      "role": "user"
+    },
+    {
+      "id": "aa2e",
+      "name": "apple",
+      "email": "apple@gmail.com",
+      "password": "123456",
+      "photo": "asdf",
+      "role": "user"
+    },
+    {
+      "id": "dd72",
+      "name": "aaaaaa",
+      "email": "aaaaa@gmail.com",
+      "password": "123456",
+      "photo": "aaaaa",
+      "role": "user"
+    },
+    {
+      "id": "5992",
+      "name": "QQQQ",
+      "email": "qqq@gmail.com",
+      "password": "1234567",
+      "photo": "qqqqqq",
+      "role": "user"
+    }
+  ],
   "countries": [
     {
-      "id": 1,
+      "id": "8848",
       "name": "Bangladesh",
       "divisions": [
-        {
-          "id": 1,
-          "name": "Dhaka Division",
-          "districts": [
-            {
-              "id": 1,
-              "name": "Dhaka District",
-              "police_stations": [
-                { "id": 1, "name": "Gulshan Police Station" },
-                { "id": 2, "name": "Dhanmondi Police Station" }
-              ]
-            },
-            {
-              "id": 2,
-              "name": "Gazipur District",
-              "police_stations": [
-                { "id": 3, "name": "Gazipur Sadar Police Station" },
-                { "id": 4, "name": "Tongi Police Station" }
-              ]
-            }
-          ]
-        },
-        {
-          "id": 2,
-          "name": "Chattogram Division",
-          "districts": [
-            {
-              "id": 3,
-              "name": "Chattogram District",
-              "police_stations": [
-                { "id": 5, "name": "Kotwali Police Station" },
-                { "id": 6, "name": "Panchlaish Police Station" }
-              ]
-            }
-          ]
-        }
+        "4dca",
+        "c189",
+        "d153",
+        "40b8"
       ]
     },
     {
-      "id": 2,
+      "id": "f381",
       "name": "India",
       "divisions": [
-        {
-          "id": 3,
-          "name": "West Bengal",
-          "districts": [
-            {
-              "id": 4,
-              "name": "Kolkata",
-              "police_stations": [
-                { "id": 7, "name": "Lalbazar Police Station" },
-                { "id": 8, "name": "Behala Police Station" }
-              ]
-            }
-          ]
-        }
+        "efbf"
       ]
+    }
+  ],
+  "policeStations": [
+    {
+      "id": "37ca",
+      "name": "Khilgaon-1219"
+    },
+    {
+      "id": "9b59",
+      "name": "Lalbagh-1205"
+    },
+    {
+      "id": "f481",
+      "name": "Dhanmondi-1209"
+    },
+    {
+      "id": "ab1c",
+      "name": "Mohammadpur-1207"
+    },
+    {
+      "id": "08b2",
+      "name": "Barishal Shadar"
+    },
+    {
+      "id": "84bc",
+      "name": "Baker Gonj"
+    },
+    {
+      "id": "0df3",
+      "name": "Moladi"
+    },
+    {
+      "id": "9359",
+      "name": "ChorFasion"
+    },
+    {
+      "id": "3f19",
+      "name": "Lalmohon"
+    },
+    {
+      "id": "3613",
+      "name": "Borhanuddin"
+    },
+    {
+      "id": "e251",
+      "name": "Jajira"
+    },
+    {
+      "id": "26b4",
+      "name": "Noria"
+    },
+    {
+      "id": "843c",
+      "name": "Shokhipur"
+    },
+    {
+      "id": "e222",
+      "name": "Vedergong"
+    },
+    {
+      "id": "c9c8",
+      "name": "Bhaluka"
+    },
+    {
+      "id": "3c8a",
+      "name": "Muktagachha"
+    },
+    {
+      "id": "0755",
+      "name": "Goforgaon"
+    },
+    {
+      "id": "efa7",
+      "name": "Kosba"
+    },
+    {
+      "id": "a6c5",
+      "name": "Sonaimuri"
+    },
+    {
+      "id": "7cce",
+      "name": "Maijdi"
+    },
+    {
+      "id": "3c63",
+      "name": "Begomgonj"
+    },
+    {
+      "id": "f739",
+      "name": "Damdam"
+    },
+    {
+      "id": "ad0e",
+      "name": "Esplanet"
+    },
+    {
+      "id": "655c",
+      "name": "MGroad"
+    },
+    {
+      "id": "ddb6",
+      "name": "Krisno Nogar"
+    }
+  ],
+  "districts": [
+    {
+      "id": "01a7",
+      "name": "Dhaka",
+      "policeStations": [
+        "37ca",
+        "9b59",
+        "f481",
+        "ab1c"
+      ]
+    },
+    {
+      "id": "4c92",
+      "name": "Barishal",
+      "policeStations": [
+        "08b2",
+        "84bc",
+        "0df3"
+      ]
+    },
+    {
+      "id": "2437",
+      "name": "Bhola",
+      "policeStations": [
+        "9359",
+        "3f19",
+        "3613"
+      ]
+    },
+    {
+      "id": "7925",
+      "name": "Shariatpur",
+      "policeStations": [
+        "e251",
+        "26b4",
+        "843c",
+        "e222"
+      ]
+    },
+    {
+      "id": "62c6",
+      "name": "Nowakhali",
+      "policeStations": [
+        "a6c5",
+        "7cce",
+        "3c63"
+      ]
+    },
+    {
+      "id": "74f0",
+      "name": "Mymensingh",
+      "policeStations": [
+        "c9c8",
+        "3c8a",
+        "0755"
+      ]
+    },
+    {
+      "id": "9c06",
+      "name": "B. Bariya",
+      "policeStations": [
+        "efa7"
+      ]
+    },
+    {
+      "id": "d73b",
+      "name": "Kolkata",
+      "policeStations": [
+        "f739",
+        "ad0e",
+        "655c",
+        "ddb6"
+      ]
+    }
+  ],
+  "divisions": [
+    {
+      "id": "4dca",
+      "name": "Dhaka",
+      "districts": [
+        "01a7",
+        "7925"
+      ]
+    },
+    {
+      "id": "c189",
+      "name": "Chottogram",
+      "districts": [
+        "62c6",
+        "9c06"
+      ]
+    },
+    {
+      "id": "d153",
+      "name": "Barishal",
+      "districts": [
+        "4c92",
+        "2437"
+      ]
+    },
+    {
+      "id": "40b8",
+      "name": "Mymensingh",
+      "districts": [
+        "74f0"
+      ]
+    },
+    {
+      "id": "efbf",
+      "name": "Westbengal",
+      "districts": [
+        "d73b"
+      ]
+    }
+  ],
+  "employees": [
+    {
+      "id": "1fd6",
+      "name": "asdfff",
+      "salary": 5000,
+      "email": "ASDASDASDSA@DDD.KM",
+      "country": "621c",
+      "division": "e391",
+      "district": "02f8",
+      "policeStation": "0a8e"
+    },
+    {
+      "id": "8dd5",
+      "name": "Apple",
+      "salary": 20000,
+      "email": "apple@gmail.com",
+      "country": "fbe4",
+      "division": "3203",
+      "district": "9c34",
+      "policeStation": "as"
+    },
+    {
+      "id": "1f57",
+      "name": "sdfsdfsdfsdfds",
+      "salary": 25252,
+      "email": "safd@dsad.dd",
+      "country": "fbe4",
+      "division": "0614",
+      "district": "0b31",
+      "policeStation": "1"
+    },
+    {
+      "id": "b568",
+      "name": "asefsdfsd",
+      "salary": 52525,
+      "email": "asdadsa@ss.ss",
+      "country": "fbe4",
+      "division": "0614",
+      "district": "0b31",
+      "policeStation": "1"
+    },
+    {
+      "id": "1084",
+      "name": "asa",
+      "salary": 25000,
+      "email": "asas@dd.dd",
+      "country": "8848",
+      "division": "4dca",
+      "district": "01a7",
+      "policeStation": "37ca"
     }
   ]
 }

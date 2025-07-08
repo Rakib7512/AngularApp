@@ -1,24 +1,89 @@
 {
-  "employees":[
+  "user": [
     {
-      "id":"1",
-      "name":"Parvej",
-      "email":"parvej@gmail.com",
-      "salary":"50000",
-      "date":"",
-      "image":"https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.shutterstock.com%2Fsearch%2Fsmart-pic&psig=AOvVaw0f1H_jJqNMHD4qxzWVqC5q&ust=1751836992396000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCLir2L7Tpo4DFQAAAAAdAAAAABAE",
-      "address":"Road#3 House#10"
+      "id": "dbf7",
+      "name": "Muhammad Emran Hossain",
+      "email": "emranhss@gmail.com",
+      "password": "123456",
+      "photo": "https://tinyurl.com/6dt7txrj",
+      "role": "admin"
+    },
+    {
+      "id": "8542",
+      "name": "Rahim Khan",
+      "email": "hsstanvir@gmail.com",
+      "password": "123456",
+      "photo": "https://avatars.githubusercontent.com/u/21266856?v=4",
+      "role": "user"
+    }
+ 
+  ],
+  "countries": [
+    {
+      "id": "8848",
+      "name": "Bangladesh",
+      "divisions": [
+        "4dca",
+        "c189",
+        "d153",
+        "40b8"
+      ]
+    },
+    {
+      "id": "f381",
+      "name": "India",
+      "divisions": [
+        "efbf"
+      ]
     }
   ],
-  "users": [
+  "policeStations": [
     {
-      "id": 1,
-      "email": "admin@.com",
-      "password": "123456"
+      "id": "ddb6",
+      "name": "Krisno Nogar"
+    }
+  ],
+  "districts": [
+    {
+      "id": "01a7",
+      "name": "Dhaka",
+      "policeStations": [
+        "37ca",
+        "9b59",
+        "f481",
+        "ab1c"
+      ]
+    },
+    {
+      "id": "74f0",
+      "name": "Mymensingh",
+      "policeStations": [
+        "c9c8",
+        "3c8a",
+        "0755"
+      ]
+    }
+  ],
+  "divisions": [
+    {
+      "id": "4dca",
+      "name": "Dhaka",
+      "districts": [
+        "01a7",
+        "7925"
+      ]
+    }
+  ],
+  "employees": [
+    {
+      "id": "1fd6",
+      "name": "asdfff",
+      "salary": 5000,
+      "email": "ASDASDASDSA@DDD.KM",
+      "country": "621c",
+      "division": "e391",
+      "district": "02f8",
+      "policeStation": "0a8e"
     }
   ]
 }
-
-
-
-

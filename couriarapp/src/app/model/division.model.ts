@@ -1,11 +1,12 @@
+
 import { District } from "./district.model";
 
 export class Division {
-  id: number;
+  id: string;
   name: string;
-  districts: District[];
+  districts: string[];
 
-  constructor(id: number, name: string, districts: District[] = []) {
+  constructor(id: string, name: string, districts: string[] = []) {
     this.id = id;
     this.name = name;
     this.districts = districts;
