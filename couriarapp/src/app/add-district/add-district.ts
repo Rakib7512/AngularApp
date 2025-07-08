@@ -1,6 +1,10 @@
+
 import { Component } from '@angular/core';
+import { District } from '../model/district.model';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PoliceStation } from '../model/police_station.model';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { DistrictService } from '../service/district.service';
+import { PoliceStationService } from '../service/police-station.service';
 
 @Component({
   selector: 'app-add-district',
@@ -8,7 +12,9 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   templateUrl: './add-district.html',
   styleUrl: './add-district.css'
 })
-export class AddDistrict { districtForm: FormGroup;
+export class AddDistrict {
+  
+  districtForm: FormGroup;
   policeStations: PoliceStation[] = [];
 
   constructor(

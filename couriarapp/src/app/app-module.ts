@@ -8,21 +8,28 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { Home } from './home/home';
 import { AddDistrict } from './add-district/add-district';
+import { Addpolicestation } from './addpolice-station/addpolice-station';
+import { AddDivision } from './add-division/add-division';
+
+
 
 
 @NgModule({
   declarations: [
     App,
-       Addemployee,
-       Home,
-       AddDistrict
-      ],
+    Addemployee,
+    Home,
+    AddDistrict,
+    Addpolicestation,
+    AddDivision
+   
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule
-  
+
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),
@@ -32,4 +39,6 @@ import { AddDistrict } from './add-district/add-district';
   ],
   bootstrap: [App]
 })
-export class AppModule { }
+export class AppModule { } 
+
+
