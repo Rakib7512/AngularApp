@@ -1,0 +1,68 @@
+<!-- Header -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-danger px-4">
+  <a class="navbar-brand fw-bold" href="#">DHL Express</a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ms-auto">
+      <li class="nav-item"><a class="nav-link text-white" href="#">Home</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="#">Services</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="#">Track</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="#">Contact</a></li>
+       <li class="nav-item"><a class="nav-link text-white" href="allEmp">All Employee</a></li>
+        
+    </ul>
+  </div>
+</nav>
+
+<div class="d-flex" style="min-height: 100vh;">
+  <!-- Sidebar -->
+  <div class="bg-dark text-white p-3" style="width: 200px;">
+    <h4 class="text-warning mb-4">DHL Admin Panel</h4>
+    <ul class="nav flex-column">
+      <li class="nav-item"><a class="nav-link text-white" href="addEmp">Add Employee</a></li>
+       <li class="nav-item"><a class="nav-link text-white" href="addlocation">Add Location</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="#">🏠 Dashboard</a></li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle text-white" data-bs-toggle="dropdown" href="#" role="button">📦 Shipments</a>
+        <ul class="dropdown-menu bg-dark border-0">
+          <li><a class="dropdown-item text-white" href="#">Track Shipment</a></li>
+          <li><a class="dropdown-item text-white" href="#">Book Pickup</a></li>
+          <li><a class="dropdown-item text-white" href="#">My Shipments</a></li>
+          <li><a class="dropdown-item text-white" href="#">Return Package</a></li>
+          <li><a class="dropdown-item text-white" href="#">Shipping History</a></li>
+          
+        </ul>
+      </li>
+      <li class="nav-item"><a class="nav-link text-white" href="#">💰 Get Quote</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="#">📧 Notifications</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="#">🧭 Delivery Routes</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="#">🧾 Invoices</a></li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle text-white" data-bs-toggle="dropdown" href="#" role="button">⚙️ Administration</a>
+        <ul class="dropdown-menu bg-dark border-0">
+          <li><a class="dropdown-item text-white" href="#">User Management</a></li>
+          <li><a class="dropdown-item text-white" href="#">Reports & Analytics</a></li>
+          <li><a class="dropdown-item text-white" href="#">Settings</a></li>
+        </ul>
+      </li>
+      <li class="nav-item"><a class="nav-link text-danger" href="#">🚪 Logout</a></li>
+    </ul>
+  </div>
+
+  <!-- Main Content -->
+  <div class="p-4 flex-grow-1">
+    <h2 class="fw-bold text-danger">Welcome to DHL Courier Service</h2>
+    <p class="lead">Choose an option from the sidebar to get started.</p>
+  </div>
+</div>
+
+
+
+
+<router-outlet />
+<!-- Footer -->
+<footer class="bg-warning text-dark text-center py-4">
+  <p class="mb-0">&copy; 2025 DHL Courier Services. All rights reserved.</p>
+</footer>
