@@ -11,7 +11,10 @@
       <li class="nav-item"><a class="nav-link text-white" href="#">Track</a></li>
       <li class="nav-item"><a class="nav-link text-white" href="#">Contact</a></li>
        <li class="nav-item"><a class="nav-link text-white" href="allEmp">All Employee</a></li>
-        
+      <li><form class="d-flex" role="search" (submit)="onSearch()">
+      <input class="form-control me-2" type="search" placeholder="Tracking Number" [(ngModel)]="trackingNumber" name="tracking" required>
+      <button class="btn btn-warning fw-bold" type="submit">Track</button>
+    </form></li>
     </ul>
   </div>
 </nav>
@@ -21,8 +24,19 @@
   <div class="bg-dark text-white p-3" style="width: 200px;">
     <h4 class="text-warning mb-4">DHL Admin Panel</h4>
     <ul class="nav flex-column">
-      <li class="nav-item"><a class="nav-link text-white" href="addEmp">Add Employee</a></li>
-       <li class="nav-item"><a class="nav-link text-white" href="addlocation">Add Location</a></li>
+      <li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown">
+    👥 Employee Panel
+  </a>
+  <ul class="dropdown-menu bg-dark border-0">
+    <li><a class="dropdown-item text-warning" href="addEmp">Add Employee</a></li>
+    <li><a class="dropdown-item text-warning" routerLink="addpolice">Add Police Station</a></li>
+    <li><a class="dropdown-item text-warning" routerLink="addDist">Add District</a></li>
+    <li><a class="dropdown-item text-warning" routerLink="addDivi">Add Division</a></li>
+    <li><a class="dropdown-item text-warning" routerLink="">Add Country</a></li>
+    <li><a class="dropdown-item text-warning" routerLink="">Add Employee</a></li>
+  </ul>
+</li>
       <li class="nav-item"><a class="nav-link text-white" href="#">🏠 Dashboard</a></li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle text-white" data-bs-toggle="dropdown" href="#" role="button">📦 Shipments</a>
@@ -51,17 +65,21 @@
     </ul>
   </div>
 
+
+    
+
   <!-- Main Content -->
   <div class="p-4 flex-grow-1">
     <h2 class="fw-bold text-danger">Welcome to DHL Courier Service</h2>
     <p class="lead">Choose an option from the sidebar to get started.</p>
+    <router-outlet />
   </div>
 </div>
 
 
 
 
-<router-outlet />
+
 <!-- Footer -->
 <footer class="bg-warning text-dark text-center py-4">
   <p class="mb-0">&copy; 2025 DHL Courier Services. All rights reserved.</p>

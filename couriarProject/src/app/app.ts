@@ -8,4 +8,13 @@ import { Component } from '@angular/core';
 })
 export class App {
   protected title = 'couriarProject';
+  trackingNumber: string = '';
+
+onSearch(): void {
+  if (this.trackingNumber.trim()) {
+    alert(`Tracking shipment: ${this.trackingNumber}`);
+    // আপনি চাইলে router.navigate করে tracking পেজে পাঠাতে পারেন:
+    // this.router.navigate(['/track', this.trackingNumber]);
+  }
+}
 }

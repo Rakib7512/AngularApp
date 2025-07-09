@@ -22,7 +22,7 @@ private apiUrl='http://localhost:3000/policeStations'
     return this.http.put<PoliceStation>(`${this.apiUrl}/${policeStation.id}`, policeStation);
 
   }
-  delete(id:string):Observable<void>{
+  delete(id: string):Observable<void>{
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
 
 

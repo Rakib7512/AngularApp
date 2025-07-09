@@ -3,19 +3,34 @@ import { BrowserModule, provideClientHydration, withEventReplay } from '@angular
 
 import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
+import { AddPoliceStation } from './add-police-station/add-police-station';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Home } from './home/home';
+import { provideHttpClient, withFetch } from '@angular/common/http';
+import { AddDistrict } from './add-district/add-district';
+import { AddDivision } from './add-division/add-division';
 
 @NgModule({
   declarations: [
-    App
+    App,
+    AddPoliceStation,
+    Home,
+    AddDistrict,
+    AddDivision
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
-    provideClientHydration(withEventReplay())
+    provideClientHydration(withEventReplay()),
+    provideHttpClient(
+      withFetch()
+    )
   ],
   bootstrap: [App]
 })
