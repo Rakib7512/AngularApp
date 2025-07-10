@@ -10,6 +10,7 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
 import { AddDistrict } from './add-district/add-district';
 import { AddDivision } from './add-division/add-division';
 import { AddCountry } from './add-country/add-country';
+import { AddEmployee } from './add-employee/add-employee';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { AddCountry } from './add-country/add-country';
     Home,
     AddDistrict,
     AddDivision,
-    AddCountry
+    AddCountry,
+    AddEmployee
   ],
   imports: [
     BrowserModule,

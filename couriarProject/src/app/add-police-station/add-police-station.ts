@@ -53,6 +53,10 @@ export class AddPoliceStation implements OnInit {
       });
     }
   }
+    getPoliceStationById(id:string){
+    this.psService.delete(id);
+  }
+
 
   editPoliceStation(ps: PoliceStation) {
     this.editing = true;
@@ -63,7 +67,10 @@ export class AddPoliceStation implements OnInit {
   }
 
   deletePoliceStation(id: string) {
-      this.psService.delete(id);
+      this.psService.delete(id).subscribe(()=>{
+        this.loadPoliceStation
+
+      });
   }
 
   cancelEdit() {

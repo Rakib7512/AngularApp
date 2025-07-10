@@ -1,8 +1,9 @@
-export class Employee{
+export class Employee {
 
-        id!: string;
+    id!: string;
     name!: string;
     email!: string;
+    gender!: string;
     salary!: number;
     designation!: string;
     date!: Date;

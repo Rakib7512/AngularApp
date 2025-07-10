@@ -15,8 +15,7 @@
     <div class="col-md-6">
       <label for="districts" class="form-label">Select Districts</label>
       <select
-        id="districts"
-        formControlName="districts"
+        formControlName="district"
         class="form-select"
         multiple
         size="5"
@@ -25,7 +24,7 @@
           *ngFor="let district of districts"
           [value]="district.id"
         >
-          {{ district.nama }}
+          {{ district.name}}
         </option>
       </select>
       <small class="text-muted">Hold Ctrl (Windows) or Cmd (Mac) to select multiple.</small>
