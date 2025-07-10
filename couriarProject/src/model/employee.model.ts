@@ -4,9 +4,10 @@ export class Employee {
     name!: string;
     email!: string;
     gender!: string;
-    salary!: number;
     designation!: string;
-    date!: Date;
+    joindate!: Date;
+    phoneNo!:string
+    salary!: number;
     image!: string
     country!: string;
     division!: string;

@@ -8,41 +8,50 @@
     </div>
 
     <div class="col-md-6">
-      <label class="form-label">Salary</label>
-      <input type="number" formControlName="salary" class="form-control" placeholder="Salary" />
-    </div>
-
-    <div class="col-md-6">
       <label class="form-label">Email</label>
       <input formControlName="email" type="email" class="form-control" placeholder="Email" />
     </div>
-    
+
     <div class="col-md-6 mb-3">
-  <label class="form-label d-block">Gender</label>
-  
-  <div class="form-check form-check-inline">
-    <input 
-      class="form-check-input"
-      type="radio"
-      name="gender"
-      formControlName="gender"
-      value="Male"
-    />
-    <label class="form-check-label">Male</label>
-  </div>
+      <label class="form-label d-block">Gender</label>
 
-  <div class="form-check form-check-inline">
-    <input 
-      class="form-check-input"
-      type="radio"
-      name="gender"
-      formControlName="gender"
-      value="Female"
-    />
-    <label class="form-check-label">Female</label>
-  </div>
-</div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="gender" formControlName="gender" value="Male" />
+        <label class="form-check-label">Male</label>
+      </div>
 
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="gender" formControlName="gender" value="Female" />
+        <label class="form-check-label">Female</label>
+      </div>
+    </div>
+
+
+    <div class="row">
+
+      <div class="col-md-4">
+        <label class="form-label">Designation</label>
+        <input formControlName="designation" type="text" class="form-control" placeholder="Designation" />
+      </div>
+      <div class="col-md-4">
+        <label for="date" class="form-label">Join Date</label>
+        <input formControlName="joindate" type="date" class="form-control" id="date" name="date">
+      </div>
+      <div class="col-md-4">
+        <label for="phoneNo">Phone No</label>
+        <input type="text" formControlName="phoneNo" class="form-control" placeholder="Phone Number">
+      </div>
+
+    </div>
+
+
+
+
+
+    <div class="col-md-6">
+      <label class="form-label">Salary</label>
+      <input type="number" formControlName="salary" class="form-control" placeholder="Salary" />
+    </div>
 
     <div class="col-md-6">
       <label class="form-label">Country</label>
@@ -75,9 +84,13 @@
         <option *ngFor="let ps of filteredPoliceStations" [value]="ps.id">{{ ps.name }}</option>
       </select>
     </div>
+    <div class="col-md-4">
+      <label for="image">Add Image</label>
+     <input type="text" formControlName="image" class="form-control" id="image" name="image" placeholder="Image" />
+    </div>
 
     <div class="col-md-12">
-      <button class="btn btn-success" type="submit" [disabled]="employeeForm.invalid">
+      <button class="btn btn-success" type="" [disabled]="employeeForm.invalid">
         Add Employee
       </button>
     </div>

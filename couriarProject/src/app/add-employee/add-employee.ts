@@ -19,7 +19,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class AddEmployee implements OnInit {
 
-  employeeForm!: FormGroup;
+  employeeForm: FormGroup;
   editing: boolean = false;
   employeeId!: string;
 
@@ -49,10 +49,11 @@ export class AddEmployee implements OnInit {
       name: ['', Validators.required],
       salary: [0, [Validators.required, Validators.min(0)]],
       email: ['', [Validators.required, Validators.email]],
+      phoneNo:['',Validators.required],
       gender: ['', Validators.required],
-      image: ['', Validators.required],
       designation: ['', Validators.required],
       joindate: ['', Validators.required],
+      image: ['', Validators.required],
       country: ['', Validators.required],
       division: ['', Validators.required],
       district: ['', Validators.required],
@@ -69,6 +70,7 @@ export class AddEmployee implements OnInit {
     this.divisionService.getAll().subscribe(data => this.allDivisions = data);
     this.districtService.getAll().subscribe(data => this.allDistricts = data);
     this.policeStationService.getAll().subscribe(data => this.allPoliceStations = data);
+   
     this.route.paramMap.subscribe(params => {
       const id = params.get('id');
       if (id) {
@@ -95,17 +97,8 @@ export class AddEmployee implements OnInit {
   }
 
 
-
-  onDistrictChange() {
-    const selectedDistrictId = this.employeeForm.value.District;
-    const selectedDistrict = this.allDistricts.find(dist => dist.id == selectedDistrictId);
-    if (selectedDistrict) {
-      this.filteredPoliceStations = this.allPoliceStations.filter(ps => selectedDistrict.policeStations.includes(ps.id!));
-      this.employeeForm.patchValue({ policeStation: '' });
-    }
-  }
   onDivisionChange(){
-    const selectedDivisionId = this.employeeForm.value.Division;
+    const selectedDivisionId = this.employeeForm.value.division;
     const selectedDivision = this.allDivisions.find(d => d.id == selectedDivisionId);
     if (selectedDivision) {
       this.filteredDistricts = this.allDistricts.filter(dist => selectedDivision.districts.includes(dist.id!));
@@ -113,6 +106,18 @@ export class AddEmployee implements OnInit {
       this.employeeForm.patchValue({ district: '', policeStation: '' });
     }
   }
+
+
+
+  onDistrictChange() {
+    const selectedDistrictId = this.employeeForm.value.istrict;
+    const selectedDistrict = this.allDistricts.find(dist => dist.id == selectedDistrictId);
+    if (selectedDistrict) {
+      this.filteredPoliceStations = this.allPoliceStations.filter(ps => selectedDistrict.policeStations.includes(ps.id!));
+      this.employeeForm.patchValue({ policeStation: '' });
+    }
+  }
+  
 
 
   onSubmit() {
