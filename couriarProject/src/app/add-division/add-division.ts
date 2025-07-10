@@ -35,7 +35,9 @@ export class AddDivision implements OnInit {
   }
   onSubmit(){
     if(this.divisionForm.invalid)return;
+
     const division=this.divisionForm.value;
+    
     this.divisionService.add(division).subscribe(()=>{
       alert('Division Add Successful');
       this.divisionForm.reset();

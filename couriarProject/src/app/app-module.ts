@@ -9,6 +9,7 @@ import { Home } from './home/home';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { AddDistrict } from './add-district/add-district';
 import { AddDivision } from './add-division/add-division';
+import { AddCountry } from './add-country/add-country';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { AddDivision } from './add-division/add-division';
     AddPoliceStation,
     Home,
     AddDistrict,
-    AddDivision
+    AddDivision,
+    AddCountry
   ],
   imports: [
     BrowserModule,

@@ -12,35 +12,36 @@ import { District } from '../../model/district.model';
   styleUrl: './add-district.css'
 })
 export class AddDistrict implements OnInit {
-  
-districtForm:FormGroup;
-policeStations: PoliceStation[]=[];
-constructor(
-   private fb:FormBuilder,
-   private districtService:DistrictService,
-   private policeStationService:PoliceStationService
 
-){
-  this.districtForm=this.fb.group({
-    name:['', Validators.required],
-    policeStations:[[],Validators.required]
+  districtForm: FormGroup;
+  policeStations: PoliceStation[] = [];
+  constructor(
+    private fb: FormBuilder,
+    private districtService: DistrictService,
+    private policeStationService: PoliceStationService
 
-  });
-}
-  ngOnInit(): void {
-   this.loadPoliceStation();
+  ) {
+    this.districtForm = this.fb.group({
+      name: ['', Validators.required],
+      policeStation: [[], Validators.required]
+
+    });
   }
-  loadPoliceStation(){
-    this.policeStationService.getAll().subscribe(data=>{
-      this.policeStations=data
+  ngOnInit(): void {
+    this.loadPoliceStation();
+  }
+  loadPoliceStation() {
+    this.policeStationService.getAll().subscribe(data => {
+      this.policeStations = data;
 
 
     });
   }
-  onSubmit(){
-    if(this.districtForm.invalid) return;
-    const district:District=this.districtForm.value;
-    this.districtService.add(district).subscribe(()=>{
+  onSubmit() {
+    if (this.districtForm.invalid) return;
+
+    const district: District = this.districtForm.value;
+    this.districtService.add(district).subscribe(() => {
       alert('District Add Successful');
       this.districtForm.reset
 

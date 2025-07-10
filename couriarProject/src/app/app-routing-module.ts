@@ -9,7 +9,7 @@ const routes: Routes = [
   {path:'',component:Home},
   {path:'addpolice',component:AddPoliceStation},
   {path:'addDist',component:AddDistrict},
-    {path:'addDivi',component:AddDivision}
+  {path:'addDivi',component:AddDivision}
 ];
 
 @NgModule({
