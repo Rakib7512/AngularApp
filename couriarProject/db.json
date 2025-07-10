@@ -156,5 +156,75 @@
       ]
     }
   ],
-  "employees": []
+  "employees": [],
+  "parcel": [
+    {
+      "id": "7e80",
+      "senderName": "Masud",
+      "receiverName": "Im",
+      "senderPhone": "01607005625",
+      "receiverPhone": "",
+      "senderAddress": "Agargaon",
+      "receiverAddress": "",
+      "fromHub": "",
+      "toHub": "",
+      "status": "Received at Source Hub"
+    },
+    {
+      "id": "51ad",
+      "senderName": "Masud",
+      "receiverName": "Imran",
+      "senderPhone": "01607005625",
+      "receiverPhone": "000",
+      "senderAddress": "Savar",
+      "receiverAddress": "Dhaka",
+      "fromHub": "Savar",
+      "toHub": "mohammadpur",
+      "status": "Received at Source Hub"
+    },
+    {
+      "id": "4d26",
+      "senderName": "",
+      "receiverName": "",
+      "senderPhone": "",
+      "receiverPhone": "",
+      "senderAddress": "",
+      "receiverAddress": "",
+      "fromHub": "",
+      "toHub": "",
+      "status": "Received at Source Hub"
+    },
+    {
+      "id": "5f5f",
+      "senderName": "Masud",
+      "receiverName": "Md Rakib Islam",
+      "senderPhone": "01607005625",
+      "receiverPhone": "01555",
+      "senderAddress": "Agargaon",
+      "receiverAddress": "Dhaka",
+      "fromHub": "Savar",
+      "toHub": "mohammadpur",
+      "status": "Received at Source Hub"
+    }
+  ],
+  "transfer_Hub": [
+    {
+      "id": "2fd7",
+      "parcelId": "51ad",
+      "fromHub": "Savar",
+      "toHub": "mohammadpur",
+      "departedAt": "2025-07-02T03:24",
+      "arrivedAt": "2025-07-27T03:24",
+      "courierBy": "Reja"
+    },
+    {
+      "id": "ef36",
+      "parcelId": "",
+      "fromHub": "Savar",
+      "toHub": "mohammadpur",
+      "departedAt": "2025-07-02T03:24",
+      "arrivedAt": "2025-07-27T03:24",
+      "courierBy": "Reja"
+    }
+  ]
 }

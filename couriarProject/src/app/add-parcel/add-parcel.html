@@ -1,0 +1,36 @@
+<div class="container mt-4">
+  <h3 class="mb-3">Add New Parcel</h3>
+  <form (ngSubmit)="submitParcel()" #parcelForm="ngForm">
+    <div class="row">
+      <div class="col-md-6">
+        <label>Sender Name</label>
+        <input [(ngModel)]="parcel.senderName" name="senderName" class="form-control" required>
+
+        <label>Sender Phone</label>
+        <input [(ngModel)]="parcel.senderPhone" name="senderPhone" class="form-control" required>
+
+        <label>Sender Address</label>
+        <textarea [(ngModel)]="parcel.senderAddress" name="senderAddress" class="form-control" required></textarea>
+
+        <label>From Hub</label>
+        <input [(ngModel)]="parcel.fromHub" name="fromHub" class="form-control" required>
+      </div>
+
+      <div class="col-md-6">
+        <label>Receiver Name</label>
+        <input [(ngModel)]="parcel.receiverName" name="receiverName" class="form-control" required>
+
+        <label>Receiver Phone</label>
+        <input [(ngModel)]="parcel.receiverPhone" name="receiverPhone" class="form-control" required>
+
+        <label>Receiver Address</label>
+        <textarea [(ngModel)]="parcel.receiverAddress" name="receiverAddress" class="form-control" required></textarea>
+
+        <label>To Hub</label>
+        <input [(ngModel)]="parcel.toHub" name="toHub" class="form-control" required>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-danger mt-3">Submit</button>
+  </form>
+</div>

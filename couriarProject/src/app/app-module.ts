@@ -11,6 +11,8 @@ import { AddDistrict } from './add-district/add-district';
 import { AddDivision } from './add-division/add-division';
 import { AddCountry } from './add-country/add-country';
 import { AddEmployee } from './add-employee/add-employee';
+import { AddParcel } from './add-parcel/add-parcel';
+import { TransferHub } from './transfer-hub/transfer-hub';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { AddEmployee } from './add-employee/add-employee';
     AddDistrict,
     AddDivision,
     AddCountry,
-    AddEmployee
+    AddEmployee,
+    AddParcel,
+    TransferHub
   ],
   imports: [
     BrowserModule,
