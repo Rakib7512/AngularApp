@@ -1,6 +1,10 @@
 <div class="container mt-4">
   <h3 class="mb-3">Add New Parcel</h3>
   <form (ngSubmit)="submitParcel()" #parcelForm="ngForm">
+    <div class="text-center col-md-4  ">
+       <label>Tracking Id</label>
+        <input [(ngModel)]="parcel.trackingId" name="trackingId" class="form-control" required>
+    </div>
     <div class="row">
       <div class="col-md-6">
         <label>Sender Name</label>
@@ -15,8 +19,7 @@
         <label>From Hub</label>
         <input [(ngModel)]="parcel.fromHub" name="fromHub" class="form-control" required>
       </div>
-
-      <div class="col-md-6">
+            <div class="col-md-6">
         <label>Receiver Name</label>
         <input [(ngModel)]="parcel.receiverName" name="receiverName" class="form-control" required>
 
@@ -30,6 +33,17 @@
         <input [(ngModel)]="parcel.toHub" name="toHub" class="form-control" required>
       </div>
     </div>
+    <div class="row">
+        <div class="col-md-6">
+          <label>Current Hub</label>
+        <input [(ngModel)]="parcel.receiverName" name="currentHub" class="form-control" required>
+      </div>
+      <div class="col-md-6">
+         <label>Delivery Person</label>
+        <input [(ngModel)]="parcel.deliveryPerson" name="deliveryPerson" class="form-control" required>
+      </div>
+
+      </div>
 
     <button type="submit" class="btn btn-danger mt-3">Submit</button>
   </form>

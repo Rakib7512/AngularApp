@@ -13,6 +13,7 @@ import { AddCountry } from './add-country/add-country';
 import { AddEmployee } from './add-employee/add-employee';
 import { AddParcel } from './add-parcel/add-parcel';
 import { TransferHub } from './transfer-hub/transfer-hub';
+import { TrackParcel } from './track-parcel/track-parcel';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { TransferHub } from './transfer-hub/transfer-hub';
     AddCountry,
     AddEmployee,
     AddParcel,
-    TransferHub
+    TransferHub,
+    TrackParcel
   ],
   imports: [
     BrowserModule,

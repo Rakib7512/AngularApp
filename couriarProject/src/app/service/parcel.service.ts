@@ -27,4 +27,9 @@ export class ParcelService {
   updateParcelStatus(id: number, status: string, currentHub: string): Observable<Parcel> {
     return this.http.put<Parcel>(`${this.baseUrl}/${id}/status`, { status, currentHub });
   }
+
+
+  trackParcel(trackingId: string): Observable<Parcel> {
+    return this.http.get<Parcel>(`${this.baseUrl}/track/${trackingId}`);
+  }
 }

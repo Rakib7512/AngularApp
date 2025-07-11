@@ -10,6 +10,7 @@ import { ParcelService } from '../service/parcel.service';
 })
 export class AddParcel {
   parcel: Parcel = {
+    trackingId:'',
     senderName: '',
     receiverName: '',
     senderPhone: '',
@@ -17,7 +18,9 @@ export class AddParcel {
     senderAddress: '',
     receiverAddress: '',
     fromHub: '',
+    currentHub: '',
     toHub: '',
+    deliveryPerson:'',
     status: 'Received at Source Hub'
   };
 

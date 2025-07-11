@@ -1,5 +1,6 @@
 export interface Parcel {
   id?: number;
+   trackingId: string;
   senderName: string;
   receiverName: string;
   senderPhone: string;

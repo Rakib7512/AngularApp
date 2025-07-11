@@ -1,0 +1,31 @@
+<div class="container mt-5">
+  <h2 class="text-danger text-center mb-4">📦 Track Your Parcel</h2>
+
+  <!-- Search Form -->
+  <form (ngSubmit)="onTrack()" class="row justify-content-center mb-4">
+    <div class="col-md-8">
+      <div class="input-group input-group-lg shadow">
+        <input type="text" [(ngModel)]="trackingId" name="trackingId" class="form-control"
+               placeholder="Enter Tracking ID (e.g. DHL123456)" required>
+        <button type="submit" class="btn btn-danger">Track</button>
+      </div>
+    </div>
+  </form>
+
+  <!-- Result Found -->
+  <div *ngIf="parcel" class="card shadow-lg p-4 text-start">
+    <h5 class="text-success">✅ Parcel Found</h5>
+    <p><strong>Tracking ID:</strong> {{ parcel.trackingId }}</p>
+    <p><strong>Sender:</strong> {{ parcel.senderName }}</p>
+    <p><strong>Receiver:</strong> {{ parcel.receiverName }}</p>
+    <p><strong>Status:</strong> {{ parcel.status }}</p>
+    <p><strong>Current Hub:</strong> {{ parcel.currentHub }}</p>
+    <p><strong>Date:</strong> {{ parcel.createdAt | date:'medium' }}</p>
+  </div>
+
+  <!-- Error Message -->
+  <div *ngIf="errorMsg" class="alert alert-warning text-center">
+    {{ errorMsg }}
+  </div>
+</div>
+
