@@ -14,6 +14,7 @@ import { AddEmployee } from './add-employee/add-employee';
 import { AddParcel } from './add-parcel/add-parcel';
 import { TransferHub } from './transfer-hub/transfer-hub';
 import { TrackParcel } from './track-parcel/track-parcel';
+import { ViewEmp } from './view-emp/view-emp';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { TrackParcel } from './track-parcel/track-parcel';
     AddEmployee,
     AddParcel,
     TransferHub,
-    TrackParcel
+    TrackParcel,
+    ViewEmp
   ],
   imports: [
     BrowserModule,
