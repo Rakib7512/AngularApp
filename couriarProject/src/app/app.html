@@ -7,16 +7,32 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav ms-auto">
       <li class="nav-item"><a class="nav-link text-white" href="#">Home</a></li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown">
+          View Panel
+        </a>
+        <ul class="dropdown-menu bg-dark border-0">
+          <li><a class="dropdown-item text-warning" href="viewParcel">View All Parcel </a></li>
+          <li><a class="dropdown-item text-warning" href="viewEmp">View All Employee </a></li>
+          <li><a class="dropdown-item text-warning" href=""> </a></li>
+          <li><a class="dropdown-item text-warning" href=""> </a></li>
+          <li><a class="dropdown-item text-warning" href=""> </a></li>
+
+
+        </ul>
+      </li>
       <li class="nav-item"><a class="nav-link text-white" href="#">Services</a></li>
       <a class="nav-link text-white" routerLink="track">📦 Track Parcel</a>
       <li class="nav-item"><a class="nav-link text-white" href="#">Contact</a></li>
-       <li class="nav-item"><a class="nav-link text-white" href="viewEmp">All Employee</a></li>
-       <li class="nav-item"><a class="nav-link text-white" href="addParcel">Add Parcel</a></li>
-        <li class="nav-item"><a class="nav-link text-white" href="transferHub">Hub Transfer</a></li>
-      <li><form class="d-flex" role="search" (submit)="onSearch()">
-      <input class="form-control me-2" type="search" placeholder="Tracking Number" [(ngModel)]="trackingNumber" name="tracking" required>
-      <button class="btn btn-warning fw-bold" type="submit">Track</button>
-    </form></li>
+      <li class="nav-item"><a class="nav-link text-white" href="addParcel">Add Parcel</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="transferHub">Hub Transfer</a></li>
+      <li>
+        <form class="d-flex" role="search" (submit)="onSearch()">
+          <input class="form-control me-2" type="search" placeholder="Tracking Number" [(ngModel)]="trackingNumber"
+            name="tracking" required>
+          <button class="btn btn-warning fw-bold" type="submit">Track</button>
+        </form>
+      </li>
     </ul>
   </div>
 </nav>
@@ -27,18 +43,19 @@
     <h4 class="text-warning mb-4">DHL Admin Panel</h4>
     <ul class="nav flex-column">
       <li class="nav-item dropdown">
-  <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown">
-    👥 Employee Panel
-  </a>
-  <ul class="dropdown-menu bg-dark border-0">
-    <li><a class="dropdown-item text-warning" href="addEmp">Add Employee</a></li>
-    <li><a class="dropdown-item text-warning" routerLink="addpolice">Add Police Station</a></li>
-    <li><a class="dropdown-item text-warning" routerLink="addDist">Add District</a></li>
-    <li><a class="dropdown-item text-warning" routerLink="addDivi">Add Division</a></li>
-    <li><a class="dropdown-item text-warning" routerLink="addCountry">Add Country</a></li>
-    
-    </ul>
-</li>
+        <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown">
+          👥 Employee Panel
+        </a>
+        <ul class="dropdown-menu bg-dark border-0">
+          <li><a class="dropdown-item text-warning" href="addEmp">Add Employee</a></li>
+          <li><a class="dropdown-item text-warning" routerLink="addpolice">Add Police Station</a></li>
+          <li><a class="dropdown-item text-warning" routerLink="addDist">Add District</a></li>
+          <li><a class="dropdown-item text-warning" routerLink="addDivi">Add Division</a></li>
+          <li><a class="dropdown-item text-warning" routerLink="addCountry">Add Country</a></li>
+
+
+        </ul>
+      </li>
       <li class="nav-item"><a class="nav-link text-white" href="#">🏠 Dashboard</a></li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle text-white" data-bs-toggle="dropdown" href="#" role="button">📦 Shipments</a>
@@ -48,7 +65,7 @@
           <li><a class="dropdown-item text-white" href="#">My Shipments</a></li>
           <li><a class="dropdown-item text-white" href="#">Return Package</a></li>
           <li><a class="dropdown-item text-white" href="#">Shipping History</a></li>
-          
+
         </ul>
       </li>
       <li class="nav-item"><a class="nav-link text-white" href="#">💰 Get Quote</a></li>
@@ -56,7 +73,8 @@
       <li class="nav-item"><a class="nav-link text-white" href="#">🧭 Delivery Routes</a></li>
       <li class="nav-item"><a class="nav-link text-white" href="#">🧾 Invoices</a></li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle text-white" data-bs-toggle="dropdown" href="#" role="button">⚙️ Administration</a>
+        <a class="nav-link dropdown-toggle text-white" data-bs-toggle="dropdown" href="#" role="button">⚙️
+          Administration</a>
         <ul class="dropdown-menu bg-dark border-0">
           <li><a class="dropdown-item text-white" href="#">User Management</a></li>
           <li><a class="dropdown-item text-white" href="#">Reports & Analytics</a></li>
@@ -68,7 +86,7 @@
   </div>
 
 
-    
+
 
   <!-- Main Content -->
   <div class="p-4 flex-grow-1">

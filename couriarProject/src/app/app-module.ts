@@ -15,6 +15,8 @@ import { AddParcel } from './add-parcel/add-parcel';
 import { TransferHub } from './transfer-hub/transfer-hub';
 import { TrackParcel } from './track-parcel/track-parcel';
 import { ViewEmp } from './view-emp/view-emp';
+import { ViewAddParcel } from './view-add-parcel/view-add-parcel';
+import { UpdateParcel } from './update-parcel/update-parcel';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { ViewEmp } from './view-emp/view-emp';
     AddParcel,
     TransferHub,
     TrackParcel,
-    ViewEmp
+    ViewEmp,
+    ViewAddParcel,
+    UpdateParcel
   ],
   imports: [
     BrowserModule,

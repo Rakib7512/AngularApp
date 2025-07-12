@@ -9,6 +9,9 @@
         <label>From Hub</label>
         <input [(ngModel)]="transfer.fromHub" name="fromHub" class="form-control" required>
 
+         <label>Current Hub</label>
+        <input [(ngModel)]="transfer.currentHub" name="currentHub" class="form-control" required>
+
         <label>To Hub</label>
         <input [(ngModel)]="transfer.toHub" name="toHub" class="form-control" required>
       </div>
@@ -24,7 +27,7 @@
         <input type="datetime-local" [(ngModel)]="transfer.arrivedAt" name="arrivedAt" class="form-control" required>
       </div>
     </div>
-    <button type="submit" class="btn btn-danger mt-3">Submit Transfer</button>
+    <button type="submit" class="btn btn-danger mt-3" [disabled]="">Submit Transfer</button>
   </form>
 </div>
 

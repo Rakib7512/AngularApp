@@ -6,11 +6,12 @@ export class Employee {
     gender!: string;
     designation!: string;
     joindate!: Date;
-    phoneNo!:string
+    phoneNo!: string
     salary!: number;
     image!: string
-    country!: string;
-    division!: string;
-    district!: string;
-    policeStation!: string;
+    country!: string;      // ID of selected country
+    division!: string;     // ID of selected division
+    district!: string;     // ID of selected district
+    policeStation!: string; // ID of selected police station
+
 }

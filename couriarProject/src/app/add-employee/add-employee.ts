@@ -21,7 +21,7 @@ export class AddEmployee implements OnInit {
 
   employeeForm: FormGroup;
   editing: boolean = false;
-  employeeId!: string;
+  employeeId: string | null = null;
 
   countries: Country[] = [];
   allDivisions: Division[] = [];
@@ -31,7 +31,6 @@ export class AddEmployee implements OnInit {
   filteredDivisions: Division[] = [];
   filteredDistricts: District[] = [];
   filteredPoliceStations: PoliceStation[] = [];
-
 
   constructor(
     private fb: FormBuilder,
@@ -43,13 +42,11 @@ export class AddEmployee implements OnInit {
     private route: ActivatedRoute,
     private router: Router
   ) {
-
     this.employeeForm = this.fb.group({
-
       name: ['', Validators.required],
       salary: [0, [Validators.required, Validators.min(0)]],
       email: ['', [Validators.required, Validators.email]],
-      phoneNo:['',Validators.required],
+      phoneNo: ['', Validators.required],
       gender: ['', Validators.required],
       designation: ['', Validators.required],
       joindate: ['', Validators.required],
@@ -58,46 +55,40 @@ export class AddEmployee implements OnInit {
       division: ['', Validators.required],
       district: ['', Validators.required],
       policeStation: ['', Validators.required]
-
-
-
     });
-
-
   }
-  ngOnInit(): void {
+
+  ngOnInit() {
     this.countryService.getAll().subscribe(data => this.countries = data);
     this.divisionService.getAll().subscribe(data => this.allDivisions = data);
     this.districtService.getAll().subscribe(data => this.allDistricts = data);
     this.policeStationService.getAll().subscribe(data => this.allPoliceStations = data);
-   
+
+    // ✅ Check if editing
     this.route.paramMap.subscribe(params => {
       const id = params.get('id');
       if (id) {
         this.editing = true;
         this.employeeId = id;
-        this.loadEmployee(this.employeeId)
-
+        this.loadEmployee(this.employeeId);
       }
-
     });
 
-  }
 
+  }
 
   onCountryChange() {
     const selectedCountryId = this.employeeForm.value.country;
     const selectedCountry = this.countries.find(c => c.id == selectedCountryId);
     if (selectedCountry) {
-      this.filteredDivisions = this.allDivisions.filter(d => selectedCountry.division.includes(d.id!));
+      this.filteredDivisions = this.allDivisions.filter(d => selectedCountry.divisions.includes(d.id!));
       this.filteredDistricts = [];
       this.filteredPoliceStations = [];
       this.employeeForm.patchValue({ division: '', district: '', policeStation: '' });
     }
   }
 
-
-  onDivisionChange(){
+  onDivisionChange() {
     const selectedDivisionId = this.employeeForm.value.division;
     const selectedDivision = this.allDivisions.find(d => d.id == selectedDivisionId);
     if (selectedDivision) {
@@ -107,21 +98,16 @@ export class AddEmployee implements OnInit {
     }
   }
 
-
-
   onDistrictChange() {
-    const selectedDistrictId = this.employeeForm.value.istrict;
+    const selectedDistrictId = this.employeeForm.value.district;
     const selectedDistrict = this.allDistricts.find(dist => dist.id == selectedDistrictId);
     if (selectedDistrict) {
       this.filteredPoliceStations = this.allPoliceStations.filter(ps => selectedDistrict.policeStations.includes(ps.id!));
       this.employeeForm.patchValue({ policeStation: '' });
     }
   }
-  
-
 
   onSubmit() {
-
     if (this.employeeForm.invalid) return;
 
     const employee: any = { ...this.employeeForm.value };
@@ -143,19 +129,16 @@ export class AddEmployee implements OnInit {
     }
   }
 
-  loadEmployee(id:string){
-     this.employeeService.getEmpById(id).subscribe(emp => {
+
+  loadEmployee(id: string) {
+    this.employeeService.getEmpById(id).subscribe(emp => {
       this.employeeForm.patchValue(emp);
 
-        this.onCountryChange();
+      // ✅ Pre-filter dependent dropdowns
+      this.onCountryChange();
       this.onDivisionChange();
       this.onDistrictChange();
     });
-
-
-
-
   }
-
 
 }

@@ -5,5 +5,6 @@ export interface HubTransfer {
   toHub: string;
   departedAt: Date;
   arrivedAt: Date;
+  currentHub:string;
   courierBy: string;
 }

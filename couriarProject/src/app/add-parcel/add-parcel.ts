@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Parcel } from '../../model/parcel.model';
 import { ParcelService } from '../service/parcel.service';
+import { Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-parcel',
@@ -8,7 +10,10 @@ import { ParcelService } from '../service/parcel.service';
   templateUrl: './add-parcel.html',
   styleUrl: './add-parcel.css'
 })
-export class AddParcel {
+export class AddParcel implements OnInit{
+  
+  
+
   parcel: Parcel = {
     trackingId:'',
     senderName: '',
@@ -24,10 +29,17 @@ export class AddParcel {
     status: 'Received at Source Hub'
   };
 
-  constructor(private parcelService: ParcelService) {}
+  constructor(private parcelService: ParcelService,
+    private cdr: ChangeDetectorRef,
+    private router: Router
+  ) {}
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+  }
 
   submitParcel(): void {
     this.parcelService.createParcel(this.parcel).subscribe(response => {
+      this.router.navigate(['viewparcel'])
       alert('Parcel Created Successfully!');
     });
   }

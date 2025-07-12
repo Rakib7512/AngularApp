@@ -16,15 +16,27 @@ export class ParcelService {
     return this.http.post<Parcel>(this.baseUrl, parcel);
   }
 
-  getAllParcels(): Observable<Parcel[]> {
-    return this.http.get<Parcel[]>(this.baseUrl);
+  getAllParcels(): Observable<any> {
+    return this.http.get(this.baseUrl);
   }
 
-  getParcelById(id: number): Observable<Parcel> {
+
+  UpdateParcels(id:string): Observable<any> {
+    return this.http.put(this.baseUrl + "/" + id, Parcel);
+  }
+
+  getParcelById(id: string): Observable<Parcel> {
     return this.http.get<Parcel>(`${this.baseUrl}/${id}`);
   }
 
-  updateParcelStatus(id: number, status: string, currentHub: string): Observable<Parcel> {
+
+  deleteParcel(id : string):Observable<any>{
+    return this.http.delete(this.baseUrl+'/'+id);
+
+
+  }
+
+  updateParcelStatus(id: string, status: string, currentHub: string): Observable<Parcel> {
     return this.http.put<Parcel>(`${this.baseUrl}/${id}/status`, { status, currentHub });
   }
 
