@@ -12,10 +12,14 @@ export class Parcel {
   deliveryPerson?: string;
   createdAt?: Date;
    bookingAgent!:string; 
-   countries! : string;
-   divisions!: string;
-   policeStations!:string;
-   districts!:string
+   sendCountry! : string;
+   sendDivision!: string;
+   sendDistrict!:string;
+   districts!:string;
+   receiveCountry!:string;
+   receiveDivision!:string;
+   receiveDistrict!:string;
+   receivePoliceStation!:string;
 
 
 }
