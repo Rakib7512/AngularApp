@@ -154,4 +154,38 @@ export class AddParcel implements OnInit {
     }
   }
 
+
+
+  onCountryChange2() {
+    const selectedCountryId = this.parcelForm.value.country;
+    const selectedCountry = this.countries.find(c => c.id == selectedCountryId);
+    if (selectedCountry) {
+      this.filteredDivisions = this.allDivisions.filter(d => selectedCountry.divisions.includes(d.id!));
+      this.filteredDistricts = [];
+      this.filteredPoliceStations = [];
+      this.parcelForm.patchValue({ division: '', district: '', policeStation: '' });
+    }
+  }
+
+
+
+  onDivisionChange2() {
+    const selectedDivisionId = this.parcelForm.value.division;
+    const selectedDivision = this.allDivisions.find(d => d.id == selectedDivisionId);
+    if (selectedDivision) {
+      this.filteredDistricts = this.allDistricts.filter(dist => selectedDivision.districts.includes(dist.id!));
+      this.filteredPoliceStations = [];
+      this.parcelForm.patchValue({ district: '', policeStation: '' });
+    }
+  }
+
+   onDistrictChange2() {
+    const selectedDistrictId = this.parcelForm.value.district;
+    const selectedDistrict = this.allDistricts.find(dist => dist.id == selectedDistrictId);
+    if (selectedDistrict) {
+      this.filteredPoliceStations = this.allPoliceStations.filter(ps => selectedDistrict.policeStations.includes(ps.id!));
+      this.parcelForm.patchValue({ policeStation: '' });
+    }
+  }
+
 }

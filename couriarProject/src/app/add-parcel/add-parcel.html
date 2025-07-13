@@ -60,7 +60,7 @@ bvgnf<div class="container mt-4">
         <div class="row">
           <div class="col-md-6">
       <label class="form-label">Recive Country Hub</label>
-      <select formControlName="country" class="form-select" (change)="onCountryChange()">
+      <select formControlName="country" class="form-select" (change)="onCountryChange2()">
         <option value="">Select Country</option>
         <option *ngFor="let country of countries" [value]="country.id">{{ country.name }}</option>
       </select>
@@ -68,7 +68,7 @@ bvgnf<div class="container mt-4">
 
     <div class="col-md-6">
       <label class="form-label">Recive Division Hub</label>
-      <select formControlName="division" class="form-select" (change)="onDivisionChange()">
+      <select formControlName="division" class="form-select" (change)="onDivisionChange2()">
         <option value="">Select Division</option>
         <option *ngFor="let division of filteredDivisions" [value]="division.id">{{ division.name }}</option>
       </select>
@@ -76,7 +76,7 @@ bvgnf<div class="container mt-4">
 
     <div class="col-md-6">
       <label class="form-label">Recive District Hub</label>
-      <select formControlName="district" class="form-select" (change)="onDistrictChange()">
+      <select formControlName="district" class="form-select" (change)="onDistrictChange2()">
         <option value="">Select District</option>
         <option *ngFor="let district of filteredDistricts" [value]="district.id">{{ district.name }}</option>
       </select>
@@ -105,6 +105,6 @@ bvgnf<div class="container mt-4">
 
       </div>
 
-    <button type="submit" class="btn btn-danger mt-3">Submit</button>
+    <button type="submit" class="btn btn-success mt-3" [disabled]="parcelForm.invalid" >Submit</button>
   </form>
 </div>
