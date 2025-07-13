@@ -65,7 +65,7 @@
       <label class="form-label">Division</label>
       <select formControlName="division" class="form-select" (change)="onDivisionChange()">
         <option value="">Select Division</option>
-        <option *ngFor="let division of filteredDivisions" [value]="division.id">{{ division.name }}</option>
+        <option *ngFor="let division of filteredDivisions" [value]="division.id">{{ division.name}}</option>
       </select>
     </div>
 

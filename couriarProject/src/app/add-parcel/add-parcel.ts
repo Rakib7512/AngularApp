@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Parcel } from '../../model/parcel.model';
 import { ParcelService } from '../service/parcel.service';
-import { FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { v4 as uuidv4 } from 'uuid';
 import { Country } from '../../model/country.module';
@@ -38,29 +38,10 @@ export class AddParcel implements OnInit {
 
 
 
-  parcel: Parcel = {
-    trackingId: '',
-    senderName: '',
-    receiverName: '',
-    senderPhone: '',
-    receiverPhone: '',
-    senderAddress: '',
-    receiverAddress: '',
-    reciveCountryHub: '',
-    reciveDivisionHub: '',
-    reciveDistrictHub: '',
-    recivePoliceStationHub: '',
-    sendCountryHub: '',
-    sendDivisionHub: '',
-    sendDistrictHub: '',
-    sendPoliceStationHub: '',
-    currentHub: '',
-    bookingAgent:'',
-    deliveryPerson: '',
-    status: 'Received at Source Hub'
-  };
+ 
 
   constructor(
+    private fb:FormBuilder,
     private countryService: CountryService,
     private divisionService: DivisionService,
     private districtService: DistrictService,
@@ -68,24 +49,80 @@ export class AddParcel implements OnInit {
     private parcelService: ParcelService,
     private cdr: ChangeDetectorRef,
     private router: Router
-  ) { }
+    
+  ) { 
+     this.parcelForm=this.fb.group({
+      trackingId:['',],
+      senderName:['',Validators.required],
+      receiverName:['',Validators.required],
+      senderPhone:['',Validators.required],
+      receiverPhone:['',Validators.required],
+      senderAddress:['',Validators.required],
+      receiverAddress:['',Validators.required],
+      currentHub:['',Validators.required],
+      bookingAgent:['',Validators.required],
+      deliveryPerson:['',Validators.required],
+      country: ['', Validators.required],
+      division: ['', Validators.required],
+      district: ['', Validators.required],
+      policeStation: ['', Validators.required]
+
+
+     })
+
+
+  }
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    this.countryService.getAll().subscribe(data => this.countries = data);
+    this.divisionService.getAll().subscribe(data => this.allDivisions = data);
+    this.districtService.getAll().subscribe(data => this.allDistricts = data);
+    this.policeStationService.getAll().subscribe(data => this.allPoliceStations = data);
   }
 
-  submitParcel(): void {
-    //  created trackingId then send to parcel 
-    this.parcel.trackingId = uuidv4();
+  // submitParcel(): void {
+  //   //  created trackingId then send to parcel 
+  //   this.parcel.trackingId = uuidv4();
 
-    //  parcelService backend 
-    this.parcelService.createParcel(this.parcel).subscribe(response => {
-      alert('Parcel Created Successfully!');
-      this.router.navigate(['viewparcel']);
-    }, error => {
-      console.error('Parcel creation failed:', error);
-      alert('Failed to create parcel!');
-    });
+  //   //  parcelService backend 
+  //   this.parcelService.createParcel(this.parcel).subscribe(response => {
+  //     alert('Parcel Created Successfully!');
+  //     this.router.navigate(['viewparcel']);
+  //   }, error => {
+  //     console.error('Parcel creation failed:', error);
+  //     alert('Failed to create parcel!');
+  //   });
+  // }
+
+
+
+   onSubmitParcel() {
+    if (this.parcelForm.invalid) return;
+
+    const parcel: any = { ...this.parcelForm.value };
+     this.parcelForm.get('trackingId')?.setValue(uuidv4())
+
+    if (this.editing) {
+      parcel.id = this.parcelId;
+      this.parcelService.UpdateParcels(parcel).subscribe(() => {
+        alert('Employee updated successfully!');
+        this.router.navigate(['/view-employees']);
+      });
+    } else {
+      this.parcelService.saveParcel(parcel).subscribe(() => {
+        alert('Employee added successfully!');
+        this.parcelForm.reset();
+        this.filteredDivisions = [];
+        this.filteredDistricts = [];
+        this.filteredPoliceStations = [];
+      });
+    }
   }
+
+
+
+
+
+
 
    onCountryChange() {
     const selectedCountryId = this.parcelForm.value.country;

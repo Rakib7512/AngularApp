@@ -12,9 +12,11 @@ export class ParcelService {
 
   constructor(private http: HttpClient) {}
 
-  createParcel(parcel: Parcel): Observable<Parcel> {
+  saveParcel(parcel: Parcel): Observable<Parcel> {
     return this.http.post<Parcel>(this.baseUrl, parcel);
   }
+
+  
 
   getAllParcels(): Observable<any> {
     return this.http.get(this.baseUrl);

@@ -11,15 +11,11 @@ export class Parcel {
   currentHub?: string;
   deliveryPerson?: string;
   createdAt?: Date;
-  sendCountryHub!: string;     
-  sendDivisionHub!: string;     
-  sendDistrictHub!: string;     
-  sendPoliceStationHub!: string;
-  reciveCountryHub!: string;     
-  reciveDivisionHub!: string;     
-  reciveDistrictHub!: string;    
-  recivePoliceStationHub!: string;
-  bookingAgent!:string; 
+   bookingAgent!:string; 
+   countries! : string;
+   divisions!: string;
+   policeStations!:string;
+   districts!:string
 
 
 }
