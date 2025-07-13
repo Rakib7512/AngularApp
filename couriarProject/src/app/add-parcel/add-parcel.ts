@@ -32,9 +32,15 @@ export class AddParcel implements OnInit {
   allDistricts: District[] = [];
   allPoliceStations: PoliceStation[] = [];
 
-  filteredDivisions: Division[] = [];
-  filteredDistricts: District[] = [];
-  filteredPoliceStations: PoliceStation[] = [];
+  // For Sender
+filteredSenderDivisions: Division[] = [];
+filteredSenderDistricts: District[] = [];
+filteredSenderPoliceStations: PoliceStation[] = [];
+
+// For Receiver
+filteredReceiverDivisions: Division[] = [];
+filteredReceiverDistricts: District[] = [];
+filteredReceiverPoliceStations: PoliceStation[] = [];
 
 
 
@@ -62,10 +68,15 @@ export class AddParcel implements OnInit {
       currentHub:['',Validators.required],
       bookingAgent:['',Validators.required],
       deliveryPerson:['',Validators.required],
-      country: ['', Validators.required],
-      division: ['', Validators.required],
-      district: ['', Validators.required],
-      policeStation: ['', Validators.required]
+      sendCountry: ['', Validators.required],
+      sendDivision: ['', Validators.required],
+      sendDistrict: ['', Validators.required],
+      sendPoliceStation: ['', Validators.required],
+      
+      receiveCountry: ['', Validators.required],
+      receiveDivision: ['', Validators.required],
+      receiveDistrict: ['', Validators.required],
+      receivePoliceStation: ['', Validators.required]
 
 
      })
@@ -111,9 +122,13 @@ export class AddParcel implements OnInit {
       this.parcelService.saveParcel(parcel).subscribe(() => {
         alert('Employee added successfully!');
         this.parcelForm.reset();
-        this.filteredDivisions = [];
-        this.filteredDistricts = [];
-        this.filteredPoliceStations = [];
+        this.filteredSenderDivisions = [];
+        this.filteredSenderDistricts = [];
+        this.filteredSenderPoliceStations = [];
+
+         this.filteredReceiverDivisions = [];
+        this.filteredReceiverDistricts = [];
+        this.filteredReceiverPoliceStations = [];
       });
     }
   }
@@ -125,66 +140,65 @@ export class AddParcel implements OnInit {
 
 
    onCountryChange() {
-    const selectedCountryId = this.parcelForm.value.country;
+    const selectedCountryId = this.parcelForm.value.sendCountry;
     const selectedCountry = this.countries.find(c => c.id == selectedCountryId);
     if (selectedCountry) {
-      this.filteredDivisions = this.allDivisions.filter(d => selectedCountry.divisions.includes(d.id!));
-      this.filteredDistricts = [];
-      this.filteredPoliceStations = [];
-      this.parcelForm.patchValue({ division: '', district: '', policeStation: '' });
+      this.filteredSenderDivisions = this.allDivisions.filter(d => selectedCountry.divisions.includes(d.id!));
+      this.filteredSenderDistricts = [];
+      this.filteredSenderPoliceStations = [];
+      this.parcelForm.patchValue({ sendDivision: '', sendDistrict: '',  sendPoliceStation: '' });
     }
   }
 
   onDivisionChange() {
-    const selectedDivisionId = this.parcelForm.value.division;
+    const selectedDivisionId = this.parcelForm.value.sendDivision;
     const selectedDivision = this.allDivisions.find(d => d.id == selectedDivisionId);
     if (selectedDivision) {
-      this.filteredDistricts = this.allDistricts.filter(dist => selectedDivision.districts.includes(dist.id!));
-      this.filteredPoliceStations = [];
-      this.parcelForm.patchValue({ district: '', policeStation: '' });
+      this.filteredSenderDistricts = this.allDistricts.filter(dist => selectedDivision.districts.includes(dist.id!));
+      this.filteredSenderPoliceStations = [];
+      this.parcelForm.patchValue({ sendDistrict: '', sendPoliceStation: '' });
     }
   }
 
   onDistrictChange() {
-    const selectedDistrictId = this.parcelForm.value.district;
+    const selectedDistrictId = this.parcelForm.value.sendDistrict;
     const selectedDistrict = this.allDistricts.find(dist => dist.id == selectedDistrictId);
     if (selectedDistrict) {
-      this.filteredPoliceStations = this.allPoliceStations.filter(ps => selectedDistrict.policeStations.includes(ps.id!));
-      this.parcelForm.patchValue({ policeStation: '' });
+      this.filteredSenderPoliceStations = this.allPoliceStations.filter(ps => selectedDistrict.policeStations.includes(ps.id!));
+      this.parcelForm.patchValue({ sendPoliceStation: '' });
     }
   }
 
 
 
   onCountryChange2() {
-    const selectedCountryId = this.parcelForm.value.country;
+    const selectedCountryId = this.parcelForm.value.receiveCountry;
     const selectedCountry = this.countries.find(c => c.id == selectedCountryId);
     if (selectedCountry) {
-      this.filteredDivisions = this.allDivisions.filter(d => selectedCountry.divisions.includes(d.id!));
-      this.filteredDistricts = [];
-      this.filteredPoliceStations = [];
-      this.parcelForm.patchValue({ division: '', district: '', policeStation: '' });
+      this.filteredReceiverDistricts = [];
+      this.filteredReceiverPoliceStations = [];
+      this.parcelForm.patchValue({ receiveDivision: '', receiveDistrict: '', receivePoliceStation: '' });
     }
   }
 
 
 
   onDivisionChange2() {
-    const selectedDivisionId = this.parcelForm.value.division;
+    const selectedDivisionId = this.parcelForm.value.receiveDivision;
     const selectedDivision = this.allDivisions.find(d => d.id == selectedDivisionId);
     if (selectedDivision) {
-      this.filteredDistricts = this.allDistricts.filter(dist => selectedDivision.districts.includes(dist.id!));
-      this.filteredPoliceStations = [];
-      this.parcelForm.patchValue({ district: '', policeStation: '' });
+      this.filteredReceiverDistricts = this.allDistricts.filter(dist => selectedDivision.districts.includes(dist.id!));
+      this.filteredReceiverPoliceStations = [];
+      this.parcelForm.patchValue({ receiveDistrict: '', receivePoliceStation: '' });
     }
   }
 
    onDistrictChange2() {
-    const selectedDistrictId = this.parcelForm.value.district;
+    const selectedDistrictId = this.parcelForm.value.receiveDistrict;
     const selectedDistrict = this.allDistricts.find(dist => dist.id == selectedDistrictId);
     if (selectedDistrict) {
-      this.filteredPoliceStations = this.allPoliceStations.filter(ps => selectedDistrict.policeStations.includes(ps.id!));
-      this.parcelForm.patchValue({ policeStation: '' });
+      this.filteredReceiverPoliceStations = this.allPoliceStations.filter(ps => selectedDistrict.policeStations.includes(ps.id!));
+      this.parcelForm.patchValue({ receivePoliceStation: '' });
     }
   }
 
