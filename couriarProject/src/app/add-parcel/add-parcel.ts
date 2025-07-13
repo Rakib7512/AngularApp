@@ -22,184 +22,179 @@ import { PoliceStationService } from '../service/police-station.service';
 export class AddParcel implements OnInit {
 
   parcelForm!: FormGroup;
-  editing: boolean = false;
-  parcelId: string | null = null;
-
-
 
   countries: Country[] = [];
-  allDivisions: Division[] = [];
-  allDistricts: District[] = [];
-  allPoliceStations: PoliceStation[] = [];
+  divisions: Division[] = [];
+  districts: District[] = [];
+  policeStations: PoliceStation[] = [];
 
-  // For Sender
-filteredSenderDivisions: Division[] = [];
-filteredSenderDistricts: District[] = [];
-filteredSenderPoliceStations: PoliceStation[] = [];
+  // Sender
+  filteredSenderDivisions: Division[] = [];
+  filteredSenderDistricts: District[] = [];
+  filteredSenderPoliceStations: PoliceStation[] = [];
 
-// For Receiver
-filteredReceiverDivisions: Division[] = [];
-filteredReceiverDistricts: District[] = [];
-filteredReceiverPoliceStations: PoliceStation[] = [];
-
-
-
- 
+  // Receiver
+  filteredReceiverDivisions: Division[] = [];
+  filteredReceiverDistricts: District[] = [];
+  filteredReceiverPoliceStations: PoliceStation[] = [];
 
   constructor(
-    private fb:FormBuilder,
+    private fb: FormBuilder,
     private countryService: CountryService,
     private divisionService: DivisionService,
     private districtService: DistrictService,
     private policeStationService: PoliceStationService,
     private parcelService: ParcelService,
-    private cdr: ChangeDetectorRef,
     private router: Router
-    
-  ) { 
-     this.parcelForm=this.fb.group({
-      trackingId:['',],
-      senderName:['',Validators.required],
-      receiverName:['',Validators.required],
-      senderPhone:['',Validators.required],
-      receiverPhone:['',Validators.required],
-      senderAddress:['',Validators.required],
-      receiverAddress:['',Validators.required],
-      currentHub:['',Validators.required],
-      bookingAgent:['',Validators.required],
-      deliveryPerson:['',Validators.required],
+  ) {
+    this.parcelForm = this.fb.group({
+      trackingId: [''],
+      senderName: ['', Validators.required],
+      senderPhone: ['', Validators.required],
+      senderAddress: ['', Validators.required],
       sendCountry: ['', Validators.required],
       sendDivision: ['', Validators.required],
       sendDistrict: ['', Validators.required],
       sendPoliceStation: ['', Validators.required],
-      
+
+      receiverName: ['', Validators.required],
+      receiverPhone: ['', Validators.required],
+      receiverAddress: ['', Validators.required],
       receiveCountry: ['', Validators.required],
       receiveDivision: ['', Validators.required],
       receiveDistrict: ['', Validators.required],
-      receivePoliceStation: ['', Validators.required]
+      receivePoliceStation: ['', Validators.required],
 
-
-     })
-
-
+      currentHub: ['', Validators.required],
+      bookingAgent: ['', Validators.required],
+      deliveryPerson: ['', Validators.required]
+    });
   }
+
   ngOnInit(): void {
+    this.loadMasterData();
+  }
+
+  loadMasterData() {
     this.countryService.getAll().subscribe(data => this.countries = data);
-    this.divisionService.getAll().subscribe(data => this.allDivisions = data);
-    this.districtService.getAll().subscribe(data => this.allDistricts = data);
-    this.policeStationService.getAll().subscribe(data => this.allPoliceStations = data);
+    this.divisionService.getAll().subscribe(data => this.divisions = data);
+    this.districtService.getAll().subscribe(data => this.districts = data);
+    this.policeStationService.getAll().subscribe(data => this.policeStations = data);
   }
 
-  // submitParcel(): void {
-  //   //  created trackingId then send to parcel 
-  //   this.parcel.trackingId = uuidv4();
+  onSubmitParcel() {
+    
 
-  //   //  parcelService backend 
-  //   this.parcelService.createParcel(this.parcel).subscribe(response => {
-  //     alert('Parcel Created Successfully!');
-  //     this.router.navigate(['viewparcel']);
-  //   }, error => {
-  //     console.error('Parcel creation failed:', error);
-  //     alert('Failed to create parcel!');
-  //   });
-  // }
+    const parcel: Parcel = { ...this.parcelForm.value };
+    parcel.trackingId = uuidv4();
 
-
-
-   onSubmitParcel() {
-    if (this.parcelForm.invalid) return;
-
-    const parcel: any = { ...this.parcelForm.value };
-     this.parcelForm.get('trackingId')?.setValue(uuidv4())
-
-    if (this.editing) {
-      parcel.id = this.parcelId;
-      this.parcelService.UpdateParcels(parcel).subscribe(() => {
-        alert('Employee updated successfully!');
-        this.router.navigate(['/view-employees']);
-      });
-    } else {
-      this.parcelService.saveParcel(parcel).subscribe(() => {
-        alert('Employee added successfully!');
-        this.parcelForm.reset();
-        this.filteredSenderDivisions = [];
-        this.filteredSenderDistricts = [];
-        this.filteredSenderPoliceStations = [];
-
-         this.filteredReceiverDivisions = [];
-        this.filteredReceiverDistricts = [];
-        this.filteredReceiverPoliceStations = [];
-      });
-    }
+    this.parcelService.saveParcel(parcel).subscribe(() => {
+      alert('Parcel created successfully!');
+      this.parcelForm.reset();
+      this.clearFilters();
+      this.router.navigate(['/viewparcel']);
+    }, error => {
+      console.error(error);
+      alert('Failed to create parcel.');
+    });
   }
 
+  clearFilters() {
+    this.filteredSenderDivisions = [];
+    this.filteredSenderDistricts = [];
+    this.filteredSenderPoliceStations = [];
 
-
-
-
-
-
-   onCountryChange() {
-    const selectedCountryId = this.parcelForm.value.sendCountry;
-    const selectedCountry = this.countries.find(c => c.id == selectedCountryId);
-    if (selectedCountry) {
-      this.filteredSenderDivisions = this.allDivisions.filter(d => selectedCountry.divisions.includes(d.id!));
-      this.filteredSenderDistricts = [];
-      this.filteredSenderPoliceStations = [];
-      this.parcelForm.patchValue({ sendDivision: '', sendDistrict: '',  sendPoliceStation: '' });
-    }
+    this.filteredReceiverDivisions = [];
+    this.filteredReceiverDistricts = [];
+    this.filteredReceiverPoliceStations = [];
   }
 
-  onDivisionChange() {
-    const selectedDivisionId = this.parcelForm.value.sendDivision;
-    const selectedDivision = this.allDivisions.find(d => d.id == selectedDivisionId);
-    if (selectedDivision) {
-      this.filteredSenderDistricts = this.allDistricts.filter(dist => selectedDivision.districts.includes(dist.id!));
-      this.filteredSenderPoliceStations = [];
-      this.parcelForm.patchValue({ sendDistrict: '', sendPoliceStation: '' });
-    }
+  // ✅ Cascading Sender
+  onCountryChange() {
+  const countryId = this.parcelForm.value.sendCountry;
+  const selectedCountry = this.countries.find(c => c.id === countryId);
+  if (selectedCountry) {
+    this.filteredSenderDivisions = this.divisions.filter(div =>
+      selectedCountry.divisions.includes(div.id)
+    );
+  } else {
+    this.filteredSenderDivisions = [];
   }
+  this.filteredSenderDistricts = [];
+  this.filteredSenderPoliceStations = [];
+  this.parcelForm.patchValue({ sendDivision: '', sendDistrict: '', sendPoliceStation: '' });
+}
 
-  onDistrictChange() {
-    const selectedDistrictId = this.parcelForm.value.sendDistrict;
-    const selectedDistrict = this.allDistricts.find(dist => dist.id == selectedDistrictId);
-    if (selectedDistrict) {
-      this.filteredSenderPoliceStations = this.allPoliceStations.filter(ps => selectedDistrict.policeStations.includes(ps.id!));
-      this.parcelForm.patchValue({ sendPoliceStation: '' });
-    }
+onDivisionChange() {
+  const divisionId = this.parcelForm.value.sendDivision;
+  const selectedDivision = this.divisions.find(div => div.id === divisionId);
+  if (selectedDivision) {
+    this.filteredSenderDistricts = this.districts.filter(dist =>
+      selectedDivision.districts.includes(dist.id)
+    );
+  } else {
+    this.filteredSenderDistricts = [];
   }
+  this.filteredSenderPoliceStations = [];
+  this.parcelForm.patchValue({ sendDistrict: '', sendPoliceStation: '' });
+}
+
+onDistrictChange() {
+  const districtId = this.parcelForm.value.sendDistrict;
+  const selectedDistrict = this.districts.find(dist => dist.id === districtId);
+  if (selectedDistrict) {
+    this.filteredSenderPoliceStations = this.policeStations.filter(ps =>
+      selectedDistrict.policeStations.includes(ps.id!)
+    );
+  } else {
+    this.filteredSenderPoliceStations = [];
+  }
+  this.parcelForm.patchValue({ sendPoliceStation: '' });
+}
 
 
 
+  // ✅ Cascading Receiver
   onCountryChange2() {
-    const selectedCountryId = this.parcelForm.value.receiveCountry;
-    const selectedCountry = this.countries.find(c => c.id == selectedCountryId);
-    if (selectedCountry) {
-      this.filteredReceiverDistricts = [];
-      this.filteredReceiverPoliceStations = [];
-      this.parcelForm.patchValue({ receiveDivision: '', receiveDistrict: '', receivePoliceStation: '' });
-    }
+  const countryId = this.parcelForm.value.receiveCountry;
+  const selectedCountry = this.countries.find(c => c.id === countryId);
+  if (selectedCountry) {
+    this.filteredReceiverDivisions = this.divisions.filter(div =>
+      selectedCountry.divisions.includes(div.id)
+    );
+  } else {
+    this.filteredReceiverDivisions = [];
   }
+  this.filteredReceiverDistricts = [];
+  this.filteredReceiverPoliceStations = [];
+  this.parcelForm.patchValue({ receiveDivision: '', receiveDistrict: '', receivePoliceStation: '' });
+}
 
-
-
-  onDivisionChange2() {
-    const selectedDivisionId = this.parcelForm.value.receiveDivision;
-    const selectedDivision = this.allDivisions.find(d => d.id == selectedDivisionId);
-    if (selectedDivision) {
-      this.filteredReceiverDistricts = this.allDistricts.filter(dist => selectedDivision.districts.includes(dist.id!));
-      this.filteredReceiverPoliceStations = [];
-      this.parcelForm.patchValue({ receiveDistrict: '', receivePoliceStation: '' });
-    }
+onDivisionChange2() {
+  const divisionId = this.parcelForm.value.receiveDivision;
+  const selectedDivision = this.divisions.find(div => div.id === divisionId);
+  if (selectedDivision) {
+    this.filteredReceiverDistricts = this.districts.filter(dist =>
+      selectedDivision.districts.includes(dist.id)
+    );
+  } else {
+    this.filteredReceiverDistricts = [];
   }
+  this.filteredReceiverPoliceStations = [];
+  this.parcelForm.patchValue({ receiveDistrict: '', receivePoliceStation: '' });
+}
 
-   onDistrictChange2() {
-    const selectedDistrictId = this.parcelForm.value.receiveDistrict;
-    const selectedDistrict = this.allDistricts.find(dist => dist.id == selectedDistrictId);
-    if (selectedDistrict) {
-      this.filteredReceiverPoliceStations = this.allPoliceStations.filter(ps => selectedDistrict.policeStations.includes(ps.id!));
-      this.parcelForm.patchValue({ receivePoliceStation: '' });
-    }
+onDistrictChange2() {
+  const districtId = this.parcelForm.value.receiveDistrict;
+  const selectedDistrict = this.districts.find(dist => dist.id === districtId);
+  if (selectedDistrict) {
+    this.filteredReceiverPoliceStations = this.policeStations.filter(ps =>
+      selectedDistrict.policeStations.includes(ps.id!)
+    );
+  } else {
+    this.filteredReceiverPoliceStations = [];
   }
+  this.parcelForm.patchValue({ receivePoliceStation: '' });
+}
 
 }

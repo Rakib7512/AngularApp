@@ -22,12 +22,18 @@ export class TransferHub implements OnInit {
 
   constructor(private transferService: TransferHubService) {}
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+
   }
 
   submitTransfer(): void {
-    this.transferService.createTransfer(this.transfer).subscribe(response => {
-      alert('Transfer Recorded Successfully!');
+    this.transferService.createTransfer(this.transfer).subscribe({
+      next: response => {
+        alert('Transfer Recorded Successfully!');
+      },
+      error: err => {
+        console.error(err);
+        alert('Failed to record transfer');
+      }
     });
   }
 

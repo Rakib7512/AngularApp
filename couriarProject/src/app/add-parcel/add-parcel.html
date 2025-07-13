@@ -1,10 +1,10 @@
 bvgnf<div class="container mt-4">
   <h3 class="mb-3">Add New Parcel</h3>
   <form [formGroup]="parcelForm" (ngSubmit)="onSubmitParcel()" class="row g-3">
-        <div class="row">
+    <div class="row">
       <div class="col-md-6">
         <label>Sender Name</label>
-        <input  formControlName="senderName" name="senderName" class="form-control" required>
+        <input formControlName="senderName" name="senderName" class="form-control" required>
 
         <label>Sender Phone</label>
         <input formControlName="senderPhone" name="senderPhone" class="form-control" required>
@@ -14,40 +14,42 @@ bvgnf<div class="container mt-4">
 
         <div class="row">
           <div class="col-md-6">
-      <label class="form-label">Send Country Hab</label>
-      <select formControlName="sendCountry" class="form-select" (change)="onCountryChange()">
-        <option value="">Select Country</option>
-        <option *ngFor="let country of countries" [value]="country.id">{{ country.name }}</option>
-      </select>
-    </div>
+            <label class="form-label">Send Country Hub</label>
+            <select formControlName="sendCountry" class="form-select" (change)="onCountryChange()">
+              <option value="">Select Country</option>
+              <option *ngFor="let country of countries" [value]="country.id">{{ country.name }}</option>
+            </select>
+          </div>
 
-    <div class="col-md-6">
-      <label class="form-label"> Send Division Hub</label>
-      <select formControlName="sendDivision" class="form-select" (change)="onDivisionChange()">
-        <option value="">Select Division</option>
-        <option *ngFor="let division of filteredSenderDistricts" [value]="division.id">{{ division.name }}</option>
-      </select>
-    </div>
+          <div class="col-md-6">
+            <label class="form-label">Send Division Hub</label>
+            <select formControlName="sendDivision" class="form-select" (change)="onDivisionChange()">
+              <option value="">Select Division</option>
+              <option *ngFor="let division of filteredSenderDivisions" [value]="division.id">{{ division.name }}
+              </option>
+            </select>
+          </div>
 
-    <div class="col-md-6">
-      <label class="form-label">Send District Hub</label>
-      <select formControlName="sendDistrict" class="form-select" (change)="onDistrictChange()">
-        <option value="">Select District</option>
-        <option *ngFor="let district of filteredSenderDistricts" [value]="district.id">{{ district.name }}</option>
-      </select>
-    </div>
+          <div class="col-md-6">
+            <label class="form-label">Send District Hub</label>
+            <select formControlName="sendDistrict" class="form-select" (change)="onDistrictChange()">
+              <option value="">Select District</option>
+              <option *ngFor="let district of filteredSenderDistricts" [value]="district.id">{{ district.name }}
+              </option>
+            </select>
+          </div>
 
-    <div class="col-md-6">
-      <label class="form-label"> Send Police Station Hub</label>
-      <select formControlName="sendPoliceStation" class="form-select">
-        <option value="">Select Police Station</option>
-        <option *ngFor="let ps of filteredSenderPoliceStations" [value]="ps.id">{{ ps.name }}</option>
-      </select>
-    </div>
-
+          <div class="col-md-6">
+            <label class="form-label">Send Police Station Hub</label>
+            <select formControlName="sendPoliceStation" class="form-select">
+              <option value="">Select Police Station</option>
+              <option *ngFor="let ps of filteredSenderPoliceStations" [value]="ps.id">{{ ps.name }}</option>
+            </select>
+          </div>
         </div>
+
       </div>
-            <div class="col-md-6">
+      <div class="col-md-6">
         <label>Receiver Name</label>
         <input formControlName="receiverName" name="currentHub" class="form-control" required>
 
@@ -59,52 +61,54 @@ bvgnf<div class="container mt-4">
 
         <div class="row">
           <div class="col-md-6">
-      <label class="form-label">Recive Country Hub</label>
-      <select formControlName="receiveCountry" class="form-select" (change)="onCountryChange2()">
-        <option value="">Select Country</option>
-        <option *ngFor="let country of countries" [value]="country.id">{{ country.name }}</option>
-      </select>
-    </div>
+            <label class="form-label">Recive Country Hub</label>
+            <select formControlName="receiveCountry" class="form-select" (change)="onCountryChange2()">
+              <option value="">Select Country</option>
+              <option *ngFor="let country of countries" [value]="country.id">{{ country.name }}</option>
+            </select>
+          </div>
 
-    <div class="col-md-6">
-      <label class="form-label">Recive Division Hub</label>
-      <select formControlName="receiveDivision" class="form-select" (change)="onDivisionChange2()">
-        <option value="">Select Division</option>
-        <option *ngFor="let division of filteredReceiverDivisions" [value]="division.id">{{ division.name }}</option>
-      </select>
-    </div>
+          <div class="col-md-6">
+            <label class="form-label">Recive Division Hub</label>
+            <select formControlName="receiveDivision" class="form-select" (change)="onDivisionChange2()">
+              <option value="">Select Division</option>
+              <option *ngFor="let division of filteredReceiverDivisions" [value]="division.id">{{ division.name }}
+              </option>
+            </select>
+          </div>
 
-    <div class="col-md-6">
-      <label class="form-label">Recive District Hub</label>
-      <select formControlName="receiveDistrict" class="form-select" (change)="onDistrictChange2()">
-        <option value="">Select District</option>
-        <option *ngFor="let district of filteredReceiverDistricts" [value]="district.id">{{ district.name }}</option>
-      </select>
-    </div>
+          <div class="col-md-6">
+            <label class="form-label">Recive District Hub</label>
+            <select formControlName="receiveDistrict" class="form-select" (change)="onDistrictChange2()">
+              <option value="">Select District</option>
+              <option *ngFor="let district of filteredReceiverDistricts" [value]="district.id">{{ district.name }}
+              </option>
+            </select>
+          </div>
 
-    <div class="col-md-6">
-      <label class="form-label">Recive Police Station Hub</label>
-      <select formControlName="receivePoliceStation" class="form-select">
-        <option value="">Select Police Station</option>
-        <option *ngFor="let ps of filteredReceiverPoliceStations" [value]="ps.id">{{ ps.name }}</option>
-      </select>
-    </div>
-          
+          <div class="col-md-6">
+            <label class="form-label">Recive Police Station Hub</label>
+            <select formControlName="receivePoliceStation" class="form-select">
+              <option value="">Select Police Station</option>
+              <option *ngFor="let ps of filteredReceiverPoliceStations" [value]="ps.id">{{ ps.name }}</option>
+            </select>
+          </div>
+
         </div>
       </div>
     </div>
     <div class="row">
-        <div class="col-md-6">
-          <label>Current Hub</label>
-        <input formControlName="currentHub"class="form-control" required>
+      <div class="col-md-6">
+        <label>Current Hub</label>
+        <input formControlName="currentHub" class="form-control" required>
       </div>
       <div class="col-md-6">
-         <label>Delivery Person</label>
+        <label>Delivery Person</label>
         <input formControlName="deliveryPerson" name="deliveryPerson" class="form-control" required>
       </div>
 
-      </div>
+    </div>
 
-    <button type="submit" class="btn btn-success mt-3" [disabled]="parcelForm.invalid" >Submit</button>
+    <button type="submit" class="btn btn-success mt-3">Submit</button>
   </form>
 </div>

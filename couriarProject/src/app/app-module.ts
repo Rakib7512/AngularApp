@@ -17,8 +17,11 @@ import { TrackParcel } from './track-parcel/track-parcel';
 import { ViewEmp } from './view-emp/view-emp';
 import { ViewAddParcel } from './view-add-parcel/view-add-parcel';
 import { UpdateParcel } from './update-parcel/update-parcel';
+import { GoogleMapsModule } from '@angular/google-maps';
+
 
 @NgModule({
+  
   declarations: [
     App,
     AddPoliceStation,
@@ -32,7 +35,11 @@ import { UpdateParcel } from './update-parcel/update-parcel';
     TrackParcel,
     ViewEmp,
     ViewAddParcel,
-    UpdateParcel
+    UpdateParcel,
+    
+    
+    
+    
   ],
   imports: [
     BrowserModule,

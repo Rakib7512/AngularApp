@@ -1,3 +1,4 @@
+import { ParcelTracking } from "./trackingParcel.model";
 export class Parcel {
   id?: string;
   trackingId?: string;
@@ -11,15 +12,18 @@ export class Parcel {
   currentHub?: string;
   deliveryPerson?: string;
   createdAt?: Date;
-   bookingAgent!:string; 
-   sendCountry! : string;
-   sendDivision!: string;
-   sendDistrict!:string;
-   districts!:string;
-   receiveCountry!:string;
-   receiveDivision!:string;
-   receiveDistrict!:string;
-   receivePoliceStation!:string;
+  bookingAgent!: string;
+  
+  sendCountry!: string;
+  sendDivision!: string;
+  sendDistrict!: string;
+  sendPoliceStation!: string;
+
+  receiveCountry!: string;
+  receiveDivision!: string;
+  receiveDistrict!: string;
+  receivePoliceStation!: string;
+  trackingHistory!: ParcelTracking[];
 
 
 }
