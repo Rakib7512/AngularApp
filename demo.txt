@@ -1,23 +1,9 @@
-<div class="container mt-4">
-  <h3 class="mb-3">Add New Parcel</h3>
-  <form *ngIf="parcel.id" #parcelForm="ngForm">
-        <div class="row">
-      <div class="col-md-6">
-        <label>Sender Name</label>
-        <input [(ngModel)]="parcel.senderName" name="senderName" class="form-control" required>
-
-        <label>Sender Phone</label>
-        <input [(ngModel)]="parcel.senderPhone" name="senderPhone" class="form-control" required>
-
-        <label>Sender Address</label>
-        <textarea [(ngModel)]="parcel.senderAddress" name="senderAddress" class="form-control" required></textarea>
-
-        <div class="row">
+<div class="row">
           <div class="col-md-6">
       <label class="form-label">Receive Country Hab</label>
       <select formControlName="sendCountryHub" class="form-select" (change)="onCountryChange()">
         <option value="">Select Country</option>
-        <option *ngFor="let country is country" [value]="country.id">{{ country.name }}</option>
+        <option *ngFor="let country of countries" [value]="country.id">{{ country.name }}</option>
       </select>
     </div>
 
@@ -46,18 +32,16 @@
     </div>
 
         </div>
-      </div>
-            <div class="col-md-6">
-        <label>Receiver Name</label>
-        <input [(ngModel)]="parcel.currentHub" name="currentHub" class="form-control" required>
 
-        <label>Receiver Phone</label>
-        <input [(ngModel)]="parcel.receiverPhone" name="receiverPhone" class="form-control" required>
 
-        <label>Receiver Address</label>
-        <textarea [(ngModel)]="parcel.receiverAddress" name="receiverAddress" class="form-control" required></textarea>
 
-        <div class="row">
+
+
+
+
+
+
+iv class="row">
           <div class="col-md-6">
       <label class="form-label">Country</label>
       <select formControlName="country" class="form-select" (change)="onCountryChange()">
@@ -91,20 +75,3 @@
     </div>
           
         </div>
-      </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-          <label>Current Hub</label>
-        <input [(ngModel)]="parcel.receiverName" name="currentHub" class="form-control" required>
-      </div>
-      <div class="col-md-6">
-         <label>Delivery Person</label>
-        <input [(ngModel)]="parcel.deliveryPerson" name="deliveryPerson" class="form-control" required>
-      </div>
-
-      </div>
-
-    <button type="submit" class="btn btn-danger mt-3">Submit</button>
-  </form>
-</div>

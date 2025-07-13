@@ -77,7 +77,7 @@ export class AddParcel implements OnInit {
     //  created trackingId then send to parcel 
     this.parcel.trackingId = uuidv4();
 
-    // তারপর parcelService দিয়ে backend এ পাঠাও
+    //  parcelService backend 
     this.parcelService.createParcel(this.parcel).subscribe(response => {
       alert('Parcel Created Successfully!');
       this.router.navigate(['viewparcel']);
