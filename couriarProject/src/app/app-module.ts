@@ -17,7 +17,10 @@ import { TrackParcel } from './track-parcel/track-parcel';
 import { ViewEmp } from './view-emp/view-emp';
 import { ViewAddParcel } from './view-add-parcel/view-add-parcel';
 import { UpdateParcel } from './update-parcel/update-parcel';
-import { GoogleMapsModule } from '@angular/google-maps';
+import { Registration } from './auth/registration/registration';
+import { Login } from './auth/login/login';
+import { Userprofile } from './auth/userprofile/userprofile';
+import { Logout } from './auth/logout/logout';
 
 
 @NgModule({
@@ -36,6 +39,10 @@ import { GoogleMapsModule } from '@angular/google-maps';
     ViewEmp,
     ViewAddParcel,
     UpdateParcel,
+    Registration,
+    Login,
+    Userprofile,
+    Logout,
     
     
     
