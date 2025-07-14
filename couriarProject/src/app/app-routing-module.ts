@@ -11,6 +11,8 @@ import { TransferHub } from './transfer-hub/transfer-hub';
 import { TrackParcel } from './track-parcel/track-parcel';
 import { ViewEmp } from './view-emp/view-emp';
 import { ViewAddParcel } from './view-add-parcel/view-add-parcel';
+import { ViewHubTransfer } from './view-hub-transfer/view-hub-transfer';
+
 
 const routes: Routes = [
   {path:'',component:Home},
@@ -23,7 +25,8 @@ const routes: Routes = [
   {path:'transferHub', component:TransferHub},
   {path:'track', component:TrackParcel},
   {path:'viewEmp', component:ViewEmp},
-  {path:'viewParcel', component:ViewAddParcel}
+  {path:'viewParcel', component:ViewAddParcel},
+  {path:'viewHubTrans',component:ViewHubTransfer}
 
 ];
 

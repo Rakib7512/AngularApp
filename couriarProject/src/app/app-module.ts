@@ -21,6 +21,7 @@ import { Registration } from './auth/registration/registration';
 import { Login } from './auth/login/login';
 import { Userprofile } from './auth/userprofile/userprofile';
 import { Logout } from './auth/logout/logout';
+import { ViewHubTransfer } from './view-hub-transfer/view-hub-transfer';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { Logout } from './auth/logout/logout';
     Login,
     Userprofile,
     Logout,
+    ViewHubTransfer,
     
     
     
