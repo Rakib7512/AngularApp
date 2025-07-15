@@ -22,6 +22,9 @@ import { Login } from './auth/login/login';
 import { Userprofile } from './auth/userprofile/userprofile';
 import { Logout } from './auth/logout/logout';
 import { ViewHubTransfer } from './view-hub-transfer/view-hub-transfer';
+import { ParcelReqDetails } from './parcel-req-details/parcel-req-details';
+import { Notifications } from './notifications/notifications';
+import { ParcelDetails } from './parcel-details/parcel-details';
 
 
 @NgModule({
@@ -45,6 +48,9 @@ import { ViewHubTransfer } from './view-hub-transfer/view-hub-transfer';
     Userprofile,
     Logout,
     ViewHubTransfer,
+    ParcelReqDetails,
+    Notifications,
+    ParcelDetails,
     
     
     

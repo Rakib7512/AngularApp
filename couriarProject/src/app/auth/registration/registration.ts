@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   styleUrl: './registration.css'
 })
 export class Registration {
- regForm!: FormGroup;
+  regForm!: FormGroup;
 
   constructor(
     private authService: AuthService,
@@ -20,20 +20,21 @@ export class Registration {
   ) {
 
     this.regForm = this.formBuilder.group({
+      userId: [''],
       name: ['', Validators.required],
+      phone: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
+      nid: ['', Validators.required],
       password: ['', Validators.required],
-      photo: ['', Validators.required],
-
-
+      role:['user'],
+       
     })
-
   }
 
 
   onSubmit(): void {
     if (this.regForm.valid) {
-      
+
       const user: User = {
         ...this.regForm.value,
         role: 'user'
@@ -41,7 +42,7 @@ export class Registration {
 
       this.authService.registration(user).subscribe({
         next: (res) => {
-          console.log('User registered successfully:', res);
+           alert('Registration successfully!');
           this.authService.storeToken(res.token);
           this.router.navigate(['/login']); // Navigate to a protected route after registration
         },

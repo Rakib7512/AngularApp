@@ -12,6 +12,9 @@ import { TrackParcel } from './track-parcel/track-parcel';
 import { ViewEmp } from './view-emp/view-emp';
 import { ViewAddParcel } from './view-add-parcel/view-add-parcel';
 import { ViewHubTransfer } from './view-hub-transfer/view-hub-transfer';
+import { Registration } from './auth/registration/registration';
+import { ParcelReqDetails } from './parcel-req-details/parcel-req-details';
+import { ParcelDetails } from './parcel-details/parcel-details';
 
 
 const routes: Routes = [
@@ -26,7 +29,11 @@ const routes: Routes = [
   {path:'track', component:TrackParcel},
   {path:'viewEmp', component:ViewEmp},
   {path:'viewParcel', component:ViewAddParcel},
-  {path:'viewHubTrans',component:ViewHubTransfer}
+  {path:'viewHubTrans',component:ViewHubTransfer},
+  {path:'reg',component:Registration},
+  { path: 'parcelReqDetails', component: ParcelReqDetails},
+  { path: 'parcel-details/:id', component:ParcelDetails}
+ 
 
 ];
 
