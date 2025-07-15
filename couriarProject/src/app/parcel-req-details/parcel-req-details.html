@@ -12,7 +12,7 @@
       <strong>{{ note.message }}</strong><br>
       <span class="text-muted">🆔 Tracking ID: {{ note.parcelId }}</span><br>
       <small class="text-muted">🕓 {{ note.time }}</small><br>
-      <a class="btn btn-sm btn-outline-primary mt-1" [routerLink]="['/parcel-details']" [queryParams]="{ id: note.parcelId }">View Parcel</a>
+      <a class="btn btn-sm btn-outline-primary mt-1" [routerLink]="['/parcel-details']" [queryParams]="{ trackingId: note.parcelId }">View Parcel</a>
     </li>
   </ul>
 

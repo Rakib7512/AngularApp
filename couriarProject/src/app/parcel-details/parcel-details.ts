@@ -30,7 +30,7 @@ export class ParcelDetails implements OnInit {
 
     this.countryService.getAll().subscribe(data => this.countries = data);
     this.route.queryParams.subscribe(params => {
-      this.parcelId = params['id'];
+      this.parcelId = params['trackingId'];
       if (this.parcelId) {
         this.getParcelDetails(this.parcelId);
       }
