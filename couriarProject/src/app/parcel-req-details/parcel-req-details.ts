@@ -41,11 +41,18 @@ policeStations: PoliceStation[] = [];
   
   
   ) {}
-  ngOnInit(): void {
-    this.loadLocationData();
+ ngOnInit(): void {
+  this.loadLocationData();
+
+  if (typeof window !== 'undefined' && window.localStorage) {
     const stored = localStorage.getItem('parcelNotifications');
-  this.notifications = stored ? JSON.parse(stored) : [];
+    this.notifications = stored ? JSON.parse(stored) : [];
+  } else {
+    console.warn('localStorage is not available.');
+    this.notifications = [];
   }
+}
+
 
   loadLocationData(): void {
   this.countryService.getAll().subscribe(data => this.countries = data);

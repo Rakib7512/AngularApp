@@ -12,6 +12,7 @@ import { CountryService } from '../service/country.service';
 import { DivisionService } from '../service/division.service';
 import { DistrictService } from '../service/district.service';
 import { PoliceStationService } from '../service/police-station.service';
+import { StorageService } from '../service/storage-service';
 
 @Component({
   selector: 'app-add-parcel',
@@ -45,7 +46,8 @@ export class AddParcel implements OnInit {
     private districtService: DistrictService,
     private policeStationService: PoliceStationService,
     private parcelService: ParcelService,
-    private router: Router
+    private router: Router,
+    private storageService: StorageService
   ) {
     this.parcelForm = this.fb.group({
       trackingId: [''],
@@ -83,31 +85,43 @@ export class AddParcel implements OnInit {
   }
 
   onSubmitParcel() {
+  const parcel: Parcel = { ...this.parcelForm.value };
+  parcel.trackingId = uuidv4();
 
+  this.parcelService.saveParcel(parcel).subscribe(
+    (savedParcel) => {
+      console.log(savedParcel); // should include .id
 
-    const parcel: Parcel = { ...this.parcelForm.value };
-    parcel.trackingId = uuidv4();
+      if (typeof window !== 'undefined' && window.localStorage) {
+        const notifications = JSON.parse(localStorage.getItem('parcelNotifications') || '[]');
 
-    this.parcelService.saveParcel(parcel).subscribe(() => {
+        notifications.push({
+          message: `📦 New Parcel: ${savedParcel.senderName} ➜ ${savedParcel.receiverName}`,
+          parcelTrackingId: savedParcel.trackingId,
+          parcelId: savedParcel.id, // ✅ backend-generated id
+          
+          time: new Date().toLocaleString()
+          
+        });
 
+        localStorage.setItem('parcelNotifications', JSON.stringify(notifications));
+      } else {
+        console.warn('localStorage is not available.');
+      }
 
-      // ✅ Store notification with tracking ID
-      const notifications = JSON.parse(localStorage.getItem('parcelNotifications') || '[]');
-      notifications.push({
-        message: `📦 New Parcel: ${parcel.senderName} ➜ ${parcel.receiverName}`,
-        parcelId: parcel.trackingId,
-        time: new Date().toLocaleString()
-      });
-      localStorage.setItem('parcelNotifications', JSON.stringify(notifications));
       alert('Parcel created successfully!');
       this.parcelForm.reset();
       this.clearFilters();
       this.router.navigate(['/viewparcel']);
-    }, error => {
+    },
+    (error) => {
       console.error(error);
       alert('Failed to create parcel.');
-    });
-  }
+    }
+  );
+}
+
+
 
   clearFilters() {
     this.filteredSenderDivisions = [];

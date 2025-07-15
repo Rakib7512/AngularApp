@@ -41,6 +41,11 @@ export class ParcelDetails implements OnInit {
       this.parcel = data;
     });
   }
+  
+
+
+
+
   getNameById(list: any[], id: any): string {
   const item = list.find(i => i.id === id);
   return item ? item.name : '';
