@@ -1,13 +1,8 @@
-import { Employee } from "./employee.model";
-import { AddParcel } from "../app/add-parcel/add-parcel";
-
-
-export interface RecParcelEmpDet{
-    emp:Employee;
-    parcelInfo:AddParcel;
-
-    
-
-
-
+export class RecParcelEmpDetModel {
+    empId!: string;
+    parcelId!: string;
+    constructor(empId: string, parcelId: string) {
+        this.empId = empId,
+            this.parcelId = parcelId
+    }
 }

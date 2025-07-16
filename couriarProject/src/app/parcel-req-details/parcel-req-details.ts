@@ -13,6 +13,7 @@ import { EmployeeService } from '../service/employee.service';
 import { Employee } from '../../model/employee.model';
 import { FormGroup } from '@angular/forms';
 import { RecParcelEmpDetService } from '../service/rec-parcel-emp-det.service';
+import { RecParcelEmpDetModel } from '../../model/recParcelByEmpDet.modek';
 
 @Component({
   selector: 'app-parcel-req-details',
@@ -27,10 +28,10 @@ export class ParcelReqDetails implements OnInit {
   parcelId: string = '';
   parcel?: Parcel;
   errorMsg: string = '';
-  RecForm!:FormGroup;
+  RecForm!: FormGroup;
 
   notifications: any[] = [];
-  employees:Employee[]=[];
+  employees: Employee[] = [];
   countries: Country[] = [];
   divisions: Division[] = [];
   districts: District[] = [];
@@ -43,7 +44,7 @@ export class ParcelReqDetails implements OnInit {
     private divisionService: DivisionService,
     private districtService: DistrictService,
     private policeStationService: PoliceStationService,
-    private recParcelEmpService:RecParcelEmpDetService
+    private peService: RecParcelEmpDetService,
 
 
 
@@ -63,7 +64,7 @@ export class ParcelReqDetails implements OnInit {
 
 
   loadLocationData(): void {
-    this.employeeService.getAllEmployee().subscribe(data=> this.employees=data);
+    this.employeeService.getAllEmployee().subscribe(data => this.employees = data);
     this.countryService.getAll().subscribe(data => this.countries = data);
     this.divisionService.getAll().subscribe(data => this.divisions = data);
     this.districtService.getAll().subscribe(data => this.districts = data);
@@ -104,36 +105,21 @@ export class ParcelReqDetails implements OnInit {
     localStorage.removeItem('parcelNotifications');
     this.notifications = [];
   }
-  
 
+  // savePercelAndEmployee(): void {
+  //   const re = new RecParcelEmpDetModel("test", "test");
+  //   this.peService.recParcelEmpDct(re).subscribe(data => {
+  //     console.log(data);
+  //   })
+  // }
 
-    
-
-    recParcel() {
-    if (this.RecForm.invalid) return;
-
-    if (this.editing) {
-      this.employeeService.updateEmployee(this.RecForm.value).subscribe(() => {
-        alert('Updated Successful');
-        this.loadLocationData();
-        
-      });
-
-    } else {
-      const { name } = this.RecForm.value;
-    this.recParcelEmpService.recParcelEmpDct({ name }).subscribe(() => {
-        alert('Added successfully!');
-        this.loadLocationData();
-        this.employeeService.reset();
-        this.editing = false;
-      });
-    }
+  onItemSelect(event: any): void {
+    const selectedId = event.target.value;
   }
 
 
+}
 
-  }
-   
 
 
 
