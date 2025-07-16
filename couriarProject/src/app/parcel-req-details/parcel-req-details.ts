@@ -109,26 +109,7 @@ export class ParcelReqDetails implements OnInit {
 
     
 
-  //   recParcel() {
-  //   if (this.RecForm.invalid) return;
-
-  //   if (this.editing) {
-  //     this.employeeService.updateEmployee(this.RecForm.value).subscribe(() => {
-  //       alert('Updated Successful');
-  //       this.loadLocationData();
-        
-  //     });
-
-  //   } else {
-  //     const { name } = this.RecForm.value;
-  //   this.recParcelEmpService.recParcelEmpDct({ name }).subscribe(() => {
-  //       alert('Added successfully!');
-  //       this.loadLocationData();
-  //       this.employeeService.reset();
-  //       this.editing = false;
-  //     });
-  //   }
-  // }
+  
 
 
 
