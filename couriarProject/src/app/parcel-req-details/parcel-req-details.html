@@ -1,29 +1,28 @@
 <div class="container mt-4">
-  <div class="col-md-3">
-    <div class="container mt-4">
-      <h4>📢 Parcel Notifications</h4>
+    <div class="col-md-3">
+        <div class="container mt-4">
+  <h4>📢 Parcel Notifications</h4>
 
-      <div *ngIf="notifications.length === 0" class="text-muted">
-        No new parcels yet.
-      </div>
-
-      <ul class="list-group" *ngIf="notifications.length> 0">
-        <li class="list-group-item" *ngFor="let note of notifications">
-          <strong>{{ note.message }}</strong><br>
-          <span class="text-muted">🆔 Tracking ID: {{ note.parcelId }}</span><br>
-          <small class="text-muted">🕓 {{ note.time }}</small><br>
-          <a class="btn btn-sm btn-outline-primary mt-1" [routerLink]="['/parcel-details']"
-            [queryParams]="{ trackingId: note.parcelId }">View Parcel</a>
-        </li>
-      </ul>
-
-      <button class="btn btn-sm btn-danger mt-3" (click)="clearNotifications()" *ngIf="notifications.length > 0">
-        Clear All
-      </button>
-    </div>
-
-
+  <div *ngIf="notifications.length === 0" class="text-muted">
+    No new parcels yet.
   </div>
+
+  <ul class="list-group" *ngIf="notifications.length> 0">
+    <li class="list-group-item" *ngFor="let note of notifications">
+      <strong>{{ note.message }}</strong><br>
+      <span class="text-muted">🆔 Tracking ID: {{ note.parcelId }}</span><br>
+      <small class="text-muted">🕓 {{ note.time }}</small><br>
+      <a class="btn btn-sm btn-outline-primary mt-1" [routerLink]="['/parcel-details']" [queryParams]="{ trackingId: note.parcelId }">View Parcel</a>
+    </li>
+  </ul>
+
+  <button class="btn btn-sm btn-danger mt-3" (click)="clearNotifications()" *ngIf="notifications.length > 0">
+    Clear All
+  </button>
+</div>
+
+        
+    </div>
   <h4>Search Parcel Details by Tracking ID</h4>
   <div class="input-group mb-3">
     <input type="text" class="form-control" [(ngModel)]="parcelId" placeholder="Enter Tracking ID">
@@ -62,44 +61,43 @@
       </tbody>
     </table>
     <!-- ✅ Location Route Info -->
-    <h5 class="mt-3">Parcel Route Information</h5>
-    <table class="table table-bordered">
-      <thead class="table-dark text-white">
-        <tr>
-          <th>From</th>
-          <th>To</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            <strong>Country:</strong> {{ getCountryName(parcel.sendCountry) }}<br>
-            <strong>Division:</strong> {{ getDivisionName(parcel.sendDivision) }}<br>
-            <strong>District:</strong> {{ getDistrictName(parcel.sendDistrict) }}<br>
-            <strong>Police Station:</strong> {{ getPoliceStationName(parcel.sendPoliceStation) }}
-          </td>
-          <td>
-            <strong>Country:</strong> {{ getCountryName(parcel.receiveCountry) }}<br>
-            <strong>Division:</strong> {{ getDivisionName(parcel.receiveDivision) }}<br>
-            <strong>District:</strong> {{ getDistrictName(parcel.receiveDistrict) }}<br>
-            <strong>Police Station:</strong> {{ getPoliceStationName(parcel.receivePoliceStation) }}
-          </td>
-        </tr>
-      </tbody>
-    </table>
+<h5 class="mt-3">Parcel Route Information</h5>
+<table class="table table-bordered">
+  <thead class="table-dark text-white">
+    <tr>
+      <th>From</th>
+      <th>To</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <strong>Country:</strong> {{ getCountryName(parcel.sendCountry) }}<br>
+        <strong>Division:</strong> {{ getDivisionName(parcel.sendDivision) }}<br>
+        <strong>District:</strong> {{ getDistrictName(parcel.sendDistrict) }}<br>
+        <strong>Police Station:</strong> {{ getPoliceStationName(parcel.sendPoliceStation) }}
+      </td>
+      <td>
+        <strong>Country:</strong> {{ getCountryName(parcel.receiveCountry) }}<br>
+        <strong>Division:</strong> {{ getDivisionName(parcel.receiveDivision) }}<br>
+        <strong>District:</strong> {{ getDistrictName(parcel.receiveDistrict) }}<br>
+        <strong>Police Station:</strong> {{ getPoliceStationName(parcel.receivePoliceStation) }}
+      </td>
+    </tr>
+  </tbody>
+</table>
 
   </div>
   <div class="row">
-    <div>
-      <div class="row mt-4">
-        <div class="col-md-6 mb-3">
-          <label for="rawMaterialId" class="form-label fw-bold">Raw Material</label>
-          <select id="rawMaterialId" class="form-select" formControlName="rawMaterialId"
-            (change)="onItemSelect($event)">
-            <option value="" disabled selected>Select Raw Material</option>
-            <option *ngFor="let e of employees" [value]="e.id">
-              {{ e.name }}
-            </option>
-          </select>
-        </div>
-      </div>
+  <!-- <div>
+    <div class="col-md-6">
+            <label class="form-label">Recive Parcel By Emp</label>
+            <select  class="form-select" >
+              <option value="">Select Emp</option>
+              <option *ngFor="let employees of employees" [value]="employees.name">{{ employees.name }}</option>
+            </select>
+          </div>
+          <div class="col-md-6"> <button type="submit" class="btn btn-success mt-3" (click)="recParcelEmpDct()">Submit</button></div>
+          </div>
+  </div> -->
+</div>
