@@ -88,4 +88,16 @@
 </table>
 
   </div>
+  <div class="row">
+  <div>
+    <div class="col-md-6">
+            <label class="form-label">Recive Parcel By Emp</label>
+            <select  class="form-select" >
+              <option value="">Select Emp</option>
+              <option *ngFor="let employees of employees" [value]="employees.name">{{ employees.name }}</option>
+            </select>
+          </div>
+          <div class="col-md-6"> <button type="submit" class="btn btn-success mt-3" (click)="recParcelEmpDct()">Submit</button></div>
+          </div>
+  </div>
 </div>

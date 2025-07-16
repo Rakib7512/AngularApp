@@ -6,7 +6,8 @@ import { Employee } from '../../model/employee.model';
 @Injectable({
   providedIn: 'root'
 })
-export class EmployeeService {private apiUrl = 'http://localhost:3000/employees';
+export class EmployeeService {
+  private apiUrl = 'http://localhost:3000/employees';
   constructor(private http: HttpClient) { }
   
   getAllEmployee(): Observable<Employee[]> {

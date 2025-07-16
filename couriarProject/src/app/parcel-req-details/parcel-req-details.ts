@@ -9,6 +9,10 @@ import { CountryService } from '../service/country.service';
 import { DivisionService } from '../service/division.service';
 import { DistrictService } from '../service/district.service';
 import { PoliceStationService } from '../service/police-station.service';
+import { EmployeeService } from '../service/employee.service';
+import { Employee } from '../../model/employee.model';
+import { FormGroup } from '@angular/forms';
+import { RecParcelEmpDetService } from '../service/rec-parcel-emp-det.service';
 
 @Component({
   selector: 'app-parcel-req-details',
@@ -17,49 +21,54 @@ import { PoliceStationService } from '../service/police-station.service';
   styleUrl: './parcel-req-details.css'
 })
 export class ParcelReqDetails implements OnInit {
-  
-   parcelId: string = '';
+
+  editing: boolean = false;
+
+  parcelId: string = '';
   parcel?: Parcel;
   errorMsg: string = '';
+  RecForm!:FormGroup;
 
   notifications: any[] = [];
-
+  employees:Employee[]=[];
   countries: Country[] = [];
-divisions: Division[] = [];
-districts: District[] = [];
-policeStations: PoliceStation[] = [];
+  divisions: Division[] = [];
+  districts: District[] = [];
+  policeStations: PoliceStation[] = [];
 
   constructor(
     private parcelService: ParcelService,
-    
-  private countryService: CountryService,
-  private divisionService: DivisionService,
-  private districtService: DistrictService,
-  private policeStationService: PoliceStationService
-  
-  
-  
-  
-  ) {}
- ngOnInit(): void {
-  this.loadLocationData();
+    private employeeService: EmployeeService,
+    private countryService: CountryService,
+    private divisionService: DivisionService,
+    private districtService: DistrictService,
+    private policeStationService: PoliceStationService,
+    private recParcelEmpService:RecParcelEmpDetService
 
-  if (typeof window !== 'undefined' && window.localStorage) {
-    const stored = localStorage.getItem('parcelNotifications');
-    this.notifications = stored ? JSON.parse(stored) : [];
-  } else {
-    console.warn('localStorage is not available.');
-    this.notifications = [];
+
+
+
+  ) { }
+  ngOnInit(): void {
+    this.loadLocationData();
+
+    if (typeof window !== 'undefined' && window.localStorage) {
+      const stored = localStorage.getItem('parcelNotifications');
+      this.notifications = stored ? JSON.parse(stored) : [];
+    } else {
+      console.warn('localStorage is not available.');
+      this.notifications = [];
+    }
   }
-}
 
 
   loadLocationData(): void {
-  this.countryService.getAll().subscribe(data => this.countries = data);
-  this.divisionService.getAll().subscribe(data => this.divisions = data);
-  this.districtService.getAll().subscribe(data => this.districts = data);
-  this.policeStationService.getAll().subscribe(data => this.policeStations = data);
-}
+    this.employeeService.getAllEmployee().subscribe(data=> this.employees=data);
+    this.countryService.getAll().subscribe(data => this.countries = data);
+    this.divisionService.getAll().subscribe(data => this.divisions = data);
+    this.districtService.getAll().subscribe(data => this.districts = data);
+    this.policeStationService.getAll().subscribe(data => this.policeStations = data);
+  }
 
   fetchParcel() {
     this.parcelService.getParcelById(this.parcelId).subscribe({
@@ -74,28 +83,59 @@ policeStations: PoliceStation[] = [];
     });
   }
   getCountryName(id: string): string {
-  return this.countries.find(c => c.id === id)?.name || id;
-}
+    return this.countries.find(c => c.id === id)?.name || id;
+  }
 
-getDivisionName(id: string): string {
-  return this.divisions.find(d => d.id === id)?.name || id;
-}
+  getDivisionName(id: string): string {
+    return this.divisions.find(d => d.id === id)?.name || id;
+  }
 
-getDistrictName(id: string): string {
-  return this.districts.find(d => d.id === id)?.name || id;
-}
+  getDistrictName(id: string): string {
+    return this.districts.find(d => d.id === id)?.name || id;
+  }
 
-getPoliceStationName(id: string): string {
-  return this.policeStations.find(p => p.id === id)?.name || id;
-}
-
-
-
-clearNotifications() {
-  localStorage.removeItem('parcelNotifications');
-  this.notifications = [];
-}
+  getPoliceStationName(id: string): string {
+    return this.policeStations.find(p => p.id === id)?.name || id;
+  }
 
 
 
-}
+  clearNotifications() {
+    localStorage.removeItem('parcelNotifications');
+    this.notifications = [];
+  }
+  
+
+
+    
+
+    recParcel() {
+    if (this.RecForm.invalid) return;
+
+    if (this.editing) {
+      this.employeeService.updateEmployee(this.RecForm.value).subscribe(() => {
+        alert('Updated Successful');
+        this.loadLocationData();
+        
+      });
+
+    } else {
+      const { name } = this.RecForm.value;
+    this.recParcelEmpService.recParcelEmpDct({ name }).subscribe(() => {
+        alert('Added successfully!');
+        this.loadLocationData();
+        this.employeeService.reset();
+        this.editing = false;
+      });
+    }
+  }
+
+
+
+  }
+   
+
+
+
+
+

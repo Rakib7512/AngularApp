@@ -687,7 +687,23 @@
       ]
     }
   ],
-  "employees": [],
+  "employees": [
+    {
+      "id": "935c",
+      "name": "Kuddus",
+      "salary": 25000,
+      "email": "kuddus@gmail.com",
+      "phoneNo": "01607005625",
+      "gender": "Male",
+      "designation": "Area Manager",
+      "joindate": "2025-07-05",
+      "image": "ffff",
+      "country": "f381",
+      "division": "efbf",
+      "district": "d73b",
+      "policeStation": "ad0e"
+    }
+  ],
   "parcel": [
     {
       "id": "b860",
@@ -1185,7 +1201,10 @@
       "courierBy": "Reja"
     }
   ],
-  "orderList":[
+  "orderList": [
 
+  ],
+  "recParcvelEmpDec":[
+    
   ]
 }
