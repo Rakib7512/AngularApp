@@ -15,27 +15,31 @@ import { ViewHubTransfer } from './view-hub-transfer/view-hub-transfer';
 import { Registration } from './auth/registration/registration';
 import { ParcelReqDetails } from './parcel-req-details/parcel-req-details';
 import { ParcelDetails } from './parcel-details/parcel-details';
+import { Login } from './auth/login/login';
+import { Logout } from './auth/logout/logout';
 
 
 const routes: Routes = [
-  {path:'',component:Home},
-  {path:'addpolice',component:AddPoliceStation},
-  {path:'addDist',component:AddDistrict},
-  {path:'addDivi',component:AddDivision},
-  {path:'addCountry',component:AddCountry},
-  {path:'addEmp',component:AddEmployee},
-  {path:'addParcel', component:AddParcel},
-  {path:'transferHub', component:TransferHub},
-  {path:'track', component:TrackParcel},
-  {path:'viewEmp', component:ViewEmp},
-  {path:'viewParcel', component:ViewAddParcel},
-  {path:'viewHubTrans',component:ViewHubTransfer},
-  {path:'reg',component:Registration},
-  { path: 'parcelReqDetails', component: ParcelReqDetails},
-  { path: 'parcel-details', component:ParcelDetails},
-  
+  { path: '', component: Home },
+  { path: 'addpolice', component: AddPoliceStation },
+  { path: 'addDist', component: AddDistrict },
+  { path: 'addDivi', component: AddDivision },
+  { path: 'addCountry', component: AddCountry },
+  { path: 'addEmp', component: AddEmployee },
+  { path: 'addParcel', component: AddParcel },
+  { path: 'transferHub', component: TransferHub },
+  { path: 'track', component: TrackParcel },
+  { path: 'viewEmp', component: ViewEmp },
+  { path: 'viewParcel', component: ViewAddParcel },
+  { path: 'viewHubTrans', component: ViewHubTransfer },
+  { path: 'reg', component: Registration },
+  { path: 'parcelReqDetails', component: ParcelReqDetails },
+  { path: 'parcel-details', component: ParcelDetails },
+  {path:'login', component:Login},
+  {path:'logout', component:Logout},
 
- 
+
+
 
 ];
 

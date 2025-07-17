@@ -3,7 +3,8 @@ import { BehaviorSubject, catchError, map, Observable } from 'rxjs';
 import { User } from '../../model/user.model';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { isPlatformBrowser } from '@angular/common';
-import { AuthResponse } from '../../model/authRespose.model';
+import { AuthResponse } from '../../model/authRespone.model';
+
 
 @Injectable({
   providedIn: 'root'
