@@ -32,7 +32,9 @@ const routes: Routes = [
   {path:'viewHubTrans',component:ViewHubTransfer},
   {path:'reg',component:Registration},
   { path: 'parcelReqDetails', component: ParcelReqDetails},
-  { path: 'parcel-detailss', component:ParcelDetails}
+  { path: 'parcel-details', component:ParcelDetails},
+  
+
  
 
 ];

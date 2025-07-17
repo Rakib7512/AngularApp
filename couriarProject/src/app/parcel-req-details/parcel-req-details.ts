@@ -13,6 +13,7 @@ import { EmployeeService } from '../service/employee.service';
 import { Employee } from '../../model/employee.model';
 import { FormGroup } from '@angular/forms';
 import { RecParcelEmpDetService } from '../service/rec-parcel-emp-det.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-parcel-req-details',
@@ -23,6 +24,7 @@ import { RecParcelEmpDetService } from '../service/rec-parcel-emp-det.service';
 export class ParcelReqDetails implements OnInit {
 
   editing: boolean = false;
+  highlightInput = false;
 
   parcelId: string = '';
   parcel?: Parcel;
@@ -37,6 +39,7 @@ export class ParcelReqDetails implements OnInit {
   policeStations: PoliceStation[] = [];
 
   constructor(
+    private route:ActivatedRoute,
     private parcelService: ParcelService,
     private employeeService: EmployeeService,
     private countryService: CountryService,
@@ -44,6 +47,7 @@ export class ParcelReqDetails implements OnInit {
     private districtService: DistrictService,
     private policeStationService: PoliceStationService,
     private recParcelEmpService:RecParcelEmpDetService
+  
 
 
 
@@ -52,6 +56,22 @@ export class ParcelReqDetails implements OnInit {
   ngOnInit(): void {
     this.loadLocationData();
 
+
+    //  Load parcel by tracking ID from query params
+  this.route.queryParams.subscribe(params => {
+    if (params['trackingId']) {
+      this.parcelId = params['trackingId'];
+
+      this.highlightInput = true;
+      setTimeout(() => {
+        this.highlightInput = false;
+      }, 1000); // 1 সেকেন্ড পর হাইলাইট বন্ধ
+
+      this.fetchParcel();
+    }
+  });
+
+   
     if (typeof window !== 'undefined' && window.localStorage) {
       const stored = localStorage.getItem('parcelNotifications');
       this.notifications = stored ? JSON.parse(stored) : [];
