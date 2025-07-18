@@ -1,33 +1,9 @@
-<div class="container mt-4">
-  <h3 class="mb-3">Hub Transfer</h3>
-  <form (ngSubmit)="submitTransfer()">
-    <div class="row">
-      <div class="col-md-6">
-        <label>Parcel ID</label>
-        <input [(ngModel)]="transfer.parcelId" name="parcelId" class="form-control" required>
-
-        <label>From Hub</label>
-        <input [(ngModel)]="transfer.fromHub" name="fromHub" class="form-control" required>
-
-         <label>Current Hub</label>
-        <input [(ngModel)]="transfer.currentHub" name="currentHub" class="form-control" required>
-
-        <label>To Hub</label>
-        <input [(ngModel)]="transfer.toHub" name="toHub" class="form-control" required>
-      </div>
-
-      <div class="col-md-6">
-        <label>Courier By</label>
-        <input [(ngModel)]="transfer.courierBy" name="courierBy" class="form-control" required>
-
-        <label>Departed At</label>
-        <input type="datetime-local" [(ngModel)]="transfer.departedAt" name="departedAt" class="form-control" required>
-
-        <label>Arrived At</label>
-        <input type="datetime-local" [(ngModel)]="transfer.arrivedAt" name="arrivedAt" class="form-control" required>
-      </div>
-    </div>
-    <button type="submit" class="btn btn-danger mt-3" [disabled]="">Submit Transfer</button>
-  </form>
-</div>
-
+<h3>Parcel Transfer</h3>
+<form (ngSubmit)="submitTransfer()">
+  <input [(ngModel)]="transfer.parcelId" name="parcelId" placeholder="Tracking ID" required />
+  <input [(ngModel)]="transfer.fromHub" name="fromHub" placeholder="From Hub" required />
+  <input [(ngModel)]="transfer.toHub" name="toHub" placeholder="To Hub" required />
+  <input [(ngModel)]="transfer.departedAt" name="departedAt" type="datetime-local" required />
+  <input [(ngModel)]="transfer.currentHub" name="currentHub" placeholder="Current Hub" required />
+  <button type="submit">Transfer</button>
+</form>

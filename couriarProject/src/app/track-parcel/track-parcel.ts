@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Parcel } from '../../model/parcel.model';
-import { ParcelService } from '../service/parcel.service';
+import { HubTransfer } from '../../model/transferHub.model';
+import { TransferHubService } from '../service/transfer-hub.service';
 
 @Component({
   selector: 'app-track-parcel',
@@ -9,25 +9,14 @@ import { ParcelService } from '../service/parcel.service';
   styleUrl: './track-parcel.css'
 })
 export class TrackParcel {
-  trackingId: string = '';
-  parcel: Parcel | null = null;
-  errorMsg: string = '';
+   trackingId = '';
+  currentHub?: HubTransfer;
+  history: HubTransfer[] = [];
 
-  constructor(private parcelService: ParcelService){}
-
-   onTrack(): void {
-    if (this.trackingId.trim() === '') return;
-
-    this.parcelService.trackParcel(this.trackingId).subscribe({
-      next: (res) => {
-        this.parcel = res;
-        this.errorMsg = '';
-      },
-      error: () => {
-        this.parcel = null;
-        this.errorMsg = `❌ No parcel found with tracking ID: ${this.trackingId}`;
-      }
-    });
+  constructor(private hubTransferService: TransferHubService) {}
+   track() {
+     const id = this.trackingId.trim().toLowerCase();
+    this.currentHub = this.hubTransferService.getLatestHub(this.trackingId);
+    this.history = this.hubTransferService.getHistory(this.trackingId);
   }
-
 }

@@ -22,15 +22,15 @@ export class ViewHubTransfer implements OnInit {
 
   ) { }
   ngOnInit(): void {
-    this.loadAllChangehub()
+    this. getLatestHub()
   }
 
-   loadChangehub(id:string) {
-    this.hubTransfer = this.hubTransferService.getTransfersByParcelId(id);
+   getHistory(id:string) {
+    this.hubTransfer = this.hubTransferService.getHistory(id);
   }
 
-   loadAllChangehub() {
-    this.hubTransfer = this.hubTransferService.getAllTransferHubBy;
+   getLatestHub() {
+    this.hubTransfer = this.hubTransferService.getLatestHub;
   }
 
   updateParcel(id: string): void {
@@ -40,17 +40,7 @@ export class ViewHubTransfer implements OnInit {
   }
 
 
-  deleteTransferHub(id: string): void {
-    this.hubTransferService.deleteTransferHub(id).subscribe({
-      next: (res) => {
-        console.log("Parcel Delete");
-        this.cdr.reattach();
-        this.loadAllChangehub();
-      },
-      error: (err) => {
-        console.log(err);
-      }
-    });
-  }
+  
+  
 
 }

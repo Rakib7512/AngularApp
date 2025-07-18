@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { HubTransfer } from '../../model/transferHub.model';
 import { TransferHubService } from '../service/transfer-hub.service';
 
@@ -8,34 +8,31 @@ import { TransferHubService } from '../service/transfer-hub.service';
   templateUrl: './transfer-hub.html',
   styleUrl: './transfer-hub.css'
 })
+
+
 export class TransferHub implements OnInit {
   
   transfer: HubTransfer = {
-    parcelId: 0,
+    parcelId: '',
     fromHub: '',
-    currentHub:'',
     toHub: '',
-    departedAt: new Date(),
-    arrivedAt: new Date(),
-    courierBy: ''
+    departedAt: '',
+    currentHub: ''
   };
 
-  constructor(private transferService: TransferHubService) {}
+  constructor(private hubTransferService: TransferHubService) {}
   ngOnInit(): void {
 
   }
-
-  submitTransfer(): void {
-    this.transferService.createTransfer(this.transfer).subscribe({
-      next: response => {
-        alert('Transfer Recorded Successfully!');
-      },
-      error: err => {
-        console.error(err);
-        alert('Failed to record transfer');
-      }
-    });
+  submitTransfer() {
+    this.hubTransferService.saveTransfer(this.transfer);
+    alert('Parcel transferred successfully!');
+    this.transfer = {
+      parcelId: '',
+      fromHub: '',
+      toHub: '',
+      departedAt: '',
+      currentHub: ''
+    };
   }
-
-
 }

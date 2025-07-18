@@ -28,7 +28,7 @@ const routes: Routes = [
   { path: 'addEmp', component: AddEmployee },
   { path: 'addParcel', component: AddParcel },
   { path: 'transferHub', component: TransferHub },
-  { path: 'track', component: TrackParcel },
+  { path: 'trackParcel', component: TrackParcel },
   { path: 'viewEmp', component: ViewEmp },
   { path: 'viewParcel', component: ViewAddParcel },
   { path: 'viewHubTrans', component: ViewHubTransfer },

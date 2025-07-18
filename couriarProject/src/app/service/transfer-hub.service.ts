@@ -9,37 +9,33 @@ import { TransferHub } from '../transfer-hub/transfer-hub';
 })
 export class TransferHubService {
 
-   private baseUrl = 'http://localhost:3000/transfer_Hub';
+  private key = 'hubTransfers';
 
-  constructor(private http: HttpClient) {}
+  constructor() {}
 
-  createTransfer(transfer: HubTransfer): Observable<HubTransfer> {
-    return this.http.post<HubTransfer>(this.baseUrl, transfer);
+   
+private getAllTransfers(): HubTransfer[] {
+    const stored = localStorage.getItem(this.key);
+    return stored ? JSON.parse(stored) : [];
   }
 
-  getTransfersByParcelId(parcelId: string): Observable<HubTransfer[]> {
-    return this.http.get<HubTransfer[]>(`http://localhost:3000/api/parcel/${parcelId}/transfers`);
+  // transfer save করো
+  saveTransfer(transfer: HubTransfer): void {
+    const transfers = this.getAllTransfers();
+    transfer.id = transfers.length + 1;
+    transfers.push(transfer);
+    localStorage.setItem(this.key, JSON.stringify(transfers));
   }
 
+  // একটা Parcel-এর সব transfer দেখাও
+ getHistory(parcelId: string): HubTransfer[] {
+  return this.getAllTransfers().filter(t => t.parcelId.toLowerCase() === parcelId.toLowerCase());
+}
 
-
-
+  // latest/current hub
+  getLatestHub(parcelId: string): HubTransfer | undefined {
+    const transfers = this.getHistory(parcelId);
+    return transfers.sort((a, b) => new Date(b.departedAt).getTime() - new Date(a.departedAt).getTime())[0];
+  }
   
-    UpdateTransferHub(id:string): Observable<any> {
-      return this.http.put(this.baseUrl + "/" + id, TransferHub);
-    }
-  
-    getTransferHubById(id: string): Observable<TransferHub> {
-      return this.http.get<TransferHub>(`${this.baseUrl}/${id}`);
-    }
-
-    getAllTransferHubBy(): Observable<TransferHub> {
-      return this.http.get<TransferHub>(`${this.baseUrl}`);
-    }
-  
-  
-    deleteTransferHub(id : string):Observable<any>{
-      return this.http.delete(this.baseUrl+'/'+id);
-  
-      } 
-    }
+}

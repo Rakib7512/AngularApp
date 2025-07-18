@@ -1,10 +1,9 @@
 export interface HubTransfer {
   id?: number;
-  parcelId: number;
+  parcelId: string;
   fromHub: string;
   toHub: string;
-  departedAt: Date;
-  arrivedAt: Date;
-  currentHub:string;
-  courierBy: string;
+  departedAt: string;
+  arrivedAt?: string;
+  currentHub: string;
 }
