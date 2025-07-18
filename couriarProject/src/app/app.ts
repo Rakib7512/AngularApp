@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { User } from '../model/user.model';
+import { AuthService } from './service/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -6,9 +8,24 @@ import { Component } from '@angular/core';
   standalone: false,
   styleUrl: './app.css'
 })
-export class App {
+export class App implements OnInit {
+
+  userRole: string | null = '';
+  currentUser: User | null = null;
+
   protected title = 'couriarProject';
   trackingNumber: string = '';
+
+   constructor(
+    private authService: AuthService,
+  ){}
+  ngOnInit(): void {
+     this.authService.currentUser$.subscribe(user => {
+      this.currentUser = user;
+      this.userRole = user?.role || null;
+    });
+  }
+
 
 onSearch(): void {
   if (this.trackingNumber.trim()) {
