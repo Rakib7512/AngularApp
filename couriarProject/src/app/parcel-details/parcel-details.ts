@@ -38,7 +38,7 @@ export class ParcelDetails implements OnInit {
   }
   getParcelDetails(id: string) {
     this.parcelService.getByTrackingId(id).subscribe(data => {
-      this.parcel = data;
+      this.parcel = data[0];
     });
   }
   

@@ -4,6 +4,6 @@ export interface HubTransfer {
   fromHub: string;
   toHub: string;
   departedAt: string;
-  arrivedAt?: string;
   currentHub: string;
+  courierBy: string;
 }

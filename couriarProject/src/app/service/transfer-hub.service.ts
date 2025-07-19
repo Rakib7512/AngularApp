@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { HubTransfer } from '../../model/transferHub.model';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { TransferHub } from '../transfer-hub/transfer-hub';
 
 @Injectable({
@@ -9,33 +9,21 @@ import { TransferHub } from '../transfer-hub/transfer-hub';
 })
 export class TransferHubService {
 
-  private key = 'hubTransfers';
+  private apiUrl = 'http://localhost:3000/transfer_Hub';
 
-  constructor() {}
-
-   
-private getAllTransfers(): HubTransfer[] {
-    const stored = localStorage.getItem(this.key);
-    return stored ? JSON.parse(stored) : [];
-  }
-
-  // transfer save করো
-  saveTransfer(transfer: HubTransfer): void {
-    const transfers = this.getAllTransfers();
-    transfer.id = transfers.length + 1;
-    transfers.push(transfer);
-    localStorage.setItem(this.key, JSON.stringify(transfers));
-  }
-
-  // একটা Parcel-এর সব transfer দেখাও
- getHistory(parcelId: string): HubTransfer[] {
-  return this.getAllTransfers().filter(t => t.parcelId.toLowerCase() === parcelId.toLowerCase());
-}
-
-  // latest/current hub
-  getLatestHub(parcelId: string): HubTransfer | undefined {
-    const transfers = this.getHistory(parcelId);
-    return transfers.sort((a, b) => new Date(b.departedAt).getTime() - new Date(a.departedAt).getTime())[0];
-  }
   
+
+  constructor(private http: HttpClient) {}
+
+  getLatestHub(parcelId: string): Observable<HubTransfer> {
+    return this.http.get<HubTransfer>(`${this.apiUrl}/latest/${parcelId}`);
+  }
+
+  getHistory(parcelId: string): Observable<HubTransfer[]> {
+    return this.http.get<HubTransfer[]>(`${this.apiUrl}/history/${parcelId}`);
+  }
+
+  saveTransfer(transferHub: HubTransfer): Observable<HubTransfer> {
+    return this.http.post<HubTransfer>(this.apiUrl, transferHub);
+  }
 }
