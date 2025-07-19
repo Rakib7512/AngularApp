@@ -6,6 +6,7 @@ export interface User {
     nid:string;
     password: string;
     role:string;
+    currentHub:string;
     
     
     

@@ -53,6 +53,7 @@ export class ParcelReqDetails implements OnInit {
 
 
   ) { }
+  loggedInUser: any;
   ngOnInit(): void {
     this.loadLocationData();
 
@@ -124,6 +125,48 @@ export class ParcelReqDetails implements OnInit {
     localStorage.removeItem('parcelNotifications');
     this.notifications = [];
   }
+
+
+
+
+  saveReceivedParcel() {
+  if (!this.parcel) {
+    alert('Parcel খুঁজে পাওয়া যায়নি!');
+    return;
+  }
+
+  // লোকালস্টোরেজ থেকে লগইন করা ইউজার খুঁজে আনছি
+  const currentUser = JSON.parse(localStorage.getItem('loggedInUser') || '{}');
+
+  if (!currentUser || !currentUser.id) {
+    alert('Login করা ইউজার খুঁজে পাওয়া যায়নি!');
+    return;
+  }
+
+  const receivedParcel = {
+    parcelId: this.parcel.trackingId,
+    employeeId: currentUser.id,
+    employeeName: currentUser.name,
+    currentHub: this.getCurrentHubOfEmployee(currentUser),
+    receivedAt: new Date()
+  };
+
+  this.recParcelEmpService.saveReceivedParcel(receivedParcel).subscribe({
+    next: () => {
+      alert('✅ Parcel রিসিভ সফলভাবে সেভ হয়েছে!');
+    },
+    error: () => {
+      alert('❌ রিসিভ সংরক্ষণ ব্যর্থ হয়েছে!');
+    }
+  });
+}
+
+// helper function
+getCurrentHubOfEmployee(user: any): string {
+  const ps = this.policeStations.find(p => p.id === user.policeStation);
+  return ps ? ps.name : 'Unknown Hub';
+}
+
   
 
 

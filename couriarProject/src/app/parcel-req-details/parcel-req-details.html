@@ -90,5 +90,14 @@
         </tr>
       </tbody>
     </table>
+    <div class="mt-4 border p-3 bg-light rounded">
+  <h5>📦 Parcel Receive</h5>
+
+  <p><strong>Logged in Employee:</strong> {{ loggedInUser?.name }}</p>
+  <p><strong>Current Hub:</strong> {{ getCurrentHubOfEmployee(loggedInUser) }}</p>
+
+  <button class="btn btn-success" (click)="saveReceivedParcel()">✅ Receive Parcel</button>
+</div>
+
 
   </div>

@@ -39,6 +39,7 @@ export class Login implements OnInit {
   this.authService.login(userDetails).subscribe({
     next: (res) => {
       console.log('User logged in successfully:', res);
+       localStorage.setItem('loggedInUser', JSON.stringify(res));
       
       this.authService.storeToken(res.token);
 
