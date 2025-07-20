@@ -153,10 +153,10 @@ export class ParcelReqDetails implements OnInit {
 
   this.recParcelEmpService.saveReceivedParcel(receivedParcel).subscribe({
     next: () => {
-      alert('✅ Parcel রিসিভ সফলভাবে সেভ হয়েছে!');
+      alert(' Receive Parcel by '+receivedParcel.employeeName);
     },
     error: () => {
-      alert('❌ রিসিভ সংরক্ষণ ব্যর্থ হয়েছে!');
+      alert(' রিসিভ সংরক্ষণ ব্যর্থ হয়েছে!');
     }
   });
 }

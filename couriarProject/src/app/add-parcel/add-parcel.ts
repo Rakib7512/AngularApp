@@ -21,20 +21,25 @@ import { StorageService } from '../service/storage-service';
   styleUrl: './add-parcel.css'
 })
 export class AddParcel implements OnInit {
-
+  paymentInfo: string = '';
   parcelForm!: FormGroup;
+  showPaymentSection: boolean = false;
+  confirmationCode: string = '';
+  paymentSuccess: boolean = false;
+  verificationCode: string = '';
+  isPaymentDone = false;
+  enteredCode: string = '';
+  showCodeInput = false;
+  finalSubmitAllowed = false;
 
   countries: Country[] = [];
   divisions: Division[] = [];
   districts: District[] = [];
   policeStations: PoliceStation[] = [];
 
-  // Sender
   filteredSenderDivisions: Division[] = [];
   filteredSenderDistricts: District[] = [];
   filteredSenderPoliceStations: PoliceStation[] = [];
-
-  // Receiver
   filteredReceiverDivisions: Division[] = [];
   filteredReceiverDistricts: District[] = [];
   filteredReceiverPoliceStations: PoliceStation[] = [];
@@ -58,7 +63,6 @@ export class AddParcel implements OnInit {
       sendDivision: ['', Validators.required],
       sendDistrict: ['', Validators.required],
       sendPoliceStation: ['', Validators.required],
-
       receiverName: ['', Validators.required],
       receiverPhone: ['', Validators.required],
       receiverAddress: ['', Validators.required],
@@ -66,15 +70,27 @@ export class AddParcel implements OnInit {
       receiveDivision: ['', Validators.required],
       receiveDistrict: ['', Validators.required],
       receivePoliceStation: ['', Validators.required],
-
       currentHub: ['', Validators.required],
       bookingAgent: ['', Validators.required],
-      deliveryPerson: ['', Validators.required]
+      deliveryPerson: ['', Validators.required],
+      weight: [0],
+      squareFeet: [0],
+      fee: [0],
+      paymentMethod: ['', Validators.required],
+      confirmationCode: ['', Validators.required],
+      enteredConfirmationCode: ['', Validators.required]
     });
   }
 
   ngOnInit(): void {
+
+
+
+    this.calculateParcelFee()
     this.loadMasterData();
+    this.parcelForm.get('weight')?.valueChanges.subscribe(() => this.calculateParcelFee());
+    this.parcelForm.get('squareFeet')?.valueChanges.subscribe(() => this.calculateParcelFee());
+    this.parcelForm.get('paymentMethod')?.valueChanges.subscribe(() => this.updatePaymentDetails());
   }
 
   loadMasterData() {
@@ -84,66 +100,121 @@ export class AddParcel implements OnInit {
     this.policeStationService.getAll().subscribe(data => this.policeStations = data);
   }
 
-  onSubmitParcel() {
-  const parcel: Parcel = { ...this.parcelForm.value };
-  parcel.trackingId = uuidv4();
+  calculateParcelFee(): void {
+    const formValue = this.parcelForm.value;
+    let baseFee = 60;
+    let extraPerKg = 0;
+    let extraPerSqft = 0;
 
-  this.parcelService.saveParcel(parcel).subscribe(
-    (savedParcel) => {
-      console.log(savedParcel); // should include .id
+    const sendCountry = formValue.sendCountry;
+    const receiveCountry = formValue.receiveCountry;
+    const sendDivision = formValue.sendDivision;
+    const receiveDivision = formValue.receiveDivision;
+    const sendDistrict = formValue.sendDistrict;
+    const receiveDistrict = formValue.receiveDistrict;
 
-      if (typeof window !== 'undefined' && window.localStorage) {
-        const notifications = JSON.parse(localStorage.getItem('parcelNotifications') || '[]');
-
-        notifications.push({
-          message: `📦 New Parcel: ${savedParcel.senderName} ➜ ${savedParcel.receiverName}`,
-          parcelTrackingId: savedParcel.trackingId,
-          parcelId: savedParcel.id, // ✅ backend-generated id
-          
-          time: new Date().toLocaleString()
-          
-        });
-
-        localStorage.setItem('parcelNotifications', JSON.stringify(notifications));
-      } else {
-        console.warn('localStorage is not available.');
-      }
-
-      alert('Parcel created successfully!');
-      this.parcelForm.reset();
-      this.clearFilters();
-      this.router.navigate(['/viewparcel']);
-    },
-    (error) => {
-      console.error(error);
-      alert('Failed to create parcel.');
+    if (sendCountry !== receiveCountry) {
+      extraPerKg = 200;
+      extraPerSqft = 150;
+    } else if (sendDivision !== receiveDivision) {
+      extraPerKg = 100;
+      extraPerSqft = 70;
+    } else if (sendDistrict !== receiveDistrict) {
+      extraPerKg = 70;
+      extraPerSqft = 50;
+    } else {
+      extraPerKg = 50;
+      extraPerSqft = 40;
     }
-  );
-}
 
+    let weightFee = baseFee;
+    let squareFeetFee = baseFee;
 
+    if (formValue.weight && formValue.weight > 0) {
+      if (formValue.weight > 1) {
+        weightFee += (formValue.weight - 1) * extraPerKg;
+      }
+    } else {
+      weightFee = 0;
+    }
+
+    if (formValue.squareFeet && formValue.squareFeet > 0) {
+      if (formValue.squareFeet > 1) {
+        squareFeetFee += (formValue.squareFeet - 1) * extraPerSqft;
+      }
+    } else {
+      squareFeetFee = 0;
+    }
+
+    const finalFee = Math.max(weightFee, squareFeetFee);
+    this.parcelForm.patchValue({ fee: finalFee });
+    this.showPaymentSection = finalFee > 0;
+  }
+
+  updatePaymentDetails(): void {
+    const method = this.parcelForm.get('paymentMethod')?.value;
+
+    if (method === 'bkash') {
+      this.paymentInfo = 'Send money to Bkash: 01666666666';
+    } else if (method === 'nagad') {
+      this.paymentInfo = 'Send money to Nagad: 01555555555';
+    } else if (method === 'bank') {
+      this.paymentInfo = 'Bank Account: 75877587 (ABC Bank)';
+    } else {
+      this.paymentInfo = '';
+    }
+  }
+
+  onSubmitParcel() {
+    if (!this.parcelForm.value.fee || !this.parcelForm.value.paymentMethod) {
+      alert("Please calculate fee and select a payment method.");
+      return;
+    }
+
+    const parcel: Parcel = { ...this.parcelForm.value };
+    parcel.trackingId = uuidv4();
+
+    this.parcelService.saveParcel(parcel).subscribe(
+      (savedParcel) => {
+        if (typeof window !== 'undefined' && window.localStorage) {
+          const notifications = JSON.parse(localStorage.getItem('parcelNotifications') || '[]');
+
+          notifications.push({
+            message: `📦 New Parcel: ${savedParcel.senderName} ➔ ${savedParcel.receiverName}`,
+            parcelTrackingId: savedParcel.trackingId,
+            parcelId: savedParcel.id,
+            time: new Date().toLocaleString()
+          });
+
+          localStorage.setItem('parcelNotifications', JSON.stringify(notifications));
+        }
+
+        alert('Parcel created successfully!');
+        this.parcelForm.reset();
+        this.clearFilters();
+        this.router.navigate(['/viewparcel']);
+      },
+      (error) => {
+        console.error(error);
+        alert('Failed to create parcel.');
+      }
+    );
+  }
 
   clearFilters() {
     this.filteredSenderDivisions = [];
     this.filteredSenderDistricts = [];
     this.filteredSenderPoliceStations = [];
-
     this.filteredReceiverDivisions = [];
     this.filteredReceiverDistricts = [];
     this.filteredReceiverPoliceStations = [];
   }
 
-  // ✅ Cascading Sender
+  // Cascading Sender
   onCountryChange() {
     const countryId = this.parcelForm.value.sendCountry;
     const selectedCountry = this.countries.find(c => c.id === countryId);
-    if (selectedCountry) {
-      this.filteredSenderDivisions = this.divisions.filter(div =>
-        selectedCountry.divisions.includes(div.id)
-      );
-    } else {
-      this.filteredSenderDivisions = [];
-    }
+    this.filteredSenderDivisions = selectedCountry ? this.divisions.filter(div => selectedCountry.divisions.includes(div.id)) : [];
     this.filteredSenderDistricts = [];
     this.filteredSenderPoliceStations = [];
     this.parcelForm.patchValue({ sendDivision: '', sendDistrict: '', sendPoliceStation: '' });
@@ -152,13 +223,7 @@ export class AddParcel implements OnInit {
   onDivisionChange() {
     const divisionId = this.parcelForm.value.sendDivision;
     const selectedDivision = this.divisions.find(div => div.id === divisionId);
-    if (selectedDivision) {
-      this.filteredSenderDistricts = this.districts.filter(dist =>
-        selectedDivision.districts.includes(dist.id)
-      );
-    } else {
-      this.filteredSenderDistricts = [];
-    }
+    this.filteredSenderDistricts = selectedDivision ? this.districts.filter(dist => selectedDivision.districts.includes(dist.id)) : [];
     this.filteredSenderPoliceStations = [];
     this.parcelForm.patchValue({ sendDistrict: '', sendPoliceStation: '' });
   }
@@ -166,29 +231,15 @@ export class AddParcel implements OnInit {
   onDistrictChange() {
     const districtId = this.parcelForm.value.sendDistrict;
     const selectedDistrict = this.districts.find(dist => dist.id === districtId);
-    if (selectedDistrict) {
-      this.filteredSenderPoliceStations = this.policeStations.filter(ps =>
-        selectedDistrict.policeStations.includes(ps.id!)
-      );
-    } else {
-      this.filteredSenderPoliceStations = [];
-    }
+    this.filteredSenderPoliceStations = selectedDistrict ? this.policeStations.filter(ps => selectedDistrict.policeStations.includes(ps.id!)) : [];
     this.parcelForm.patchValue({ sendPoliceStation: '' });
   }
 
-
-
-  // ✅ Cascading Receiver
+  // Cascading Receiver
   onCountryChange2() {
     const countryId = this.parcelForm.value.receiveCountry;
     const selectedCountry = this.countries.find(c => c.id === countryId);
-    if (selectedCountry) {
-      this.filteredReceiverDivisions = this.divisions.filter(div =>
-        selectedCountry.divisions.includes(div.id)
-      );
-    } else {
-      this.filteredReceiverDivisions = [];
-    }
+    this.filteredReceiverDivisions = selectedCountry ? this.divisions.filter(div => selectedCountry.divisions.includes(div.id)) : [];
     this.filteredReceiverDistricts = [];
     this.filteredReceiverPoliceStations = [];
     this.parcelForm.patchValue({ receiveDivision: '', receiveDistrict: '', receivePoliceStation: '' });
@@ -197,13 +248,7 @@ export class AddParcel implements OnInit {
   onDivisionChange2() {
     const divisionId = this.parcelForm.value.receiveDivision;
     const selectedDivision = this.divisions.find(div => div.id === divisionId);
-    if (selectedDivision) {
-      this.filteredReceiverDistricts = this.districts.filter(dist =>
-        selectedDivision.districts.includes(dist.id)
-      );
-    } else {
-      this.filteredReceiverDistricts = [];
-    }
+    this.filteredReceiverDistricts = selectedDivision ? this.districts.filter(dist => selectedDivision.districts.includes(dist.id)) : [];
     this.filteredReceiverPoliceStations = [];
     this.parcelForm.patchValue({ receiveDistrict: '', receivePoliceStation: '' });
   }
@@ -211,14 +256,20 @@ export class AddParcel implements OnInit {
   onDistrictChange2() {
     const districtId = this.parcelForm.value.receiveDistrict;
     const selectedDistrict = this.districts.find(dist => dist.id === districtId);
-    if (selectedDistrict) {
-      this.filteredReceiverPoliceStations = this.policeStations.filter(ps =>
-        selectedDistrict.policeStations.includes(ps.id!)
-      );
-    } else {
-      this.filteredReceiverPoliceStations = [];
-    }
+    this.filteredReceiverPoliceStations = selectedDistrict ? this.policeStations.filter(ps => selectedDistrict.policeStations.includes(ps.id!)) : [];
     this.parcelForm.patchValue({ receivePoliceStation: '' });
   }
+
+  generateConfirmationCode(): string {
+    const code = Math.random().toString(36).substring(2, 8).toUpperCase();
+    return code;
+  }
+
+  onPaymentSuccess() {
+    this.confirmationCode = this.generateConfirmationCode();
+    this.paymentSuccess = true;
+  }
+
+  
 
 }

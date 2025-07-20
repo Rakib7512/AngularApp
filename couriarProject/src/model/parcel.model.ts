@@ -24,6 +24,11 @@ export class Parcel {
   receiveDistrict!: string;
   receivePoliceStation!: string;
   trackingHistory!: ParcelTracking[];
+  weight?: number;
+  squareFeet?: number;
+  fee?: number;
+  verificationCode!:string
+  
 
 
 }
