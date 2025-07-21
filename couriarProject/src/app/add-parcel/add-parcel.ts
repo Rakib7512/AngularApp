@@ -269,6 +269,26 @@ export class AddParcel implements OnInit {
     this.confirmationCode = this.generateConfirmationCode();
     this.paymentSuccess = true;
   }
+  startPayment() {
+  // Validate fee and payment method
+  if (!this.parcelForm.value.fee || !this.parcelForm.value.paymentMethod) {
+    alert("Please calculate fee and select a payment method.");
+    return;
+  }
+
+  // Generate trackingId before payment
+  const generatedTrackingId = uuidv4();
+  this.parcelForm.patchValue({ trackingId: generatedTrackingId });
+
+  // Show payment instructions including trackingId
+  this.verificationCode = this.generateConfirmationCode();
+  this.confirmationCode = this.verificationCode;
+  this.paymentSuccess = true;
+
+  alert(`✅ Please send payment using Tracking ID: ${generatedTrackingId}`);
+  
+}
+
 
   
 

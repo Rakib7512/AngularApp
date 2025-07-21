@@ -13,17 +13,35 @@ import { UserService } from '../../service/user.service';
 })
 export class Userprofile implements OnInit{
 
-
-   user: User | null = null;
+user: User | null = null;
   private subscription: Subscription = new Subscription();
 
   constructor(
-    private authService:AuthService, // ✅ fixed spelling
+    private authService: AuthService,
     private router: Router,
     private userSer: UserService
   ) { }
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    const userId = localStorage.getItem('userId');
+    if (!userId) {
+      this.router.navigate(['/login']); // not logged in
+      return;
+    }
+
+    // Fetch user data
+    this.subscription = this.userSer.getUserById(+userId).subscribe(
+      (data) => {
+        this.user = data;
+      },
+      (error) => {
+        console.error('Failed to load user', error);
+        alert('Failed to load user profile.');
+      }
+    );
   }
 
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
 }
