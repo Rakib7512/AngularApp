@@ -93,8 +93,10 @@
     <div class="mt-4 border p-3 bg-light rounded">
   <h5>📦 Parcel Receive</h5>
 
-  <p><strong>Logged in Employee:</strong> {{ loggedInUser?.name }}</p>
-  <p><strong>Current Hub:</strong> {{ getCurrentHubOfEmployee(loggedInUser) }}</p>
+<div *ngIf="user">
+  <p><strong>Logged in Employee:</strong> {{ user.name }}</p>
+  <p><strong>Current Hub:</strong> {{ user.currentHub }}</p>
+</div>
 
   <button class="btn btn-success" (click)="saveReceivedParcel()">✅ Receive Parcel</button>
 </div>

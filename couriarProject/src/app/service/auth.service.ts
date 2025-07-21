@@ -152,5 +152,9 @@ export class AuthService {
     const role = this.getUserRole();
     return role === 'user';
   }
+  isEmp(): boolean {
+    const role = this.getUserRole();
+    return role === 'emp';
+  }
 
 }

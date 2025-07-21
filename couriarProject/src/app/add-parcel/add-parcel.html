@@ -9,8 +9,7 @@
         <label>Sender Phone</label>
         <input formControlName="senderPhone" name="senderPhone" class="form-control" required>
 
-        <label>Sender Address</label>
-        <textarea formControlName="senderAddress" name="senderAddress" class="form-control" required></textarea>
+       
 
         <div class="row">
           <div class="col-md-6">
@@ -46,6 +45,8 @@
               <option *ngFor="let ps of filteredSenderPoliceStations" [value]="ps.id">{{ ps.name }}</option>
             </select>
           </div>
+           <label>Sender Address</label>
+        <textarea formControlName="senderAddress" name="senderAddress" class="form-control" required></textarea>
         </div>
 
       </div>
@@ -55,10 +56,7 @@
 
         <label>Receiver Phone</label>
         <input formControlName="receiverPhone" name="receiverPhone" class="form-control" required>
-
-        <label>Receiver Address</label>
-        <textarea formControlName="receiverAddress" name="receiverAddress" class="form-control" required></textarea>
-
+       
         <div class="row">
           <div class="col-md-6">
             <label class="form-label">Recive Country Hub</label>
@@ -93,6 +91,8 @@
               <option *ngFor="let ps of filteredReceiverPoliceStations" [value]="ps.id">{{ ps.name }}</option>
             </select>
           </div>
+           <label>Receiver Address</label>
+        <textarea formControlName="receiverAddress" name="receiverAddress" class="form-control" required></textarea>
 
         </div>
       </div>

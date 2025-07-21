@@ -14,6 +14,8 @@ import { Employee } from '../../model/employee.model';
 import { FormGroup } from '@angular/forms';
 import { RecParcelEmpDetService } from '../service/rec-parcel-emp-det.service';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from '../service/auth.service';
+import { User } from '../../model/user.model';
 
 @Component({
   selector: 'app-parcel-req-details',
@@ -31,6 +33,8 @@ export class ParcelReqDetails implements OnInit {
   errorMsg: string = '';
   RecForm!:FormGroup;
 
+  user!: User | null;
+
   notifications: any[] = [];
   employees:Employee[]=[];
   countries: Country[] = [];
@@ -46,7 +50,8 @@ export class ParcelReqDetails implements OnInit {
     private divisionService: DivisionService,
     private districtService: DistrictService,
     private policeStationService: PoliceStationService,
-    private recParcelEmpService:RecParcelEmpDetService
+    private recParcelEmpService:RecParcelEmpDetService,
+    private authService: AuthService
   
 
 
@@ -56,6 +61,7 @@ export class ParcelReqDetails implements OnInit {
   loggedInUser: any;
   ngOnInit(): void {
     this.loadLocationData();
+    this.getUserDetails();
 
 
     //  Load parcel by tracking ID from query params
@@ -81,6 +87,20 @@ export class ParcelReqDetails implements OnInit {
       this.notifications = [];
     }
   }
+
+
+  getUserDetails() {
+  
+
+  this.user =this.authService.currentUserValue;
+
+  console.log(this.user);
+
+
+  
+}
+
+
 
 
   loadLocationData(): void {
