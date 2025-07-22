@@ -31,28 +31,28 @@ export class ParcelReqDetails implements OnInit {
   parcelId: string = '';
   parcel?: Parcel;
   errorMsg: string = '';
-  RecForm!:FormGroup;
+  RecForm!: FormGroup;
 
   user!: User | null;
 
   notifications: any[] = [];
-  employees:Employee[]=[];
+  employees: Employee[] = [];
   countries: Country[] = [];
   divisions: Division[] = [];
   districts: District[] = [];
   policeStations: PoliceStation[] = [];
 
   constructor(
-    private route:ActivatedRoute,
+    private route: ActivatedRoute,
     private parcelService: ParcelService,
     private employeeService: EmployeeService,
     private countryService: CountryService,
     private divisionService: DivisionService,
     private districtService: DistrictService,
     private policeStationService: PoliceStationService,
-    private recParcelEmpService:RecParcelEmpDetService,
+    private recParcelEmpService: RecParcelEmpDetService,
     private authService: AuthService
-  
+
 
 
 
@@ -65,20 +65,20 @@ export class ParcelReqDetails implements OnInit {
 
 
     //  Load parcel by tracking ID from query params
-  this.route.queryParams.subscribe(params => {
-    if (params['trackingId']) {
-      this.parcelId = params['trackingId'];
+    this.route.queryParams.subscribe(params => {
+      if (params['trackingId']) {
+        this.parcelId = params['trackingId'];
 
-      this.highlightInput = true;
-      setTimeout(() => {
-        this.highlightInput = false;
-      }, 1000); // 1 সেকেন্ড পর হাইলাইট বন্ধ
+        this.highlightInput = true;
+        setTimeout(() => {
+          this.highlightInput = false;
+        }, 1000); // 1 সেকেন্ড পর হাইলাইট বন্ধ
 
-      this.fetchParcel();
-    }
-  });
+        this.fetchParcel();
+      }
+    });
 
-   
+
     if (typeof window !== 'undefined' && window.localStorage) {
       const stored = localStorage.getItem('parcelNotifications');
       this.notifications = stored ? JSON.parse(stored) : [];
@@ -89,22 +89,18 @@ export class ParcelReqDetails implements OnInit {
   }
 
 
+
   getUserDetails() {
-  
+    this.user = this.authService.currentUserValue;
+    console.log(this.user);
 
-  this.user =this.authService.currentUserValue;
-
-  console.log(this.user);
-
-
-  
-}
+  }
 
 
 
 
   loadLocationData(): void {
-    this.employeeService.getAllEmployee().subscribe(data=> this.employees=data);
+    this.employeeService.getAllEmployee().subscribe(data => this.employees = data);
     this.countryService.getAll().subscribe(data => this.countries = data);
     this.divisionService.getAll().subscribe(data => this.divisions = data);
     this.districtService.getAll().subscribe(data => this.districts = data);
@@ -150,54 +146,54 @@ export class ParcelReqDetails implements OnInit {
 
 
   saveReceivedParcel() {
-  if (!this.parcel) {
-    alert('Parcel খুঁজে পাওয়া যায়নি!');
-    return;
-  }
-
-  // লোকালস্টোরেজ থেকে লগইন করা ইউজার খুঁজে আনছি
-  const currentUser = JSON.parse(localStorage.getItem('loggedInUser') || '{}');
-
-  if (!currentUser || !currentUser.id) {
-    alert('Login করা ইউজার খুঁজে পাওয়া যায়নি!');
-    return;
-  }
-
-  const receivedParcel = {
-    parcelId: this.parcel.trackingId,
-    employeeId: currentUser.id,
-    employeeName: currentUser.name,
-    currentHub: this.getCurrentHubOfEmployee(currentUser),
-    receivedAt: new Date()
-  };
-
-  this.recParcelEmpService.saveReceivedParcel(receivedParcel).subscribe({
-    next: () => {
-      alert(' Receive Parcel by '+receivedParcel.employeeName);
-    },
-    error: () => {
-      alert(' রিসিভ সংরক্ষণ ব্যর্থ হয়েছে!');
+    if (!this.parcel) {
+      alert('Parcel খুঁজে পাওয়া যায়নি!');
+      return;
     }
-  });
-}
 
-// helper function
-getCurrentHubOfEmployee(user: any): string {
-  const ps = this.policeStations.find(p => p.id === user.policeStation);
-  return ps ? ps.name : 'Unknown Hub';
-}
+    // লোকালস্টোরেজ থেকে লগইন করা ইউজার খুঁজে আনছি
+    const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
 
-  
+    if (!currentUser || !currentUser.id) {
+      alert('Login করা ইউজার খুঁজে পাওয়া যায়নি!');
+      return;
+    }
 
+    const receivedParcel = {
+      parcelId: this.parcel.trackingId,
+      employeeId: currentUser.id,
+      employeeName: currentUser.name,
+      currentHub: currentUser.currentHub,
+      receivedAt: new Date()
+    };
 
-    
-
-  
-
-
-
+    this.recParcelEmpService.saveReceivedParcel(receivedParcel).subscribe({
+      next: () => {
+        alert(' Receive Parcel by ' + receivedParcel.employeeName);
+      },
+      error: () => {
+        alert(' রিসিভ সংরক্ষণ ব্যর্থ হয়েছে!');
+      }
+    });
   }
-   
+
+  // helper function
+  getCurrentHubOfEmployee(user: any): string {
+    const ps = this.policeStations.find(p => p.id === user.policeStation);
+    return ps ? ps.name : 'Unknown Hub';
+  }
+
+
+
+
+
+
+
+
+
+
+}
+
 
 
 

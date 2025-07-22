@@ -1,8 +1,15 @@
+
+
+
 export class RecParcelEmpDetModel {
-    empId!: string;
+    id!: string;
     parcelId!: string;
-    constructor(empId: string, parcelId: string) {
-        this.empId = empId,
-            this.parcelId = parcelId
-    }
+    employeeId!: string;
+    employeeName!: string;
+    currentHub!: string;
+    receivedAt!: Date;
+
+
+
+
 }

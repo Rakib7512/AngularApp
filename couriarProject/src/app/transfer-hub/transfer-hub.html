@@ -2,13 +2,17 @@
   <h2>📦 Parcel Transfer</h2>
 
   <div class="mb-3">
-    <label>Parcel ID</label>
-    <input [(ngModel)]="transfer.parcelId" class="form-control" />
-  </div>
+  <label>Parcel ID</label>
+  <input 
+    [(ngModel)]="transfer.parcelId" 
+    class="form-control" 
+    (blur)="onChange(transfer.parcelId)" />
+</div>
+
 
   <div class="mb-3">
     <label>From Hub</label>
-    <input [(ngModel)]="transfer.fromHub" class="form-control" />
+    <input [(ngModel)]="transfer.fromHub" value="{{recParcel.currentHub}}" class="form-control" />
   </div>
 
   <div class="mb-3">

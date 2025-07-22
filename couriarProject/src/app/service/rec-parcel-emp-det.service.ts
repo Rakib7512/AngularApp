@@ -13,9 +13,13 @@ export class RecParcelEmpDetService {
 
   saveReceivedParcel(data: any): Observable<any> {
   return this.http.post('http://localhost:3000/recParcvelEmpDec', data);
+
+  
 }
 
-
+geteceivedParcelById(parcelId: string): Observable<any>{
+  return this.http.get("http://localhost:3000/recParcvelEmpDec?parcelId="+parcelId)
+}
  
 
 }
