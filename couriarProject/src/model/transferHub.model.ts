@@ -1,5 +1,5 @@
 export interface HubTransfer {
-   parcelId: string;
+  parcelId: string;
   fromHub: string;
   toHub: string;
   departedAt: string;

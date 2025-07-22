@@ -78,7 +78,7 @@ export class UpdateParcel implements OnInit{
   }
 
   updateParcel(): void {
-    this.parcelService.UpdateParcels(this.id).subscribe({
+    this.parcelService.updateParcel(this.id, this.parcel).subscribe({
       next: () => this.router.navigate(['/allparcel']),
       error: (err) => console.error('update fail', err)
     });

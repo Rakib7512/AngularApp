@@ -26,4 +26,11 @@ export class TransferHubService {
   saveTransfer(transferHub: HubTransfer): Observable<HubTransfer> {
     return this.http.post<HubTransfer>(this.apiUrl, transferHub);
   }
+
+
+  updateParcelCurrentHub(parcelId: string, hubId: string): Observable<any> {
+  return this.http.patch(`http://localhost:3000/parcel/${parcelId}`, {
+    currentHub: hubId
+  });
+}
 }

@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class ParcelService {
 
- private baseUrl = 'http://localhost:3000/parcel';
+ private baseUrl = 'http://localhost:3000/parcel'; // JSON Server expects plural
 
   constructor(private http: HttpClient) {}
 
@@ -16,38 +16,37 @@ export class ParcelService {
     return this.http.post<Parcel>(this.baseUrl, parcel);
   }
 
-  
-
-  getAllParcels(): Observable<any> {
-    return this.http.get(this.baseUrl);
+  getAllParcels(): Observable<Parcel[]> {
+    return this.http.get<Parcel[]>(this.baseUrl);
   }
 
+  updateParcel(id: string, parcel: Parcel): Observable<Parcel> {
+    return this.http.put<Parcel>(`${this.baseUrl}/${id}`, parcel);
+  }
 
-  UpdateParcels(id:string): Observable<any> {
-    return this.http.put(this.baseUrl + "/" + id, Parcel);
+  patchParcel(id: string, partial: Partial<Parcel>): Observable<Parcel> {
+    return this.http.patch<Parcel>(`${this.baseUrl}/${id}`, partial);
   }
 
   getParcelById(id: string): Observable<Parcel> {
     return this.http.get<Parcel>(`${this.baseUrl}/${id}`);
   }
 
-
-  deleteParcel(id : string):Observable<any>{
-    return this.http.delete(this.baseUrl+'/'+id);
-
-
+  deleteParcel(id: string): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/${id}`);
   }
 
   updateParcelStatus(id: string, status: string, currentHub: string): Observable<Parcel> {
-    return this.http.put<Parcel>(`${this.baseUrl}/${id}/status`, { status, currentHub });
+    // JSON Server doesn't support custom routes like /status
+    return this.http.patch<Parcel>(`${this.baseUrl}/${id}`, { status, currentHub });
   }
 
-
-  trackParcel(trackingId: string): Observable<Parcel> {
-    return this.http.get<Parcel>(`${this.baseUrl}/track/${trackingId}`);
+  trackParcel(trackingId: string): Observable<Parcel[]> {
+    return this.http.get<Parcel[]>(`${this.baseUrl}?trackingId=${trackingId}`);
   }
-  getByTrackingId(trackingId: string) {
-  return this.http.get<Parcel[]>(`http://localhost:3000/parcel?trackingId=${trackingId}`);
-}
+
+  getByTrackingId(trackingId: string): Observable<Parcel[]> {
+    return this.http.get<Parcel[]>(`${this.baseUrl}?trackingId=${trackingId}`);
+  }
 
 }

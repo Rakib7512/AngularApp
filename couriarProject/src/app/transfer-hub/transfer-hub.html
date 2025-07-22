@@ -1,39 +1,39 @@
 <div class="container mt-4">
-  <h2>📦 Parcel Transfer</h2>
+  <h3>Hub Transfer</h3>
 
-  <div class="mb-3">
-  <label>Parcel ID</label>
-  <input 
-    [(ngModel)]="transfer.parcelId" 
-    class="form-control" 
-    (blur)="onChange(transfer.parcelId)" />
-</div>
+  <form (ngSubmit)="submitTransfer()">
+    <div class="form-group">
+      <label>Parcel ID</label>
+      <input type="text" class="form-control" [(ngModel)]="transfer.parcelId" name="parcelId" (change)="onChange(transfer.parcelId)" required>
+    </div>
 
+    <div class="form-group">
+      <label>From Hub</label>
+      <input type="text" class="form-control" [(ngModel)]="transfer.fromHub" name="fromHub" >
+    </div>
 
-  <div class="mb-3">
-    <label>From Hub</label>
-    <input [(ngModel)]="transfer.fromHub" value="{{recParcel.currentHub}}" class="form-control" />
+    <div class="form-group">
+      <label>To Hub</label>
+      <input type="text" class="form-control" [(ngModel)]="transfer.toHub" name="toHub" required>
+    </div>
+
+    <div class="form-group">
+      <label>Courier By</label>
+      <input type="text" class="form-control" [(ngModel)]="transfer.courierBy" name="courierBy" required>
+    </div>
+
+    <div class="form-group">
+      <label>Current Hub (New)</label>
+      <input type="text" class="form-control" [(ngModel)]="transfer.currentHub" name="currentHub" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Transfer</button>
+  </form>
+
+  <div *ngIf="latestHubTransfer.length" class="mt-4">
+    <h5>Latest Transfer Info:</h5>
+    <p><strong>Current Hub:</strong> {{ latestHubTransfer[0].currentHub }}</p>
+    <p><strong>Departed At:</strong> {{ latestHubTransfer[0].departedAt | date: 'short' }}</p>
+    <p><strong>Courier:</strong> {{ latestHubTransfer[0].courierBy }}</p>
   </div>
-
-  <div class="mb-3">
-    <label>To Hub</label>
-    <input [(ngModel)]="transfer.toHub" class="form-control" />
-  </div>
-
-  <div class="mb-3">
-    <label>Departed At</label>
-    <input type="datetime-local" [(ngModel)]="transfer.departedAt" class="form-control" />
-  </div>
-
-  <div class="mb-3">
-    <label>Current Hub</label>
-    <input [(ngModel)]="transfer.currentHub" class="form-control" />
-  </div>
-
-  <div class="mb-3">
-    <label>Courier By</label>
-    <input [(ngModel)]="transfer.courierBy" class="form-control" />
-  </div>
-
-  <button (click)="submitTransfer()" class="btn btn-primary">Transfer</button>
 </div>

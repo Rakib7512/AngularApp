@@ -41,8 +41,8 @@
       <ng-container *ngIf="userRole === 'admin' || userRole==='emp'">
         <li class="nav-item"><a class="nav-link text-white" href="parcelReqDetails">Parcel Request</a></li>
       </ng-container>
-      <a class="nav-link text-white" routerLink="track">📦 Track Parcel</a>
-      <li class="nav-item"><a class="nav-link text-white" href="#">Contact</a></li>
+      <a class="nav-link text-white" routerLink="trackParcel">📦 Track Parcel</a>
+      <li class="nav-item"><a class="nav-link text-white" href="contact">Contact</a></li>
 
       <ng-container *ngIf="userRole === 'admin' || userRole==='user'">
         <li class="nav-item"><a class="nav-link text-white" href="addParcel">Booking Parcel</a></li>

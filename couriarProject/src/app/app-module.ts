@@ -25,6 +25,7 @@ import { ViewHubTransfer } from './view-hub-transfer/view-hub-transfer';
 import { ParcelReqDetails } from './parcel-req-details/parcel-req-details';
 import { Notifications } from './notifications/notifications';
 import { ParcelDetails } from './parcel-details/parcel-details';
+import { Contact } from './contact/contact';
 
 
 @NgModule({
@@ -51,6 +52,7 @@ import { ParcelDetails } from './parcel-details/parcel-details';
     ParcelReqDetails,
     Notifications,
     ParcelDetails,
+    Contact,
     
     
     

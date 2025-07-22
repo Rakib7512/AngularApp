@@ -17,6 +17,7 @@ import { ParcelReqDetails } from './parcel-req-details/parcel-req-details';
 import { ParcelDetails } from './parcel-details/parcel-details';
 import { Login } from './auth/login/login';
 import { Logout } from './auth/logout/logout';
+import { Contact } from './contact/contact';
 
 
 const routes: Routes = [
@@ -37,6 +38,7 @@ const routes: Routes = [
   { path: 'parcel-details', component: ParcelDetails },
   {path:'login', component:Login},
   {path:'logout', component:Logout},
+  {path:'contact', component:Contact}
 
 
 

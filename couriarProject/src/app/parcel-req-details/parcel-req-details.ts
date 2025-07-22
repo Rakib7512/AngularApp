@@ -164,7 +164,9 @@ export class ParcelReqDetails implements OnInit {
       employeeId: currentUser.id,
       employeeName: currentUser.name,
       currentHub: currentUser.currentHub,
-      receivedAt: new Date()
+      receivedAt: new Date(),
+      sender:this.parcel.senderName
+    
     };
 
     this.recParcelEmpService.saveReceivedParcel(receivedParcel).subscribe({

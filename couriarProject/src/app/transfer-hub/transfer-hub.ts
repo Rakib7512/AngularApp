@@ -30,52 +30,60 @@ export class TransferHub implements OnInit {
     private recParcelByEmp: RecParcelEmpDetService
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
 
+  onChange(parcelId: string) {
+    console.log('Parcel ID changed:', parcelId);
+    this.getCurrentHubByParcelId(parcelId);
+    this.loadLatestHub(parcelId);
+  }
+
+  getCurrentHubByParcelId(parcelId: string) {
+    this.recParcelByEmp.geteceivedParcelById(parcelId).subscribe(data => {
+      this.recParcel = data;
+    });
   }
 
   loadLatestHub(parcelId: string): void {
     this.hubTransferService.getLatestHub(parcelId).subscribe(data => {
-      this.latestHubTransfer = [data]; // single object কে array বানিয়ে নাও
+      this.latestHubTransfer = [data];
+      this.transfer.fromHub = data.currentHub; // auto-set fromHub
     });
-
   }
 
-
-
   submitTransfer() {
-    if (this.transfer.parcelId && this.transfer.fromHub && this.transfer.toHub &&
-      this.transfer.departedAt && this.transfer.currentHub && this.transfer.courierBy) {
+    if (
+      this.transfer.parcelId &&
+      this.transfer.fromHub &&
+      this.transfer.toHub &&
+      this.transfer.currentHub &&
+      this.transfer.courierBy
+    ) {
+      this.transfer.departedAt = new Date().toISOString(); // auto-set
+
       this.hubTransferService.saveTransfer(this.transfer).subscribe(() => {
-        alert('Parcel transferred successfully!');
-        this.loadLatestHub(this.transfer.parcelId); // Save করার পরে আবার দেখাও
-        this.transfer = {
-          parcelId: '',
-          fromHub: '',
-          toHub: '',
-          departedAt: '',
-          currentHub: '',
-          courierBy: ''
-        };
+        // Update the parcel's current hub
+        this.hubTransferService.updateParcelCurrentHub(this.transfer.parcelId, this.transfer.toHub).subscribe(() => {
+          alert('Parcel transferred and updated successfully!');
+          this.loadLatestHub(this.transfer.parcelId); // refresh latest
+          this.resetTransfer();
+        });
       });
     } else {
-      alert('Please fill all fields');
+      alert('Please fill all required fields');
     }
   }
 
-
-  getCurrentHubByParcelId(parcelId: string) {
-    this.recParcelByEmp.geteceivedParcelById(parcelId).subscribe(data=>{
-      this.recParcel = data;
-    });
-
+  resetTransfer() {
+    this.transfer = {
+      parcelId: '',
+      fromHub: '',
+      toHub: '',
+      departedAt: '',
+      currentHub: '',
+      courierBy: ''
+    };
   }
-
-  onChange(parcelId: string) {
-  console.log('Parcel ID changed:', parcelId);
-  this.getCurrentHubByParcelId(parcelId);
- 
-}
 
 
 }
