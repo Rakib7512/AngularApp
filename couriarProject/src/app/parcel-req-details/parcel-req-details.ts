@@ -16,6 +16,9 @@ import { RecParcelEmpDetService } from '../service/rec-parcel-emp-det.service';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../service/auth.service';
 import { User } from '../../model/user.model';
+import { Observable } from 'rxjs';
+import { RecParcelEmpDetModel } from '../../model/recParcelByEmpDet.modek';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-parcel-req-details',
@@ -51,7 +54,8 @@ export class ParcelReqDetails implements OnInit {
     private districtService: DistrictService,
     private policeStationService: PoliceStationService,
     private recParcelEmpService: RecParcelEmpDetService,
-    private authService: AuthService
+    private authService: AuthService,
+    private http:HttpClient
 
 
 
@@ -95,6 +99,7 @@ export class ParcelReqDetails implements OnInit {
     console.log(this.user);
 
   }
+
 
 
 
@@ -165,8 +170,24 @@ export class ParcelReqDetails implements OnInit {
       employeeName: currentUser.name,
       currentHub: currentUser.currentHub,
       receivedAt: new Date(),
-      sender:this.parcel.senderName
-    
+      sender: this.parcel.senderName,
+      senderPhone: this.parcel.senderPhone,
+      senderCountry: this.getCountryName(this.parcel.sendCountry),
+      senderDivision: this.getDivisionName(this.parcel.sendDivision),
+      senderDistrict: this.getDistrictName(this.parcel.sendDistrict),
+      senderPoliceStation: this.getPoliceStationName(this.parcel.sendPoliceStation),
+      senderAddress: this.parcel.senderAddress,
+
+      receiverName: this.parcel.receiverName,
+      receiverPhone: this.parcel.receiverPhone,
+      receiveCountry: this.getCountryName(this.parcel.receiveCountry),
+      receiveDivision: this.getDivisionName(this.parcel.receiveDivision),
+      receiveDistrict: this.getDistrictName(this.parcel.receiveDistrict),
+      receivePoliceStation: this.getPoliceStationName(this.parcel.receivePoliceStation),
+      receiveAddress: this.parcel.receiverAddress,
+
+
+
     };
 
     this.recParcelEmpService.saveReceivedParcel(receivedParcel).subscribe({

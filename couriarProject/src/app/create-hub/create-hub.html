@@ -1,0 +1,56 @@
+<div class="container mt-4">
+  <h3 class="mb-4 text-center text-danger">{{ editing ? '✏️ Update Hub' : '➕ Create New Hub' }}</h3>
+
+  <form [formGroup]="hubGroup" (ngSubmit)="saveHub()" class="row g-3">
+
+    <!-- Hub Name -->
+    <div class="col-md-6">
+      <label for="hubName" class="form-label">🏢 Hub Name</label>
+      <input type="text" id="hubName" class="form-control" formControlName="hubName" placeholder="Enter hub name" required />
+    </div>
+
+    <!-- Country -->
+    <div class="col-md-6">
+      <label for="country" class="form-label">🌍 Country</label>
+      <select id="country" class="form-select" formControlName="country" (change)="onCountryChange()" required>
+        <option value="">Select Country</option>
+        <option *ngFor="let c of countries" [ngValue]="c">{{ c.name }}</option>
+      </select>
+    </div>
+
+    <!-- Division -->
+    <div class="col-md-6">
+      <label for="division" class="form-label">🏛 Division</label>
+      <select id="division" class="form-select" formControlName="division" (change)="onDivisionChange()" required>
+        <option value="">Select Division</option>
+        <option *ngFor="let d of divisions" [ngValue]="d">{{ d.name }}</option>
+      </select>
+    </div>
+
+    <!-- District -->
+    <div class="col-md-6">
+      <label for="district" class="form-label">🏙 District</label>
+      <select id="district" class="form-select" formControlName="district" (change)="onDistrictChange()" required>
+        <option value="">Select District</option>
+        <option *ngFor="let dis of districts" [ngValue]="dis">{{ dis.name }}</option>
+      </select>
+    </div>
+
+    <!-- Police Station -->
+    <div class="col-md-6">
+      <label for="policeStation" class="form-label">🚓 Police Station</label>
+      <select id="policeStation" class="form-select" formControlName="policeStation" required>
+        <option value="">Select Police Station</option>
+        <option *ngFor="let ps of policeStations" [ngValue]="ps">{{ ps.name }}</option>
+      </select>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="col-12 text-center mt-3">
+      <button type="submit" class="btn btn-success px-5">
+        {{ editing ? 'Update Hub' : 'Save Hub' }}
+      </button>
+    </div>
+
+  </form>
+</div>

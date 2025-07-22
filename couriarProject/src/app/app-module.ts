@@ -26,6 +26,9 @@ import { ParcelReqDetails } from './parcel-req-details/parcel-req-details';
 import { Notifications } from './notifications/notifications';
 import { ParcelDetails } from './parcel-details/parcel-details';
 import { Contact } from './contact/contact';
+import { ViewReceiveParcel } from './view-receive-parcel/view-receive-parcel';
+import { ViewHub } from './view-hub/view-hub';
+import { CreateHub } from './create-hub/create-hub';
 
 
 @NgModule({
@@ -53,6 +56,9 @@ import { Contact } from './contact/contact';
     Notifications,
     ParcelDetails,
     Contact,
+    ViewReceiveParcel,
+    ViewHub,
+    CreateHub,
     
     
     
