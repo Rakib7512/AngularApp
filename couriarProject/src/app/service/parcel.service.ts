@@ -49,4 +49,9 @@ export class ParcelService {
     return this.http.get<Parcel[]>(`${this.baseUrl}?trackingId=${trackingId}`);
   }
 
+  getParcelsByUserId(userId: string) {
+  return this.http.get<Parcel[]>(`http://localhost:8080/api/parcels/user/${userId}`);
+}
+
+
 }

@@ -1,9 +1,12 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
 import { User } from '../../../model/user.model';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { AuthService } from '../../service/auth.service';
 import { UserService } from '../../service/user.service';
+import { Parcel } from '../../../model/parcel.model';
+import { ParcelService } from '../../service/parcel.service';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-userprofile',
@@ -11,36 +14,44 @@ import { UserService } from '../../service/user.service';
   templateUrl: './userprofile.html',
   styleUrl: './userprofile.css'
 })
-export class Userprofile implements OnInit, OnDestroy {
-
+export class Userprofile implements OnInit {
   user: User | null = null;
-  private subscription: Subscription = new Subscription();
+  userParcels: Parcel[] = [];
 
   constructor(
-    private authService: AuthService,
-    private router: Router,
-    private userService: UserService // FIXED: improved naming
+    private parcelService: ParcelService,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
-  ngOnInit(): void {
-    const id = localStorage.getItem('id');
-    if (!id) {
-      this.router.navigate(['/login']);
-      return;
-    }
 
-    this.subscription = this.userService.getUserById(id).subscribe({
-      next: (data: User) => {
-        this.user = data;
-      },
-      error: (error) => {
-        console.error('Failed to load user', error);
-        alert('Failed to load user profile.');
+
+  ngOnInit(): void {
+   if (isPlatformBrowser(this.platformId)) {
+      const loggedInUser = localStorage.getItem('loggedInUser');
+      if (loggedInUser) {
+        const parsedUser = JSON.parse(loggedInUser);
+        this.user = parsedUser.user;
+
+        // Call this after setting user
+        if (this.user?.id) {
+          this.loadUserParcels(this.user.id);
+        }
+      } else {
+        console.error('User not logged in.');
       }
-    });
+    } else {
+      console.warn('localStorage not available (server-side)');
+    }
   }
 
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+  loadUserParcels(userId: string): void {
+    this.parcelService.getParcelsByUserId(userId).subscribe({
+      next: (data) => {
+        this.userParcels = data;
+      },
+      error: (err) => {
+        console.error('Failed to load user parcel history:', err);
+      }
+    });
   }
 }

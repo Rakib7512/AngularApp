@@ -1,5 +1,5 @@
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
-import { BehaviorSubject, catchError, map, Observable } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable, throwError } from 'rxjs';
 import { User } from '../../model/user.model';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { isPlatformBrowser } from '@angular/common';
@@ -17,6 +17,7 @@ export class AuthService {
   public currentUser$: Observable<User | null>;
 
   constructor(
+    
     private http: HttpClient,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
@@ -156,5 +157,16 @@ export class AuthService {
     const role = this.getUserRole();
     return role === 'emp';
   }
+
+ getLoggedInUser(): Observable<User> {
+  if (isPlatformBrowser(this.platformId)) {
+    const userId = localStorage.getItem('userId');
+    if (userId) {
+      return this.http.get<User>(`http://localhost:8080/api/users/${userId}`);
+    }
+  }
+  return throwError(() => new Error('localStorage not available or user not logged in.'));
+}
+
 
 }

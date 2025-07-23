@@ -28,6 +28,7 @@ export class Parcel {
   squareFeet?: number;
   fee?: number;
   verificationCode!:string
+  bookingDate!:Date;
   
 
 
