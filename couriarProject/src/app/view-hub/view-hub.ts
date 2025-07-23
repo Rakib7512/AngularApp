@@ -14,6 +14,7 @@ export class ViewHub implements OnInit {
 
   constructor(private hubService: HubService) {}
   ngOnInit(): void {
+    
      this.loadHubs();
   }
 
@@ -26,5 +27,6 @@ export class ViewHub implements OnInit {
   deleteHub(id: number): void {
     this.hubService.deleteHub(id).subscribe(() => this.loadHubs());
   }
+  
 
 }

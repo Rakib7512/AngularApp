@@ -24,9 +24,13 @@ export class CreateHub implements OnInit {
    hub_Id: string | null = null;
 
   countries: Country[] = [];
-  divisions: Division[] = [];
-  districts: District[] = [];
-  policeStations: PoliceStation[] = [];
+  allDivisions: Division[] = [];
+  allDistricts: District[] = [];
+  allPoliceStations: PoliceStation[] = [];
+
+  filteredDivisions: Division[] = [];
+  filteredDistricts: District[] = [];
+  filteredPoliceStations: PoliceStation[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -49,47 +53,66 @@ export class CreateHub implements OnInit {
   }
 
   ngOnInit(): void {
+
+    
+    this.countryService.getAll().subscribe(data => this.countries = data);
+    this.divisionService.getAll().subscribe(data => this.allDivisions = data);
+    this.districtService.getAll().subscribe(data => this.allDistricts = data);
+    this.policeStationService.getAll().subscribe(data => this.allPoliceStations = data);
    
   
     this.loadCountries()
   }
  loadCountries() {
     this.countryService.getAll().subscribe(data => {
-      this.countries = data;
+    this.countries = data;
     });
   }
+
 
 
 
   onCountryChange() {
-    const countryId = this.hubGroup.value.countryId;
-    this.divisionService.getAll().subscribe(data => {
-      this.divisions = data.filter(d => d.id == countryId);
-    });
-    this.districts = [];
-    this.policeStations = [];
-    this.hubGroup.patchValue({ divisionId: '', districtId: '', policeStationId: '' });
-  }
+    const selectedCountryId = this.hubGroup.value.country;
+     const selectedCountry = this.countries.find(c => c.id == selectedCountryId);
+     if (selectedCountry) {
+      this.filteredDivisions = this.allDivisions.filter(d => selectedCountry.divisions.includes(d.id!));
+      this.filteredDistricts = [];
+      this.filteredPoliceStations = [];
+      this.hubGroup.patchValue({ division: '', district: '', policeStation: '' });
+    }}
 
 
-   
+
+    
 
   onDivisionChange() {
-    const divisionId = this.hubGroup.value.divisionId;
-    this.districtService.getAll().subscribe(data => {
-      this.districts = data.filter(d => d.id == divisionId);
-    });
-    this.policeStations = [];
-    this.hubGroup.patchValue({ districtId: '', policeStationId: '' });
+    const selectedDivisionId = this.hubGroup.value.division;
+    const selectedDivision = this.allDivisions.find(d => d.id == selectedDivisionId);
+    if (selectedDivision) {
+      this.filteredDistricts = this.allDistricts.filter(dist => selectedDivision.districts.includes(dist.id!));
+      this.filteredPoliceStations = [];
+      this.hubGroup.patchValue({ district: '', policeStation: '' });
+    }
   }
 
+
+
+
   onDistrictChange() {
-    const districtId = this.hubGroup.value.districtId;
-    this.policeStationService.getAll().subscribe(data => {
-      this.policeStations = data.filter(p => p.id == districtId);
-    });
-    this.hubGroup.patchValue({ policeStationId: '' });
+  const selectedDistrictId = this.hubGroup.value.district;
+     const selectedDistrict = this.allDistricts.find(dist => dist.id == selectedDistrictId);
+     if (selectedDistrict) {
+      this.filteredPoliceStations = this.allPoliceStations.filter(ps => selectedDistrict.policeStations.includes(ps.id!));
+      this.hubGroup.patchValue({ policeStation: '' });
+    }
   }
+  
+
+  
+
+
+  
 
   saveHub() {
     if (this.hubGroup.invalid) return;
@@ -105,13 +128,25 @@ export class CreateHub implements OnInit {
       this.hubService.saveHub(employee).subscribe(() => {
         alert('Hub added successfully!');
         this.hubGroup.reset();
-        this.districts = [];
-        this.districts = [];
-        this.policeStations = [];
+        this.filteredDivisions = [];
+        this.filteredDistricts = [];
+        this.filteredPoliceStations = [];
       });
     }
 
    
   }
+    loadHub(id: string) {
+  
+      //  Pre-filter dependent dropdowns
+      this.onCountryChange();
+      this.onDivisionChange();
+      this.onDistrictChange();
+    };
+  }
 
-}
+
+
+
+
+

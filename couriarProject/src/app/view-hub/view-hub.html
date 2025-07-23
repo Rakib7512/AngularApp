@@ -1,35 +1,36 @@
 <div class="container mt-4">
-  <div class="card shadow border-0 rounded-4">
-    <div class="card-body">
-      <h3 class="text-center fw-bold text-success">🏢 Hub Location List</h3>
+  <h2 class="text-center mb-4">Hub List</h2>
 
-      <table class="table table-bordered table-hover mt-4">
-        <thead class="table-success text-center">
-          <tr>
-            <th>Name</th>
-            <th>Country</th>
-            <th>Division</th>
-            <th>District</th>
-            <th>Police Station</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody class="text-center">
-          <tr *ngFor="let hub of hubs">
-            <td>{{ hub.name }}</td>
-            <td>{{ hub.countries }}</td>
-            <td>{{ hub.divisions }}</td>
-            <td>{{ hub.districts }}</td>
-            <td>{{ hub.policeStations }}</td>
-            <td>
-              <button class="btn btn-danger btn-sm" (click)="deleteHub(hub.id!)">
-                Delete
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+  <table class="table table-bordered table-striped">
+    <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>Hub Name</th>
+        <th>Hub Location</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let hub of hubs">
+        <td>{{ hub.id }}</td>
+        <td>{{ hub.hubName }}</td>
+        <td>
+          {{ hub.countryName }},<br />
+          {{ hub.divisionName }},<br />
+          {{ hub.districtName }},
+          {{ hub.policeStationName }},
+
+        </td>
+        <td>
+          <button class="btn btn-danger btn-sm" (click)="deleteHub(hub.id)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="hubs.length === 0" class="alert alert-info text-center">
+    No hubs available.
   </div>
 </div>
-
