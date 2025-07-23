@@ -54,7 +54,8 @@ export class AddEmployee implements OnInit {
       country: ['', Validators.required],
       division: ['', Validators.required],
       district: ['', Validators.required],
-      policeStation: ['', Validators.required]
+      policeStation: ['', Validators.required],
+      empOnHub: ['', Validators.required]
     });
   }
 

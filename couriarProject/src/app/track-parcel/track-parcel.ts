@@ -3,6 +3,8 @@ import { HubTransfer } from '../../model/transferHub.model';
 import { TransferHubService } from '../service/transfer-hub.service';
 import { Parcel } from '../../model/parcel.model';
 import { ParcelService } from '../service/parcel.service';
+import { RecParcelEmpDetService } from '../service/rec-parcel-emp-det.service';
+import { RecParcelEmpDetModel } from '../../model/recParcelByEmpDet.modek';
 
 @Component({
   selector: 'app-track-parcel',
@@ -11,11 +13,14 @@ import { ParcelService } from '../service/parcel.service';
   styleUrl: './track-parcel.css'
 })
 export class TrackParcel {
+  
  trackingId = '';
-  parcel: Parcel | null = null;
+  recParcelByEMp: RecParcelEmpDetModel | null = null;
   errorMessage = '';
 
-  constructor(private parcelService: ParcelService) {}
+  constructor(private recParcelEmpDetService: RecParcelEmpDetService
+    
+  ) {}
 
   track() {
     if (!this.trackingId) {
@@ -23,18 +28,19 @@ export class TrackParcel {
       return;
     }
 
-    this.parcelService.getByTrackingId(this.trackingId).subscribe({
+    this.recParcelEmpDetService.getByTrackingId(this.trackingId).subscribe({
       next: (res: any) => {
         if (res.length > 0) {
-          this.parcel = res[0]; // Since you used `?trackingId=`, backend returns array
+          this.recParcelByEMp = res[0]; // Since you used `?trackingId=`, backend returns array
           this.errorMessage = '';
+          console.log(this.recParcelByEMp);
         } else {
-          this.parcel = null;
+          this.recParcelByEMp = null;
           this.errorMessage = 'No parcel found with that tracking ID.';
         }
       },
       error: () => {
-        this.parcel = null;
+        this.recParcelByEMp = null;
         this.errorMessage = 'Error fetching parcel.';
       }
     });

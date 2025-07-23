@@ -28,6 +28,9 @@
           <p class="card-text mb-1">
             <strong>Police Station:</strong> {{ getPoliceStationName(emp.policeStation) }}
           </p>
+          <p class="card-text mb-1">
+            <strong>Emp On hub:</strong> {{ getEmpOnHub(emp.policeStation) }}
+          </p>
         </div>
         <div class="card-footer text-end">
           <a [routerLink]="['/edit-employee', emp.id]" class="btn btn-sm btn-warning me-2">

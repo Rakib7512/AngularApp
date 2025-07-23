@@ -72,6 +72,9 @@ export class ViewEmp implements OnInit{
   getDistrictName(id: string): string {
     return this.districts.find(dist => dist.id == id)?.name || '';
   }
+  getEmpOnHub(id: string){
+ return this.policeStations.find(ps => ps.id == id)?.name || '';
+  }
 
   getPoliceStationName(id: string): string {
     return this.policeStations.find(ps => ps.id == id)?.name || '';

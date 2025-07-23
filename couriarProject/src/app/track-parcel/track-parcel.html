@@ -8,13 +8,14 @@
 
   <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
 
-  <div *ngIf="parcel" class="card mt-3">
+  <div *ngIf="recParcelByEMp" class="card mt-3">
     <div class="card-body">
       <h5 class="card-title">Parcel Details</h5>
-      <p><strong>Sender:</strong> {{ parcel.senderName }}</p>
-      <p><strong>Receiver:</strong> {{ parcel.receiverName }}</p>
-      <p><strong>Current Hub:</strong> {{ parcel.currentHub }}</p>
-      <p><strong>Status:</strong> {{ parcel.status || 'N/A' }}</p>
+      <p><strong>Sender:</strong> {{ recParcelByEMp.senderName }}</p>
+      <p><strong>Receiver:</strong> {{ recParcelByEMp.receiverName }}</p>
+      <p><strong>Current Hub:</strong> {{ recParcelByEMp.currentHub }}</p>
+      <p><strong>Sender Address:</strong> {{ recParcelByEMp.senderAddress }}</p>
+      <p><strong>Status:</strong> {{ recParcelByEMp.status || 'N/A' }}</p>
     </div>
   </div>
 </div>

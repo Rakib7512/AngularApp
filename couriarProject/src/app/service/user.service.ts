@@ -26,8 +26,9 @@ export class UserService {
     localStorage.setItem('userProfile', JSON.stringify(user));
     return this.http.put<User>(`${this.baseUrl}/${user.id}`, user);
   }
-  getUserById(id: number): Observable<User> {
-  return this.http.get<User>(`${this.baseUrl}/users/${id}`);
+  
+  getUserById(id: string): Observable<User> {
+  return this.http.get<User>(`/api/users/${id}`);
 }
 
   

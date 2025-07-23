@@ -170,7 +170,7 @@ export class ParcelReqDetails implements OnInit {
       employeeName: currentUser.name,
       currentHub: currentUser.currentHub,
       receivedAt: new Date(),
-      sender: this.parcel.senderName,
+      senderName: this.parcel.senderName,
       senderPhone: this.parcel.senderPhone,
       senderCountry: this.getCountryName(this.parcel.sendCountry),
       senderDivision: this.getDivisionName(this.parcel.sendDivision),

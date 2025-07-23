@@ -25,6 +25,13 @@ geteceivedParcelById(parcelId: string): Observable<any>{
   getAllParcelsDet(): Observable<RecParcelEmpDetModel[]> {
       return this.http.get<RecParcelEmpDetModel[]>(this.baseUrl);
     }
+    getByTrackingId(trackingId: string): Observable<RecParcelEmpDetModel[]> {
+    return this.http.get<RecParcelEmpDetModel[]>(`${this.baseUrl}?trackingId=${trackingId}`);
+  }
+
+  getReceivedParcelById(parcelId: string): Observable<RecParcelEmpDetModel> {
+    return this.http.get<RecParcelEmpDetModel>(`${this.baseUrl}/${parcelId}`);
+  }
  
 
 }

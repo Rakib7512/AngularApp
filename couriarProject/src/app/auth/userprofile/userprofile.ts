@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { User } from '../../../model/user.model';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
@@ -11,35 +11,34 @@ import { UserService } from '../../service/user.service';
   templateUrl: './userprofile.html',
   styleUrl: './userprofile.css'
 })
-export class Userprofile implements OnInit{
+export class Userprofile implements OnInit, OnDestroy {
 
-user: User | null = null;
+  user: User | null = null;
   private subscription: Subscription = new Subscription();
 
   constructor(
     private authService: AuthService,
     private router: Router,
-    private userSer: UserService
-  ) { }
+    private userService: UserService // FIXED: improved naming
+  ) {}
+
   ngOnInit(): void {
-    const userId = localStorage.getItem('userId');
-    if (!userId) {
-      this.router.navigate(['/login']); // not logged in
+    const id = localStorage.getItem('id');
+    if (!id) {
+      this.router.navigate(['/login']);
       return;
     }
 
-    // Fetch user data
-    this.subscription = this.userSer.getUserById(+userId).subscribe(
-      (data) => {
+    this.subscription = this.userService.getUserById(id).subscribe({
+      next: (data: User) => {
         this.user = data;
       },
-      (error) => {
+      error: (error) => {
         console.error('Failed to load user', error);
         alert('Failed to load user profile.');
       }
-    );
+    });
   }
-
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();

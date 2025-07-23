@@ -84,6 +84,13 @@
         <option *ngFor="let ps of filteredPoliceStations" [value]="ps.id">{{ ps.name }}</option>
       </select>
     </div>
+    <div class="col-md-6">
+      <label class="form-label">Employee On Hub</label>
+      <select formControlName="empOnHub" class="form-select">
+        <option value="">Select Empolly On Hub Station</option>
+        <option *ngFor="let ps of filteredPoliceStations" [value]="ps.id">{{ ps.name }}</option>
+      </select>
+    </div>
     <div class="col-md-4">
       <label for="image">Add Image</label>
      <input type="text" formControlName="image" class="form-control" id="image" name="image" placeholder="Image" />

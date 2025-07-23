@@ -13,5 +13,6 @@ export class Employee {
     division!: string;     // ID of selected division
     district!: string;     // ID of selected district
     policeStation!: string; // ID of selected police station
+    empOnHub!:string;
 
 }
