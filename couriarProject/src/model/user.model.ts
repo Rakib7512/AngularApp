@@ -1,6 +1,6 @@
 export interface User {
     id?: string;
-    photo:string;
+   profilePic?: string; // ✅ Add this line
     name: string;
     phone: string;
     email: string;
@@ -8,7 +8,4 @@ export interface User {
     password: string;
     role:string;
     currentHub:string;
-    
-    
-    
-}
+   }

@@ -52,7 +52,8 @@ export class AddParcel implements OnInit {
     private policeStationService: PoliceStationService,
     private parcelService: ParcelService,
     private router: Router,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private cdr:ChangeDetectorRef
   ) {
     this.parcelForm = this.fb.group({
       trackingId: [''],
@@ -83,6 +84,15 @@ export class AddParcel implements OnInit {
   }
 
   ngOnInit(): void {
+     // Set logged in user's name as senderName
+  const loggedInUser = localStorage.getItem('loggedInUser');
+  if (loggedInUser) {
+    const user = JSON.parse(loggedInUser);
+    if (user?.name) {
+      this.parcelForm.patchValue({ senderName: user.name });
+      this.parcelForm.get('senderName')?.disable();
+    }
+  }
 
 
 

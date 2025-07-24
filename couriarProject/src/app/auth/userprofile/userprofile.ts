@@ -17,41 +17,56 @@ import { isPlatformBrowser } from '@angular/common';
 export class Userprofile implements OnInit {
   user: User | null = null;
   userParcels: Parcel[] = [];
+  defaultImage: string = 'https://via.placeholder.com/150'; // fallback image
+  selectedImage: string | null = null;
 
   constructor(
     private parcelService: ParcelService,
     @Inject(PLATFORM_ID) private platformId: Object
-  ) {}
-
+  ) { }
 
 
   ngOnInit(): void {
-   if (isPlatformBrowser(this.platformId)) {
-      const loggedInUser = localStorage.getItem('loggedInUser');
-      if (loggedInUser) {
-        const parsedUser = JSON.parse(loggedInUser);
-        this.user = parsedUser.user;
-
-        // Call this after setting user
-        if (this.user?.id) {
-          this.loadUserParcels(this.user.id);
-        }
-      } else {
-        console.error('User not logged in.');
+     if (isPlatformBrowser(this.platformId)) {
+    const loggedInUser = localStorage.getItem('loggedInUser');
+    if (loggedInUser) {
+      this.user = JSON.parse(loggedInUser);
+      if (this.user?.id) {
+        this.loadUserParcels(this.user.id);  // ✅ This line is key
       }
     } else {
-      console.warn('localStorage not available (server-side)');
+      console.error('User not logged in.');
+    }
+  }
+  }
+
+ loadUserParcels(userId: string): void {
+ this.parcelService.getParcelsByUserId(userId).subscribe({
+    next: (data) => {
+      this.userParcels = data;
+    },
+    error: (err) => {
+      console.error('Failed to load user parcel history:', err);
+    }
+  }); 
+}
+
+  onFileSelected(event: any): void {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.selectedImage = reader.result as string;
+      };
+      reader.readAsDataURL(file);
     }
   }
 
-  loadUserParcels(userId: string): void {
-    this.parcelService.getParcelsByUserId(userId).subscribe({
-      next: (data) => {
-        this.userParcels = data;
-      },
-      error: (err) => {
-        console.error('Failed to load user parcel history:', err);
-      }
-    });
+  saveProfilePic(): void {
+    if (this.selectedImage && this.user) {
+      this.user.profilePic = this.selectedImage;
+      localStorage.setItem('loggedInUser', JSON.stringify(this.user));
+      alert('Profile picture updated!');
+    }
   }
 }
